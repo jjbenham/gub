@@ -2,7 +2,7 @@ from gub import gnome
 from gub import target
 
 class Libidl (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.26/2.26.3/sources/libIDL-0.8.13.tar.gz'
+    source = 'http://ftp.acc.umu.se/pub/gnome/sources/libIDL/0.8/libIDL-0.8.10.tar.bz2'
     dependencies = [
         'tools::libtool',
         'glib-devel',

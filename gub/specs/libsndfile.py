@@ -1,7 +1,9 @@
 from gub import target
 
 class Libsndfile (target.AutoBuild):
-    source = 'http://www.mega-nerd.com/libsndfile/files/libsndfile-1.0.21.tar.gz'
+    source = 'http://pkgs.fedoraproject.org/repo/pkgs/libsndfile/libsndfile-1.0.21.tar.gz/880a40ec636ab2185b97f8927299b292/libsndfile-1.0.21.tar.gz'
+    #permissions are incorrect on server
+    #source = 'http://www.mega-nerd.com/libsndfile/files/libsndfile-1.0.21.tar.gz'
     dependencies = [
         'tools::automake',
         'tools::pkg-config',
