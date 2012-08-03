@@ -15,7 +15,7 @@ class Gmp (target.AutoBuild):
             build.add_dict (self, {'LIBRESTRICT_IGNORE': '%(tools_prefix)s/bin/bash'})
     dependencies = ['libtool', 'tools::autoconf', 'tools::automake', 'tools::bison', 'tools::flex', 'tools::libtool']
     configure_flags = (target.AutoBuild.configure_flags
-                       + ' --disable-cxx ')
+                       + ' ABI=32 --disable-cxx ')
     def configure (self):
         target.AutoBuild.configure (self)
         # automake's Makefile.in's too old for new libtool,
@@ -63,4 +63,4 @@ class Gmp__tools (tools.AutoBuild, Gmp):
     patches = ['gmp-4.2.1-no-stack-protector.patch']
     configure_variables = (tools.AutoBuild.configure_variables
                            # avoid __isoc99_fscanf@@GLIBC_2.7 etc
-                           + ' CPPFLAGS=-D_GNU_SOURCE')
+                           + ' ABI=32 CPPFLAGS=-D_GNU_SOURCE')
