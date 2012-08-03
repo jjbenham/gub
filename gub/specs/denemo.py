@@ -12,8 +12,10 @@ from gub import repository
 from gub import target
 
 class Denemo (target.AutoBuild):
+#    source = 'http://ftpmirror.gnu.org/denemo/denemo-0.9.4.tar.gz'
     source = 'git://git.savannah.gnu.org/denemo.git'
-    patches = [ ]
+    branch = 'master'
+#    patches = ['denemo-SIGCHLD.patch']
     subpackage_names = ['']
     dependencies = [
         'cross/gcc-c++-runtime',
@@ -21,19 +23,23 @@ class Denemo (target.AutoBuild):
         'tools::gettext',
         'tools::libtool',
         'tools::pkg-config',
-        'epdfview', # Builds, but needs dynamic relocation patches.
+	'tools::glib',
         'fluidsynth',
         'guile-devel',
         'gtk+-devel',
-        'jack-devel',
-        'lash-devel',
+ 	'glib-devel',
+	'evince',
+        #'jack-devel',
+        #'lash-devel',
         'libaubio-devel',
         'libgtksourceview-devel',
         'librsvg-devel', 
         'libxml2-devel',
         'lilypondcairo',
         'portaudio-devel',
-	'cairo',
+ 	'libsndfile',
+	'cairo'
+	#'portmidi'
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-binreloc'
@@ -49,9 +55,9 @@ class Denemo (target.AutoBuild):
         if isinstance (source, repository.Git):
             source.version = misc.bind_method (repository.Repository.version_from_configure_in, source)
     def compile (self):
-        if isinstance (self.source, repository.Git):
+        #if isinstance (self.source, repository.Git):
             # FIXME: missing dependency
-            self.system ('cd %(builddir)s/src && make lylexer.c')
+        #    self.system ('cd %(builddir)s/src && make lylexer.c')
         target.AutoBuild.compile (self)
 
 class Denemo__mingw__windows (Denemo):
@@ -66,7 +72,14 @@ class Denemo__mingw__windows (Denemo):
 
 class Denemo__mingw__console (Denemo__mingw__windows):
     configure_flags = (Denemo__mingw__windows.configure_flags
-                       + ' --enable-debugging')
+                           .replace(' --enable-binreloc', ' --disable-binreloc')
+		       	   + ' --enable-debug'
+			   + ' --disable-portmidi'
+			   + ' --enable-win32portmidi')
+		            
+    configure_variables = (Denemo__mingw__windows.configure_variables
+ 			   + ' PKG_CONFIG_PATH=%(system_prefix)s/lib/pkgconfig'
+ 			   + ' EVINCE_2_30_CFLAGS="-I%(system_prefix)s/include/evince/2.32" EVINCE_2_30_LIBS="-L%(system_prefix)s/lib -levview -levdocument"')
     def __init__ (self, settings, source):
         Denemo__mingw__windows.__init__ (self, settings, source)
         # Configure (link) without -mwindows for denemo-console.exe
