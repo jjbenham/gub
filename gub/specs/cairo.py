@@ -1,7 +1,7 @@
 from gub import target
 
 class Cairo (target.AutoBuild):
-    source = 'http://www.cairographics.org/releases/cairo-1.8.8.tar.gz'
+    source = 'http://www.cairographics.org/releases/cairo-1.10.0.tar.gz'
     def patch (self):
         target.AutoBuild.patch (self)
         self.system ('rm -f %(srcdir)s/src/cairo-features.h')
@@ -12,6 +12,7 @@ class Cairo (target.AutoBuild):
                 'libx11-devel',
                 'libxrender-devel',
                 'pixman-devel',
+		# 'librsvg-devel',
                 # FIXME: poppler, librsvg, cairo, gtk dependencies?
                 # gtk+ depends on pango, pango on cairo, cairo on poppler, and poppler on gtk+?
                 # TRIED: removing gtk+ dependency from poppler -- no go

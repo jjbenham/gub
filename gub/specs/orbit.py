@@ -2,7 +2,7 @@ from gub import gnome
 from gub import target
 
 class Orbit (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.26/2.26.3/sources/ORBit2-2.14.17.tar.gz'
+    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.32/2.32.1/sources/ORBit2-2.14.19.tar.bz2'
     dependencies = [
         'tools::libtool',
         'glib-devel',
