@@ -3,14 +3,16 @@ from gub import gnome
 from gub import target
 
 class Gtk_x_ (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.27/2.27.91/sources/gtk+-2.17.9.tar.gz'
+    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.32/2.32.1/sources/gtk+-2.22.1.tar.gz'
+    #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.27/2.27.91/sources/gtk+-2.17.9.tar.gz'
     #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.31/2.31.2/sources/gtk+-2.21.0.tar.gz'
     patches = [
         #'gtk+-2.15.3-substitute-env.patch',
-        'gtk+-2.21.0-substitute-env.patch',
+        #'gtk+-2.21.0-substitute-env.patch',
         ]
     dependencies = ['libtool',
                 'atk-devel',
+		'gdk-pixbuf-2',
                 'cairo-devel',
                 'libjpeg-devel',
                 'libpng-devel',
@@ -30,7 +32,7 @@ class Gtk_x_ (target.AutoBuild):
                 (' demos ', ' '), # actually, we'd need tools::gtk+
                 (' tests ', ' '),
                 ], '%(srcdir)s/Makefile.in')
-    configure_command = (' export gio_can_sniff=yes; '
+    configure_command = ('gdk-pixbuf-query-loaders --update-cache && export gio_can_sniff=yes; '
                 + target.AutoBuild.configure_command)
     def create_config_files (self, prefix='/usr'):
         gtk_module_version = '2.10.0' #FIXME!
