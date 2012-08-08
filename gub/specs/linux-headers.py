@@ -2,7 +2,7 @@ from gub import build
 from gub import context
 
 class Linux_headers (build.BinaryBuild, build.SdkBuild):
-    source = 'http://mirror.anl.gov/pub/linux/kernel/v2.4/linux-2.4.34.tar.bz2&name=linux-headers'
+    source = 'http://ftp.gts.lug.ro/kernel/linux/kernel/v2.4/linux-2.4.34.1.tar.bz2'
     # HMm, is this more handy than patch ():pass in BinaryBuild?
     # possibly we should simply override install (), but that is
     # always a problem because install ()
