@@ -1,0 +1,41 @@
+diff -rupN gdk-pixbuf-2.22.1/gdk-pixbuf/pixops/composite_line_22_4a4_mmx.S gdk-pixbuf-2.22.1.new/gdk-pixbuf/pixops/composite_line_22_4a4_mmx.S
+--- gdk-pixbuf-2.22.1/gdk-pixbuf/pixops/composite_line_22_4a4_mmx.S	2010-06-25 16:40:10.000000000 -0500
++++ gdk-pixbuf-2.22.1.new/gdk-pixbuf/pixops/composite_line_22_4a4_mmx.S	2012-07-05 14:34:27.309077387 -0500
+@@ -189,9 +189,9 @@ __pixops_composite_line_22_4a4_mmx:
+ 
+ 	shll $2, %edx
+ 
+-#	%mm4 will always be already clear here	
++/*#	%mm4 will always be already clear here	
+ #	pxor %mm4, %mm4
+-
++*/
+ 	movl 16(%ebp),%edi
+ 	movl (%edi, %edx), %eax
+ 	movd (%edi, %edx), %mm5
+diff -rupN gdk-pixbuf-2.22.1/gdk-pixbuf/pixops/have_mmx.S gdk-pixbuf-2.22.1.new/gdk-pixbuf/pixops/have_mmx.S
+--- gdk-pixbuf-2.22.1/gdk-pixbuf/pixops/have_mmx.S	2010-06-25 16:40:10.000000000 -0500
++++ gdk-pixbuf-2.22.1.new/gdk-pixbuf/pixops/have_mmx.S	2012-07-05 14:19:50.481053880 -0500
+@@ -42,8 +42,8 @@ __pixops_have_mmx:
+ 	
+ 	push	%ebx
+ 
+-# Check if bit 21 in flags word is writeable
+-
++/*# Check if bit 21 in flags word is writeable
++*/
+ 	pushfl	
+ 	popl	%eax
+ 	movl	%eax,%ebx
+@@ -56,9 +56,9 @@ __pixops_have_mmx:
+ 	cmpl	%eax, %ebx
+ 
+ 	je .notfound
+-
++/*
+ # OK, we have CPUID
+-
++*/
+ 	movl	$1, %eax
+ 	cpuid
+ 	

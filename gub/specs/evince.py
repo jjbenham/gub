@@ -1,0 +1,35 @@
+from gub import target
+from gub import tools
+
+class Evince (target.AutoBuild):
+  source = 'http://ftp.gnome.org/pub/GNOME/sources/evince/2.32/evince-2.32.0.tar.bz2'
+  
+  dependencies = ['intltool',
+		  'libxml2-devel',
+		  'poppler-devel']
+		  #'gnome-icon-theme', #needed if not win32
+		  #'libx11-devel'] #needed if not win32
+		  #FIXME needed for pdf support in evince 'poppler-devel'] 
+  patches = ['evince-icon.patch', 'evince-po.patch'] 
+  configure_flags = (tools.AutoBuild.configure_flags
+			   #+ ' --with-libintl-prefix=%(install_prefix)s'
+                           #+ ' --enable-static'
+			   + ' --without-libgnome'
+			   + ' --without-gconf'
+                           + ' --without-keyring'
+                           + ' --with-platform=win32'
+			   + ' --with-smclient-backend=win32' #not sure what this is
+			   + ' --disable-help'
+			   + ' --disable-thumbnailer'
+			   + ' --disable-nautilus'
+			   + ' --disable-dbus'
+			   + ' --disable-gtk-doc'
+			   #+ ' --disable-pdf' #FIXME probably need pdf support
+			   + ' --disable-previewer' #not sure if this is needed
+			   + ' --disable-nls'
+			   + ' --without-gtk-unix-print')
+
+  configure_variables = (tools.AutoBuild.configure_variables
+                           + ' CPPFLAGS="-D_WIN32_WINNT=0x0501"')
+
+
