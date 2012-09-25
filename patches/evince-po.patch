@@ -1,0 +1,29 @@
+diff -rupN evince-2.32.0/Makefile.in evince-2.32.0.new/Makefile.in
+--- evince-2.32.0/Makefile.in	2010-09-27 14:02:31.000000000 -0500
++++ evince-2.32.0.new/Makefile.in	2012-07-07 21:35:47.943193025 -0500
+@@ -104,7 +104,7 @@ AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGE
+ ETAGS = etags
+ CTAGS = ctags
+ DIST_SUBDIRS = cut-n-paste data libdocument backend libview libmisc \
+-	properties shell po help test thumbnailer previewer
++	properties shell help test thumbnailer previewer
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ distdir = $(PACKAGE)-$(VERSION)
+ top_distdir = $(distdir)
+@@ -380,7 +380,7 @@ ACLOCAL_AMFLAGS = -I m4
+ # Set the minimum required Windows version to Windows 2000 (0x0500).
+ @PLATFORM_WIN32_TRUE@AM_CPPFLAGS = -D_WIN32_WINNT=0x0500
+ SUBDIRS = cut-n-paste data libdocument backend libview libmisc \
+-	properties shell po help $(am__append_1) $(am__append_2) \
++	properties shell help $(am__append_1) $(am__append_2) \
+ 	$(am__append_3)
+ NULL = 
+ pkgconfigdir = $(libdir)/pkgconfig
+@@ -430,7 +430,6 @@ MAINTAINERCLEANFILES = \
+ 	$(srcdir)/omf.make \
+ 	$(srcdir)/xmldocs.make \
+ 	$(srcdir)/gtk-doc.make \
+-	$(srcdir)/po/Makefile.in.in \
+ 	`find "$(srcdir)" -type f -name Makefile.in -print`
+ 
+ 

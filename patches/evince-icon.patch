@@ -1,0 +1,40 @@
+diff -rupN evince-2.32.0/shell/Makefile.in evince-2.32.0.new/shell/Makefile.in
+--- evince-2.32.0/shell/Makefile.in	2010-09-27 14:02:30.000000000 -0500
++++ evince-2.32.0.new/shell/Makefile.in	2012-07-06 16:10:57.483345954 -0500
+@@ -42,7 +42,6 @@ libexec_PROGRAMS = evince-convert-metada
+ @ENABLE_DBUS_TRUE@	ev-media-player-keys.h
+ 
+ @PLATFORM_WIN32_TRUE@am__append_3 = -mwindows
+-@PLATFORM_WIN32_TRUE@am__append_4 = evince-icon.o
+ subdir = shell
+ DIST_COMMON = $(srcdir)/Makefile.am $(srcdir)/Makefile.in
+ ACLOCAL_M4 = $(top_srcdir)/aclocal.m4
+@@ -111,8 +110,7 @@ evince_DEPENDENCIES =  \
+ 	$(top_builddir)/properties/libevproperties.la \
+ 	$(top_builddir)/libdocument/libevdocument.la \
+ 	$(top_builddir)/libview/libevview.la \
+-	$(top_builddir)/libmisc/libevmisc.la $(am__DEPENDENCIES_1) \
+-	$(am__append_4)
++	$(top_builddir)/libmisc/libevmisc.la $(am__DEPENDENCIES_1) 
+ AM_V_lt = $(am__v_lt_$(V))
+ am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+ am__v_lt_0 = --silent
+@@ -447,8 +445,7 @@ evince_LDADD =  \
+ 	$(top_builddir)/properties/libevproperties.la \
+ 	$(top_builddir)/libdocument/libevdocument.la \
+ 	$(top_builddir)/libview/libevview.la \
+-	$(top_builddir)/libmisc/libevmisc.la $(SHELL_LIBS) \
+-	$(am__append_4)
++	$(top_builddir)/libmisc/libevmisc.la $(SHELL_LIBS) 
+ BUILT_SOURCES = ev-marshal.h ev-marshal.c
+ evince_convert_metadata_SOURCES = \
+ 	ev-convert-metadata.c
+@@ -899,8 +896,6 @@ uninstall-am: uninstall-binPROGRAMS unin
+ 	uninstall-am uninstall-binPROGRAMS uninstall-libexecPROGRAMS
+ 
+ 
+-@PLATFORM_WIN32_TRUE@evince-icon.o: $(srcdir)/evince-icon.rc $(top_srcdir)/data/evince.ico
+-@PLATFORM_WIN32_TRUE@	$(WINDRES) $(srcdir)/evince-icon.rc -I $(top_srcdir)/data evince-icon.o
+ 
+ ev-marshal.h: $(srcdir)/ev-marshal.list
+ 	$(AM_V_GEN)$(GLIB_GENMARSHAL) --prefix=ev_marshal $(srcdir)/ev-marshal.list --header > ev-marshal.h
