@@ -134,6 +134,17 @@ def version_from_configure_in (configure_in, name, default_version='0.0.0'):
         pass
     return default_version
 
+def version_from_configure_ac (configure_ac, name, default_version='0.0.0'):
+    try:
+        #m = re.search (r'AM_INIT_AUTOMAKE\(%(name)s, ([0-9.]+)\)' % locals (),
+        m = re.search (r'AM_INIT_AUTOMAKE\([^,]+, ([0-9.]+)\)',
+                       configure_ac)
+        if m:
+            return m.group (1)
+    except:
+        pass
+    return default_version
+
 def version_from_pc_in (pc_in, default_version='0.0.0'):
     try:
         m = re.search (r'^Version: ([0-9.]+)', pc_in)
