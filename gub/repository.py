@@ -120,6 +120,13 @@ class Repository:
                                                    default_version)
         except:
             return default_version
+    def version_from_configure_ac (self, file_name='configure.ac', default_version='0.0.0'):
+        try:
+            return misc.version_from_configure_ac (self.read_file (file_name),
+                                                   default_version)
+        except:
+            return default_version
+
     def version_from_pc_in (self, file_name, default_version='0.0.0'):
         try:
             return misc.version_from_pc_in (self.read_file (file_name),
