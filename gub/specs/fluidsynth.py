@@ -29,6 +29,17 @@ class Fluidsynth (target.AutoBuild):
                        + ' --disable-ladcca'
                        )
 
+class Fluidsynth__linux (Fluidsynth):
+   dependencies = [
+        'glib-devel',
+        'portaudio-devel',
+        'alsa-devel'
+        ]
+   xconfigure_flags = (Fluidsynth.configure_flags
+                       .replace ('--disable-alsa-support', '--enable-alsa-support')
+                      .replace ('--disable-oss-support', '--enable-oss-support')
+                       )
+
 class Fluidsynth__mingw (Fluidsynth):
     patches = [
 #        'fluidsynth-mingw-static-libs.patch',
