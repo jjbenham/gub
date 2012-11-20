@@ -1,0 +1,48 @@
+diff -rupN evince-2.30.3/shell/Makefile.in evince-2.30.3.edited/shell/Makefile.in
+--- evince-2.30.3/shell/Makefile.in	2010-06-24 03:21:24.000000000 -0500
++++ evince-2.30.3.edited/shell/Makefile.in	2012-10-24 21:23:58.832111607 -0500
+@@ -38,7 +38,6 @@ bin_PROGRAMS = evince$(EXEEXT)
+ libexec_PROGRAMS = evince-convert-metadata$(EXEEXT) $(am__EXEEXT_1)
+ @ENABLE_DBUS_TRUE@am__append_1 = evinced
+ @PLATFORM_WIN32_TRUE@am__append_2 = -mwindows
+-@PLATFORM_WIN32_TRUE@am__append_3 = evince-icon.o
+ @ENABLE_DBUS_TRUE@am__append_4 = ev-application-service.h \
+ @ENABLE_DBUS_TRUE@	ev-daemon-service.h
+ subdir = shell
+@@ -106,8 +105,7 @@ evince_DEPENDENCIES =  \
+ 	$(top_builddir)/properties/libevproperties.la \
+ 	$(top_builddir)/libdocument/libevdocument.la \
+ 	$(top_builddir)/libview/libevview.la \
+-	$(top_builddir)/libmisc/libevmisc.la $(am__DEPENDENCIES_1) \
+-	$(am__append_3)
++	$(top_builddir)/libmisc/libevmisc.la $(am__DEPENDENCIES_1)
+ AM_V_lt = $(am__v_lt_$(V))
+ am__v_lt_ = $(am__v_lt_$(AM_DEFAULT_VERBOSITY))
+ am__v_lt_0 = --silent
+@@ -477,8 +475,7 @@ evince_LDADD =  \
+ 	$(top_builddir)/properties/libevproperties.la \
+ 	$(top_builddir)/libdocument/libevdocument.la \
+ 	$(top_builddir)/libview/libevview.la \
+-	$(top_builddir)/libmisc/libevmisc.la $(SHELL_LIBS) \
+-	$(am__append_3)
++	$(top_builddir)/libmisc/libevmisc.la $(SHELL_LIBS)
+ BUILT_SOURCES = ev-marshal.h ev-marshal.c $(am__append_4)
+ evince_convert_metadata_SOURCES = \
+ 	ev-convert-metadata.c
+@@ -506,7 +503,6 @@ evince_convert_metadata_LDADD = \
+ EXTRA_DIST = ev-marshal.list		\
+ 	ev-application-service.xml	\
+ 	ev-daemon-service.xml		\
+-	evince-icon.rc			\
+ 	$(EV_MEDIA_PLAYER_KEYS_SOURCES)
+ 
+ DISTCLEANFILES = \
+@@ -933,8 +929,6 @@ uninstall-am: uninstall-binPROGRAMS unin
+ 	uninstall-am uninstall-binPROGRAMS uninstall-libexecPROGRAMS
+ 
+ 
+-@PLATFORM_WIN32_TRUE@evince-icon.o: $(srcdir)/evince-icon.rc $(top_srcdir)/data/evince.ico
+-@PLATFORM_WIN32_TRUE@	$(WINDRES) $(srcdir)/evince-icon.rc -I $(top_srcdir)/data evince-icon.o
+ 
+ ev-marshal.h: $(srcdir)/ev-marshal.list
+ 	$(AM_V_GEN)$(GLIB_GENMARSHAL) --prefix=ev_marshal $(srcdir)/ev-marshal.list --header > ev-marshal.h
