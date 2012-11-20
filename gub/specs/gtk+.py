@@ -45,6 +45,10 @@ set GTK_SO_EXTENSION=%(so_extension)s
         target.AutoBuild.install (self)
         self.create_config_files ()
 
+class Gtk_x___linux__x86 (Gtk_x_):
+    configure_variables = (Gtk_x_.configure_variables
+                + ' CFLAGS="-L%(builddir)s/gdk/.libs -L%(builddir)s/gtk/.libs " ')
+
 class Gtk_x___freebsd (Gtk_x_):
     configure_variables = (Gtk_x_.configure_variables
                 + ' CFLAGS=-pthread')
