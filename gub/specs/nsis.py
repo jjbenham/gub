@@ -9,7 +9,7 @@ class Nsis (tools.SConsBuild):
     #source = ':pserver:anonymous@nsis.cvs.sourceforge.net:/cvsroot/nsis&module=NSIS&tag=HEAD'
     dependencies = ['mingw::cross/gcc']
     scons_flags = misc.join_lines ('''
-DEBUG=yes
+DEBUG=no
 NSIS_CONFIG_LOG=yes
 SKIPUTILS="NSIS Menu"
 ''')
