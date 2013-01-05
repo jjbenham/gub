@@ -29,7 +29,7 @@ lily% cygwin%:
 	$(MAKE) -f lilypond.make $@
 
 denemo-%:
-	$(MAKE) -f inkscape.make $@
+	$(MAKE) -f denemo.make $@
 
 inkscape-%:
 	$(MAKE) -f inkscape.make $@
