@@ -35,6 +35,9 @@ INSTALLER_BUILDER_OPTIONS =\
 #
 
 include gub.make
+NATIVE_TARGET_DIR=$(CWD)/target/$(BUILD_PLATFORM)
+TOOLS_BIN_DIR=$(CWD)/target/tools/root/usr/bin/
+SET_TOOLS_PATH=PATH=$(CWD)/target/tools/root/usr/bin:$(PATH)
 include compilers.make
 
 #all: packages rest
