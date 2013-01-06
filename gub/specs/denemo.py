@@ -11,12 +11,11 @@ from gub import repository
 from gub import target
 
 class Denemo (target.AutoBuild):
-#    source = ''
-    source = 'git://git.savannah.gnu.org/denemo.git'
-    branch = 'apple'
+    source = 'http://denemo.org/downloads/denemo-1.0.0~rc6.tar.gz'
+#    branch = 'apple'
 #    branch = 'master'
 #    patches = ['denemo-SIGCHLD.patch']
-    subpackage_names = ['']
+#    subpackage_names = ['']
     dependencies = [
         'cross/gcc-c++-runtime',
         'tools::automake',
@@ -59,7 +58,6 @@ class Denemo__linux__x86 (Denemo):
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
 				+ ' --disable-portmidi'
-		#		+ ' --enable-debug'
 			        + ' --enable-alsa'
 				+ ' --with-pmidi-platform=linux')
     configure_variables = (target.AutoBuild.configure_variables
@@ -73,39 +71,27 @@ class Denemo__mingw__windows (Denemo):
                     if x.replace ('-devel', '') not in [
             'lash',
             ]] + ['lilypad']
-    configure_flags = (Denemo.configure_flags
-			+ ' --enable-binreloc'
-			+ ' --disable-portmidi'
-			+ ' --with-pmidi-platform=mingw')
-    configure_variables = (Denemo.configure_variables
- 			   + ' CFLAGS="-I%(system_prefix)s/include/evince/2.30" '
-			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
-    
-    def __init__ (self, settings, source):
-        Denemo.__init__ (self, settings, source)
-        # Configure (link) without -mwindows for denemo-console.exe
-        self.target_gcc_flags = '-mms-bitfields'
-
-    #make_flags = ''
 
 class Denemo__mingw__console (Denemo__mingw__windows):
+    patches = ['portmidi-denemo-test.patch']
     configure_flags = (Denemo__mingw__windows.configure_flags
-                         #  .replace(' --enable-binreloc', ' --disable-binreloc')
 		       	   + ' --disable-binreloc'
-			   + ' --enable-debug'
 			   + ' --disable-portmidi'
-			   + ' --enable-win32portmidi')
-		            
-    #configure_variables = (Denemo__mingw__windows.configure_variables
- 			   #+ ' PKG_CONFIG_PATH=%(system_prefix)s/lib/pkgconfig'
- 			   #+ ' EVINCE_2_30_CFLAGS="-I%(system_prefix)s/include/evince/2.30" EVINCE_2_30_LIBS="-L%(system_prefix)s/lib -levview -levdocument"')
+			   + ' --with-pmidi-platform=mingw')
+
+    configure_variables = (Denemo.configure_variables
+ 	   		+ ' CFLAGS="-I%(system_prefix)s/include/evince/2.30" '
+			+ ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
+
     def __init__ (self, settings, source):
         Denemo__mingw__windows.__init__ (self, settings, source)
         # Configure (link) without -mwindows for denemo-console.exe
-        self.target_gcc_flags = '-mms-bitfields'
+        self.target_gcc_flags = '-mms-bitfields -D_HAVE_PORTMIDI_ -DWIN32 -D_WINDOWS -D_DEBUG -DPM_CHECK_ERRORS=0 -DDEBUG'
     def compile (self):
         Denemo__mingw__windows.compile (self)
         self.system ('''
+cd %(builddir)s/portmidi && make
+cd %(builddir)s && make
 cd %(builddir)s/src && mv .libs/denemo.exe denemo-console.exe && rm -f denemo.exe
 cd %(builddir)s/src && make AM_LDFLAGS="-mwindows" && cp -p .libs/denemo.exe denemo-windows.exe
 ''')
@@ -129,20 +115,23 @@ class Denemo__darwin (Denemo):
         'fondu',
         'osx-lilypad',
         ]
+    patches = ['no_apple_in_main.c.diff', 'denemo-utils-apple.c']
+
     configure_flags = (Denemo.configure_flags
-		       	   + ' --enable-binreloc'
-#			   + ' --enable-debug'
+			   + ' CFLAGS="-D__APPLE__"'
+			   + ' CXXLAGS="-D__APPLE__"'
+			   + ' LDFLAGS="-D__APPLE__"'
+		       	   + ' --disable-binreloc'
+			   + ' --enable-debug'
 			   + ' --disable-portmidi'
 			   + ' --with-pmidi-platform=darwin'
 			   + ' --disable-portaudio'
+			   + ' --disable-x11'
 			   + ' --disable-jack')
 	
     configure_variables = (Denemo.configure_variables
- 			   + ' CFLAGS="-I%(system_prefix)s/include/evince/2.30 -DWITHOUT_SCREENSHOT -DUNUSED__APPLE" '
-			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument -DWITHOUT_SCREENSHOT -DUNUSED__APPLE" '
-					
-#	  		 + ' EVINCE_2_30_CFLAGS="-I%(system_prefix)s/include/evince/2.30" EVINCE_2_30_LIBS="-L%(system_prefix)s/lib -levview -levdocument"'
-)
+ 			   + ' CFLAGS="-I%(system_prefix)s/include/evince/2.30 -D__APPLE__" '
+			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument -D__APPLE__" ')
 
 class Denemo__darwin__ppc (Denemo__darwin):
     # make sure that PREFIX/include/unistd.h gets included
