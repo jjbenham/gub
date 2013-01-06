@@ -3,10 +3,10 @@
 .PHONY: nsis denemo denemo-installers
 default: all
 
-DENEMO_BRANCH="apple"
+DENEMO_BRANCH="master"
 DENEMO_REPO_URL=git://git.savannah.gnu.org/denemo.git
 
-PLATFORMS=mingw
+PLATFORMS=mingw linux-x86 darwin-x86
 
 # derived info
 DENEMO_SOURCE_URL=$(DENEMO_REPO_URL)?branch=$(DENEMO_BRANCH)
