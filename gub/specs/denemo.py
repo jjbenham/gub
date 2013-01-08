@@ -73,7 +73,7 @@ class Denemo__mingw__windows (Denemo):
             ]] + ['lilypad']
 
 class Denemo__mingw__console (Denemo__mingw__windows):
-    patches = ['portmidi-denemo-test.patch']
+    #patches = ['portmidi-denemo-test.patch']
     configure_flags = (Denemo__mingw__windows.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --disable-portmidi'
@@ -86,7 +86,7 @@ class Denemo__mingw__console (Denemo__mingw__windows):
     def __init__ (self, settings, source):
         Denemo__mingw__windows.__init__ (self, settings, source)
         # Configure (link) without -mwindows for denemo-console.exe
-        self.target_gcc_flags = '-mms-bitfields -D_HAVE_PORTMIDI_ -DWIN32 -D_WINDOWS -D_DEBUG -DPM_CHECK_ERRORS=0 -DDEBUG'
+        self.target_gcc_flags = '-mms-bitfields'
     def compile (self):
         Denemo__mingw__windows.compile (self)
         self.system ('''
