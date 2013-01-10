@@ -16,7 +16,8 @@ from gub import commands
 # UGH -  we don't have the package dicts yet.
 # barf, this should be in config file, not in code
 pretty_names = {
-    'denemo': 'Denemo',
+    'arbora': 'ArborA',
+    'denemo': 'GNU_Denemo',
     'git': 'Git',
     'lilypond': 'LilyPond',
     'openoffice': 'Go-Oo_OpenOffice.org',
@@ -142,7 +143,6 @@ class Installer (context.RunnableContext):
         globs = [
             'bin/autopoint',
             'bin/glib-mkenums',
-            'bin/guile-*',
             'bin/*-config',
             'bin/*gettext*',
             'bin/gs??',
@@ -195,19 +195,14 @@ class Installer (context.RunnableContext):
             'share/libtool/',
 
             # prune harder
-            'lib/python*/bsddb',
             'lib/python*/compiler',
             'lib/python*/curses',
-            'lib/python*/distutils',
             'lib/python*/email',
             'lib/python*/hotshot',
             'lib/python*/idlelib',
             'lib/python*/lib-old',
             'lib/python*/lib-tk',
-            'lib/python*/logging',
             'lib/python*/test',
-# xml2ly needs xml.dom
-#                        'lib/python*/xml',
             'share/lilypond/*/make',
             'share/gettext',
             'usr/share/aclocal',
@@ -330,22 +325,18 @@ class DarwinBundle (DarwinRoot):
 rm -f %(bundle_zip)s 
 rm -rf %(darwin_bundle_dir)s
 # FIXME: ask TarBall where source lives
-# Was hardcoded: Instead of lilypad build a real filestructure.
-#tar -C %(installerdir)s -zxf %(downloads)s/osx-lilypad/osx-lilypad-universal-%(osx_lilypad_version)s.tar.gz
+LIBRESTRICT_IGNORE=%(tools_prefix)s/bin/tar tar -C %(installerdir)s -zxf %(downloads)s/osx-lilypad/osx-lilypad-universal-%(osx_lilypad_version)s.tar.gz
 mkdir -p %(darwin_bundle_dir)s/Contents/Resources
-#The Uberhack. Download the Info.plist each time from the denemo server. Old: #touch %(darwin_bundle_dir)s/Contents/Info.plist # FIXME - this may need content
-wget http://git.savannah.gnu.org/cgit/denemo.git/plain/Info.plist?id=ce42f8f196b3f05314d4f4814208b6cfef4ec962 -O %(darwin_bundle_dir)s/Contents/Info.plist
+touch %(darwin_bundle_dir)s/Contents/Info.plist # FIXME - this may need content
 touch %(darwin_bundle_dir)s/Contents/Resources/Credits.html # FIXME - this may need content
 cp -pR --link %(installer_prefix)s/* %(darwin_bundle_dir)s/Contents/Resources/
-mkdir -p %(darwin_bundle_dir)s/Contents/MacOS
-cp -pR --link %(darwin_bundle_dir)s/Contents/Resources/bin/* %(darwin_bundle_dir)s/Contents/MacOS 
 mkdir -p %(darwin_bundle_dir)s/Contents/Resources/license
 cp -pR --link %(installer_root)s/license*/* %(darwin_bundle_dir)s/Contents/Resources/license/
 ''', locals ())
-        self.file_sub ([('''PACKAGE_NAME=Denemo
-MAJOR_VERSION=0
-MINOR_VERSION=9
-PATCH_LEVEL=1
+        self.file_sub ([('''PACKAGE_NAME=LilyPond
+MAJOR_VERSION=2
+MINOR_VERSION=11
+PATCH_LEVEL=41
 MY_PATCH_LEVEL=
 ''', '%(installer_version)s-%(installer_build)s'),
                         ('2.[0-9]+.[0-9]+-[0-9]', '%(installer_version)s-%(installer_build)s'),
@@ -460,7 +451,8 @@ class Shar (Linux_installer):
             shar_head = self.expand ('%(sourcefiledir)s/lilypond-sharhead.sh')
         tarball = self.expand (self.bundle_tarball)
         version = self.expand ('%(installer_version)s')
-        self.runner._execute (commands.CreateShar (name=name, pretty_name=pretty_name, release=release, shar_file=shar_file, shar_head=shar_head, tarball=tarball, version=version))
+        target_cpu = self.settings.target_cpu
+        self.runner._execute (commands.CreateShar (name=name, pretty_name=pretty_name, release=release, shar_file=shar_file, shar_head=shar_head, tarball=tarball, target_cpu=target_cpu, version=version))
 # hmm?
 #    @context.subst_method
     def installer_file (self):
