@@ -16,8 +16,7 @@ from gub import commands
 # UGH -  we don't have the package dicts yet.
 # barf, this should be in config file, not in code
 pretty_names = {
-    'arbora': 'ArborA',
-    'denemo': 'GNU_Denemo',
+    'denemo': 'Denemo',
     'git': 'Git',
     'lilypond': 'LilyPond',
     'openoffice': 'Go-Oo_OpenOffice.org',
@@ -143,6 +142,7 @@ class Installer (context.RunnableContext):
         globs = [
             'bin/autopoint',
             'bin/glib-mkenums',
+            'bin/guile-*',
             'bin/*-config',
             'bin/*gettext*',
             'bin/gs??',
@@ -195,14 +195,19 @@ class Installer (context.RunnableContext):
             'share/libtool/',
 
             # prune harder
+            'lib/python*/bsddb',
             'lib/python*/compiler',
             'lib/python*/curses',
+            'lib/python*/distutils',
             'lib/python*/email',
             'lib/python*/hotshot',
             'lib/python*/idlelib',
             'lib/python*/lib-old',
             'lib/python*/lib-tk',
+            'lib/python*/logging',
             'lib/python*/test',
+# xml2ly needs xml.dom
+#                        'lib/python*/xml',
             'share/lilypond/*/make',
             'share/gettext',
             'usr/share/aclocal',
