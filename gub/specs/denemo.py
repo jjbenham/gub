@@ -11,9 +11,8 @@ from gub import repository
 from gub import target
 
 class Denemo (target.AutoBuild):
-    source = 'http://denemo.org/downloads/denemo-1.0.0~rc6.tar.gz'
-#    branch = 'apple'
-#    branch = 'master'
+    source = 'git://git.savannah.gnu.org/denemo.git'
+    branch = 'master'
 #    patches = ['denemo-SIGCHLD.patch']
 #    subpackage_names = ['']
     dependencies = [
@@ -54,7 +53,10 @@ class Denemo (target.AutoBuild):
             target.AutoBuild.compile (self)
 
 class Denemo__linux__x86 (Denemo):
+    source = 'git://git.savannah.gnu.org/denemo.git'
+    branch = 'linux'
     #dependencies = ['alsa-devel']
+
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
 				+ ' --disable-portmidi'
