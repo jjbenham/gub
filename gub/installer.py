@@ -39,7 +39,7 @@ class Installer (context.RunnableContext):
         self.strip_command \
             = '%(cross_prefix)s/bin/%(target_architecture)s-strip' 
         self.no_binary_strip = []
-        self.no_binary_strip_extensions = ['.la', '.py', '.def', '.scm', '.pyc']
+        self.no_binary_strip_extensions = ['.sh', '.la', '.py', '.def', '.scm', '.pyc']
         self.installer_uploads = settings.uploads
         self.checksum = ''
         self.name = name
