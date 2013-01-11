@@ -121,7 +121,7 @@ class Denemo__darwin (Denemo):
         'fondu',
         'osx-lilypad',
         ]
-    patches = ['no_apple_in_main.c.diff', 'denemo-utils-apple.c']
+    patches = ['denemo-utils-apple.c']
 
     configure_flags = (Denemo.configure_flags
 			   + ' CFLAGS="-D__APPLE__"'
