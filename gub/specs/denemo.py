@@ -12,7 +12,7 @@ from gub import target
 
 class Denemo (target.AutoBuild):
     source = 'git://git.savannah.gnu.org/denemo.git'
-    branch = 'master'
+#    branch = 'master'
 #    patches = ['denemo-SIGCHLD.patch']
 #    subpackage_names = ['']
     dependencies = [
@@ -55,13 +55,13 @@ class Denemo (target.AutoBuild):
 class Denemo__linux__x86 (Denemo):
     source = 'git://git.savannah.gnu.org/denemo.git'
     branch = 'linux'
-    #dependencies = ['alsa-devel']
+    #dependencies = + ['alsa-devel']
 
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
 				+ ' --disable-portmidi'
 			        + ' --enable-alsa'
-				+ ' --with-pmidi-platform=linux')
+				+ ' --with-static-portmidi')
     configure_variables = (target.AutoBuild.configure_variables
  			   + ' CFLAGS="-I%(system_prefix)s/include/evince/2.30 " '
 			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
@@ -69,7 +69,8 @@ class Denemo__linux__x86 (Denemo):
 
 
 class Denemo__mingw__windows (Denemo):
- source = 'http://denemo.org/downloads/denemo-1.0.0~rc7.win.tar.gz'
+ source = 'git://git.savannah.gnu.org/denemo.git'
+ branch = 'mingw'
  dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'lash',
@@ -80,7 +81,7 @@ class Denemo__mingw__console (Denemo__mingw__windows):
     configure_flags = (Denemo__mingw__windows.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --disable-portmidi'
-			   + ' --with-pmidi-platform=mingw')
+			   + ' --with-static-portmidi')
 
     configure_variables = (Denemo.configure_variables
  	   		+ ' CFLAGS="-I%(system_prefix)s/include/evince/2.30" '
@@ -110,6 +111,8 @@ install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-
 Denemo__mingw = Denemo__mingw__console
 
 class Denemo__darwin (Denemo):
+    source = 'git://git.savannah.gnu.org/denemo.git'
+    branch = 'darwin'
     dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'libxml2', # Included in darwin-sdk, hmm?
@@ -127,7 +130,7 @@ class Denemo__darwin (Denemo):
 		       	   + ' --disable-binreloc'
 			   + ' --enable-debug'
 			   + ' --disable-portmidi'
-			   + ' --with-pmidi-platform=darwin'
+			   + ' --with-static-portmidi'
 			   + ' --disable-portaudio'
 			   + ' --disable-x11'
 			   + ' --disable-jack')
