@@ -5,7 +5,7 @@ class Evince (target.AutoBuild):
   source = 'http://ftp.acc.umu.se/pub/GNOME/sources/evince/2.30/evince-2.30.3.tar.bz2'
   
   dependencies = ['intltool',
-		  'libxml2-devel',
+#		  'libxml2-devel',
 		  'poppler-devel']
 
   patches = ['evince_stripped.patch']
@@ -14,8 +14,8 @@ class Evince (target.AutoBuild):
 			   + ' --without-libgnome'
 			   + ' --without-gconf'
                            + ' --without-keyring'
-                           + ' --with-platform=gnome'
-			   + ' --with-smclient-backend=no'
+#                           + ' --with-platform=gnome'
+#			   + ' --with-smclient-backend=no'
 			   + ' --disable-help'
 			   + ' --disable-thumbnailer'
 			   + ' --disable-nautilus'
@@ -64,16 +64,16 @@ class Evince__linux__x86 (Evince):
   configure_flags = (Evince.configure_flags
                            + ' --with-platform=gnome'
 			   + ' --with-smclient-backend=xsmp')
-  dependencies = ['libsm']
+  dependencies = ['libsm', 'poppler-devel']
 
 class Evince__darwin (Evince):
   dependencies = [x for x in Evince.dependencies
 	                   if x.replace ('-devel', '') not in [
                 	   'libxml2', # Included in darwin-sdk, hmm?
-                	   ]] + ['libx11', 'libxdmcp']
+                	   ]] + ['libxdmcp']
 
-  configure_flags = (Evince.configure_flags
-                           + ' --with-platform=gnome'
-			   + ' --with-smclient-backend=no')
+#  configure_flags = (Evince.configure_flags
+ #                          + ' --with-platform=gnome'
+#			   + ' --with-smclient-backend=quartz')
 
                 
