@@ -121,22 +121,19 @@ class Denemo__darwin (Denemo):
         'fondu',
         'osx-lilypad',
         ]
-    patches = ['denemo-utils-apple.c']
+    #patches = ['denemo-utils-apple.c']
 
     configure_flags = (Denemo.configure_flags
-			   + ' CFLAGS="-D__APPLE__"'
-			   + ' CXXLAGS="-D__APPLE__"'
-			   + ' LDFLAGS="-D__APPLE__"'
+	#		   + ' --enable-debug'
 		       	   + ' --disable-binreloc'
-			   + ' --enable-debug'
 			   + ' --disable-portmidi'
-			   + ' --with-static-portmidi'
+	#I believe this may be causing a memory leak somehow+ ' --with-static-portmidi'
 			   + ' --disable-portaudio'
 			   + ' --disable-x11'
 			   + ' --disable-jack')
 	
     configure_variables = (Denemo.configure_variables
- 			   + ' CFLAGS="-I%(system_prefix)s/include/evince/2.30 -D__APPLE__" '
+ 			   + ' CFLAGS="-g -O0 -D__APPLE__ -I%(system_prefix)s/include/evince/2.30 -D__APPLE__" '
 			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument -D__APPLE__" ')
 
 class Denemo__darwin__ppc (Denemo__darwin):
