@@ -67,6 +67,8 @@ class Gtk_x___mingw (Gtk_x_without_X11):
 class Gtk_x___darwin (Gtk_x_without_X11):
     configure_flags = (Gtk_x_without_X11.configure_flags
                 + ' --with-gdktarget=quartz'
+		+ ' --with-included-loaders=ani,icns,pcx,ras,tga,png,pnm,wbmp,xbm,xpm'
+		+ ' --enable-debug=yes'		
                 )
 
 class Gtk_x___darwin__ppc (Gtk_x___darwin):
