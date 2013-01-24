@@ -16,7 +16,7 @@ class Cairo (target.AutoBuild):
                 # gtk+ depends on pango, pango on cairo, cairo on poppler, and poppler on gtk+?
                 # TRIED: removing gtk+ dependency from poppler -- no go
                 # TRY: removing poppler from cairo...
-#                'poppler-devel',
+                'poppler-devel',
                 'zlib-devel']
 
 class Cairo_without_X11 (Cairo):
@@ -41,7 +41,15 @@ class Cairo__mingw (Cairo_without_X11):
                     + ['pthreads-w32-devel'])
 
 class Cairo__darwin (Cairo_without_X11):
-    pass
+     source = 'http://www.cairographics.org/releases/cairo-1.10.2.tar.gz'
+     configure_flags = (Cairo_without_X11.configure_flags
+                + ' --enable-quartz'
+		+ ' --enable-quartz-font'
+                + ' --enable-freetype'
+                + ' --enable-quartz-image'
+		+ ' --enable-png'
+	        + ' --enable-pdf'
+                )
 
 class Cairo__darwin__ppc (Cairo__darwin):
     patches = Cairo__darwin.patches + [
