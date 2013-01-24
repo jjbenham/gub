@@ -48,6 +48,10 @@ set GTK_SO_EXTENSION=%(so_extension)s
 class Gtk_x___linux__x86 (Gtk_x_):
     configure_variables = (Gtk_x_.configure_variables
                 + ' CFLAGS="-L%(builddir)s/gdk/.libs -L%(builddir)s/gtk/.libs " ')
+    configure_flags = (Gtk_x_.configure_flags
+		+ ' --with-included-loaders=ani,icns,pcx,ras,tga,png,pnm,wbmp,xbm,xpm'
+		+ ' --enable-debug=yes'		
+                )
 
 class Gtk_x___freebsd (Gtk_x_):
     configure_variables = (Gtk_x_.configure_variables
