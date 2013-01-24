@@ -33,7 +33,8 @@ class Denemo (target.AutoBuild):
  	'guile-devel',
         'portaudio-devel',
  	'libsndfile',
-	'fluidsynth'
+	'fluidsynth',
+	'portmidi'
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-fluidsynth'
@@ -53,15 +54,19 @@ class Denemo (target.AutoBuild):
             target.AutoBuild.compile (self)
 
 class Denemo__linux__x86 (Denemo):
+    #source = 'http://www.denemo.org/downloads/denemo-1.0.0~rc8.tar.gz'
     source = 'git://git.savannah.gnu.org/denemo.git'
-    branch = 'linux'
+    branch = 'master'
+    patches = ['denemo.prefop.c.patch', 'denemo.main.c-envelope.patch']
+    #branch = 'linux'
     #dependencies = + ['alsa-devel']
 
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
-				+ ' --disable-portmidi'
-			        + ' --enable-alsa'
-				+ ' --with-static-portmidi')
+				+ ' --enable-portmidi'
+			        + ' --enable-alsa')
+				#+ ' --with-pmidi-platform=linux')
+				#+ ' --disable-static-portmidi')
     configure_variables = (target.AutoBuild.configure_variables
  			   + ' CFLAGS="-I%(system_prefix)s/include/evince/2.30 " '
 			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
@@ -80,8 +85,8 @@ class Denemo__mingw__console (Denemo__mingw__windows):
     #patches = ['portmidi-denemo-test.patch']
     configure_flags = (Denemo__mingw__windows.configure_flags
 		       	   + ' --disable-binreloc'
-			   + ' --disable-portmidi'
-			   + ' --with-static-portmidi')
+			   + ' --enable-portmidi')
+			   #+ ' --with-static-portmidi')
 
     configure_variables = (Denemo.configure_variables
  	   		+ ' CFLAGS="-I%(system_prefix)s/include/evince/2.30" '
@@ -127,7 +132,7 @@ class Denemo__darwin (Denemo):
 	#		   + ' --enable-debug'
 		       	   + ' --disable-binreloc'
 			   + ' --disable-portmidi'
-	#I believe this may be causing a memory leak somehow+ ' --with-static-portmidi'
+			   + ' --with-static-portmidi'
 			   + ' --disable-portaudio'
 			   + ' --disable-x11'
 			   + ' --disable-jack')
