@@ -65,8 +65,6 @@ class Denemo__linux__x86 (Denemo):
                    		+ ' --enable-binreloc'
 				+ ' --enable-portmidi'
 			        + ' --enable-alsa')
-				#+ ' --with-pmidi-platform=linux')
-				#+ ' --disable-static-portmidi')
     configure_variables = (target.AutoBuild.configure_variables
  			   + ' CFLAGS="-I%(system_prefix)s/include/evince/2.30 " '
 			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
