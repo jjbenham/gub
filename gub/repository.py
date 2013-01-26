@@ -18,7 +18,7 @@
     Foundation, Inc., 675 Mass Ave, Cambridge, MA 02139, USA.
 """
 
-import md5
+import hashlib
 import optparse
 import os
 import re
@@ -381,7 +381,7 @@ class Darcs (Repository):
         patches = [p for p in patches if not re.match ('^TAG', self.xml_patch_name (p))]
 
         patches.sort ()
-        release_hash = md5.md5 ()
+        release_hash = hashlib.md5 ()
         for p in patches:
             release_hash.update (p.toxml ())
 
@@ -805,7 +805,7 @@ class CVS (Repository):
         return open (self._checkout_dir () + '/' + file_name).read ()
         
     def read_cvs_entries (self, dir):
-        checksum = md5.md5 ()
+        checksum = hashlib.md5 ()
 
         latest_stamp = 0
         for d in self.cvs_dirs (dir):
