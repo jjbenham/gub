@@ -61,6 +61,8 @@ class Denemo (target.AutoBuild):
         target.AutoBuild.compile (self)
 
 class Denemo__mingw__windows (Denemo):
+    source = 'git://git.savannah.gnu.org/denemo.git'
+    branch = 'mingw'
     dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'jack',
@@ -74,8 +76,7 @@ class Denemo__mingw__console (Denemo__mingw__windows):
     configure_flags = (Denemo__mingw__windows.configure_flags
                            .replace(' --enable-binreloc', ' --disable-binreloc')
 		       	   + ' --enable-debug'
-			   + ' --disable-portmidi'
-			   + ' --enable-win32portmidi')
+			   + ' --enable-portmidi')
 		            
     configure_variables = (Denemo__mingw__windows.configure_variables
  			   + ' PKG_CONFIG_PATH=%(system_prefix)s/lib/pkgconfig'
