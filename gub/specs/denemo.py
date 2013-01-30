@@ -39,7 +39,7 @@ class Denemo (target.AutoBuild):
         'portaudio-devel',
  	'libsndfile',
 	'cairo'
-	#'portmidi'
+	'portmidi'
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-binreloc'
