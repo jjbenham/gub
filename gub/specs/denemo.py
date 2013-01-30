@@ -38,7 +38,7 @@ class Denemo (target.AutoBuild):
         'lilypondcairo',
         'portaudio-devel',
  	'libsndfile',
-	'cairo'
+	'cairo',
 	'portmidi'
         ]
     configure_flags = (target.AutoBuild.configure_flags
