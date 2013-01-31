@@ -43,9 +43,9 @@ class Denemo (target.AutoBuild):
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-binreloc'
-                       + ' --enable-jack'
+		       + ' --enable-portmidi'
+                       #+ ' --enable-jack'
                        + ' --enable-fluidsynth'
-                       + ' --program-prefix='
                        )
     # FIXME: --enable-binreloc has been neutralized.
     make_flags = 'BINRELOC_CFLAGS=-DENABLE_BINRELOC=1'
@@ -62,7 +62,7 @@ class Denemo (target.AutoBuild):
 
 class Denemo__mingw__windows (Denemo):
     source = 'git://git.savannah.gnu.org/denemo.git'
-    branch = 'mingw'
+    branch = 'master'
     dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'jack',
