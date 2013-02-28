@@ -10,7 +10,7 @@ class Evince (target.AutoBuild):
 		  #'gnome-icon-theme', #needed if not win32
 		  #'libx11-devel'] #needed if not win32
 		  #FIXME needed for pdf support in evince 'poppler-devel'] 
-  patches = ['evince-icon.patch', 'evince-po.patch'] 
+  patches = ['evince-4-Makefile.patch']
   configure_flags = (tools.AutoBuild.configure_flags
 			   #+ ' --with-libintl-prefix=%(install_prefix)s'
                            #+ ' --enable-static'
