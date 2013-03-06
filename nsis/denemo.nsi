@@ -113,8 +113,8 @@ fresh_install:
 SectionEnd
 
 Function registry_path
-	ReadRegStr $R0 HKLM "${ENVIRON}" "PATH"
-	WriteRegExpandStr HKLM "${ENVIRON}" "PATH" "$R0;$INSTDIR\usr\bin"
+	;;;ReadRegStr $R0 HKLM "${ENVIRON}" "PATH"
+	;;;WriteRegExpandStr HKLM "${ENVIRON}" "PATH" "$R0;$INSTDIR\usr\bin"
 FunctionEnd
 
 ;; copy & paste from the NSIS code examples
