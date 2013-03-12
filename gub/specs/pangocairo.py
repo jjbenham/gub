@@ -19,7 +19,8 @@ class Pangocairo__mingw (Pangocairo):
                 + ' --disable-rebuilds')
 
 class Pangocairo__darwin (Pangocairo):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.29/2.29.91/sources/pango-1.27.1.tar.gz'
+    source = 'http://ftp.acc.umu.se/pub/GNOME/platform/2.30/2.30.2/sources/pango-1.28.1.tar.bz2'
+    #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.29/2.29.91/sources/pango-1.27.1.tar.gz'
     xxx_patches = Pangocairo.patches + [
         'pango-1.26.0-darwin-cx-font.patch',
         ]
