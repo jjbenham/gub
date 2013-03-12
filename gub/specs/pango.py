@@ -12,10 +12,12 @@ pango_module_version_regexes = [
     (r'^1\.24', '1.6.0'),
     (r'^1\.26', '1.6.0'),
     (r'^1\.27', '1.6.0'),
+    (r'^1\.28', '1.6.0')
     ]
 
 class Pango (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.28/2.28.1/sources/pango-1.26.0.tar.gz'
+    #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.28/2.28.1/sources/pango-1.26.0.tar.gz'
+    source = 'http://ftp.acc.umu.se/pub/GNOME/platform/2.30/2.30.2/sources/pango-1.28.1.tar.bz2'
     patches = ['pango-1.20-substitute-env.patch']
     dependencies = [
             'tools::glib', 
@@ -29,7 +31,6 @@ class Pango (target.AutoBuild):
     configure_flags = (target.AutoBuild.configure_flags
                 + misc.join_lines ('''
 --without-x
---without-cairo
 '''))
     def module_version (self):
         result = None
@@ -64,6 +65,15 @@ set PANGO_MODULE_VERSION=%(pango_module_version)s
             loggedos.file_sub (logger, [('/' + prefix + '/', '$PANGO_PREFIX/')],
                                file_name)
         self.map_locate (fix_prefix, etc, '*')
+
+class Pango__darwin (Pango):
+    configure_flags = (target.AutoBuild.configure_flags
+                + misc.join_lines ('''
+--with-cairo
+--enable-static
+--with-included-modules=yes
+--with-dynamic-modules=no
+'''))
 
 class Pango__linux (Pango):
     def untar (self):
