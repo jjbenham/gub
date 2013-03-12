@@ -6,8 +6,8 @@ class Poppler (target.AutoBuild):
                 'zlib-devel',
                 'fontconfig-devel',
                 'gtk+-devel',
-                'libjpeg-devel',
-                'libxml2-devel',
+                'libjpeg-devel'
+                #'libxml2-devel',
                 ]
     configure_flags = (target.AutoBuild.configure_flags
                 + ' --disable-poppler-qt'
