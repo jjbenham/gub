@@ -332,11 +332,21 @@ rm -rf %(darwin_bundle_dir)s
 # FIXME: ask TarBall where source lives
 LIBRESTRICT_IGNORE=%(tools_prefix)s/bin/tar tar -C %(installerdir)s -zxf %(downloads)s/osx-lilypad/osx-lilypad-universal-%(osx_lilypad_version)s.tar.gz
 mkdir -p %(darwin_bundle_dir)s/Contents/Resources
-touch %(darwin_bundle_dir)s/Contents/Info.plist # FIXME - this may need content
+wget http://www.denemo.org/downloads/gub/Info.plist -O %(darwin_bundle_dir)s/Contents/Info.plist
 touch %(darwin_bundle_dir)s/Contents/Resources/Credits.html # FIXME - this may need content
 cp -pR --link %(installer_prefix)s/* %(darwin_bundle_dir)s/Contents/Resources/
+mkdir -p %(darwin_bundle_dir)s/Contents/MacOS
+cp -pR --link %(darwin_bundle_dir)s/Contents/Resources/bin/* %(darwin_bundle_dir)s/Contents/MacOS 
+cp -pR --link %(darwin_bundle_dir)s/Contents/Resources/lib %(darwin_bundle_dir)s/Contents
+cp -pR --link %(darwin_bundle_dir)s/Contents/Resources/share %(darwin_bundle_dir)s/Contents
+cp -pR --link %(darwin_bundle_dir)s/Contents/Resources/var %(darwin_bundle_dir)s/Contents
+cp -pR --link %(darwin_bundle_dir)s/Contents/Resources/etc %(darwin_bundle_dir)s/Contents
+cp -pR --link %(darwin_bundle_dir)s/Contents/Resources/share/pixmaps/denemo.png %(darwin_bundle_dir)s/Contents/Denemo.png
 mkdir -p %(darwin_bundle_dir)s/Contents/Resources/license
 cp -pR --link %(installer_root)s/license*/* %(darwin_bundle_dir)s/Contents/Resources/license/
+touch %(darwin_bundle_dir)s/Contents/Resources/Credits.html # FIXME - this may need content
+#cp -pR --link %(installer_prefix)s/* %(darwin_bundle_dir)s/Contents/Resources/
+cp -pR --link %(darwin_bundle_dir)s/Contents/Resources/share/pixmaps/denemo.png %(darwin_bundle_dir)s/Contents/Resources/Denemo.png
 ''', locals ())
         self.file_sub ([('''PACKAGE_NAME=LilyPond
 MAJOR_VERSION=2
