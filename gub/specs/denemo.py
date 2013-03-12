@@ -34,7 +34,7 @@ class Denemo (target.AutoBuild):
         'portaudio-devel',
  	'libsndfile',
 	'fluidsynth',
-	'portmidi'
+#	'portmidi'
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-fluidsynth'
@@ -116,6 +116,7 @@ Denemo__mingw = Denemo__mingw__console
 class Denemo__darwin (Denemo):
     source = 'git://git.savannah.gnu.org/denemo.git'
     branch = 'darwin'
+    patches = ['denemo.main.c-envelope.patch']
     dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'libxml2', # Included in darwin-sdk, hmm?
@@ -127,17 +128,15 @@ class Denemo__darwin (Denemo):
     #patches = ['denemo-utils-apple.c']
 
     configure_flags = (Denemo.configure_flags
-	#		   + ' --enable-debug'
 		       	   + ' --disable-binreloc'
 			   + ' --disable-portmidi'
-			   + ' --with-static-portmidi'
 			   + ' --disable-portaudio'
 			   + ' --disable-x11'
 			   + ' --disable-jack')
 	
     configure_variables = (Denemo.configure_variables
- 			   + ' CFLAGS="-g -O0 -D__APPLE__ -I%(system_prefix)s/include/evince/2.30 -D__APPLE__" '
-			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument -D__APPLE__" ')
+ 			   + ' CFLAGS="-g -O0 -D_MACH_O_ -I%(system_prefix)s/include/evince/2.30 " ')
+			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument " ')
 
 class Denemo__darwin__ppc (Denemo__darwin):
     # make sure that PREFIX/include/unistd.h gets included
