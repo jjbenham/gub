@@ -1,7 +1,7 @@
 from gub import target
 
 class Cairo (target.AutoBuild):
-    source = 'http://www.cairographics.org/releases/cairo-1.8.8.tar.gz'
+    source = 'http://www.cairographics.org/releases/cairo-1.10.2.tar.gz'
     def patch (self):
         target.AutoBuild.patch (self)
         self.system ('rm -f %(srcdir)s/src/cairo-features.h')
@@ -9,7 +9,7 @@ class Cairo (target.AutoBuild):
                 'fontconfig-devel',
                 'ghostscript-devel',
                 'libpng-devel',
-                'libx11-devel',
+                #'libx11-devel',
                 'libxrender-devel',
                 'pixman-devel',
                 # FIXME: poppler, librsvg, cairo, gtk dependencies?
@@ -41,7 +41,6 @@ class Cairo__mingw (Cairo_without_X11):
                     + ['pthreads-w32-devel'])
 
 class Cairo__darwin (Cairo_without_X11):
-     source = 'http://www.cairographics.org/releases/cairo-1.10.2.tar.gz'
      configure_flags = (Cairo_without_X11.configure_flags
                 + ' --enable-quartz'
 		+ ' --enable-quartz-font'
