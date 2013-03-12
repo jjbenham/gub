@@ -12,7 +12,7 @@ class Fluidsynth (target.AutoBuild):
     source = 'http://download.savannah.gnu.org/releases/fluid/fluidsynth-1.1.0.tar.gz'
     dependencies = [
         'glib-devel',
-        'portaudio-devel',
+        #'portaudio-devel',
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --with-pic'
