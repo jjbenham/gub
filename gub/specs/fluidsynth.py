@@ -23,7 +23,7 @@ class Fluidsynth (target.AutoBuild):
                        + ' --disable-oss-support'
                        + ' --disable-midishare'
                        + ' --disable-jack-support'
-                       + ' --disable-coreaudio'
+                       + ' --enable-coreaudio'
                        + ' --disable-coremidi'
                        + ' --disable-lash'
                        + ' --disable-ladcca'
