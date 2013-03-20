@@ -41,21 +41,18 @@ set GTK_MODULE_VERSION=%(gtk_module_version)s
 set GTK_SO_EXTENSION=%(so_extension)s
 ''', '%(install_prefix)s/etc/relocate/gtk+.reloc', env=locals ())
         self.copy ('%(sourcefiledir)s/gdk-pixbuf.loaders', etc)
+
     def install (self):
         target.AutoBuild.install (self)
         self.create_config_files ()
 
-class Gtk_x___linux__x86 (Gtk_x_):
-    configure_variables = (Gtk_x_.configure_variables
-                + ' CFLAGS="-L%(builddir)s/gdk/.libs -L%(builddir)s/gtk/.libs " ')
-    configure_flags = (Gtk_x_.configure_flags
-		+ ' --with-included-loaders=ani,icns,pcx,ras,tga,png,pnm,wbmp,xbm,xpm'
-		+ ' --enable-debug=yes'		
-                )
-
 class Gtk_x___freebsd (Gtk_x_):
     configure_variables = (Gtk_x_.configure_variables
                 + ' CFLAGS=-pthread')
+class Gtk_x___linux__x86 (Gtk_x_):
+    configure_variables = (Gtk_x_.configure_variables
+                + ' CFLAGS="-L%(builddir)s/gdk/.libs -L%(builddir)s/gtk/.libs " ')
+
 
 class Gtk_x___freebsd__x86 (Gtk_x___freebsd):
     patches = Gtk_x___freebsd.patches + ['gtk+-2.15.3-configure.in-have-iswalnum.patch']
@@ -72,7 +69,6 @@ class Gtk_x___darwin (Gtk_x_without_X11):
     configure_flags = (Gtk_x_without_X11.configure_flags
                 + ' --with-gdktarget=quartz'
 		+ ' --with-included-loaders=ani,icns,pcx,ras,tga,png,pnm,wbmp,xbm,xpm'
-		+ ' --enable-debug=yes'		
                 )
 
 class Gtk_x___darwin__ppc (Gtk_x___darwin):
