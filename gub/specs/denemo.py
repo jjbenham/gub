@@ -34,7 +34,7 @@ class Denemo (target.AutoBuild):
         'portaudio-devel',
  	'libsndfile',
 	'fluidsynth',
-#	'portmidi'
+	'portmidi'
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-fluidsynth'
@@ -114,13 +114,13 @@ install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-
 Denemo__mingw = Denemo__mingw__console
 
 class Denemo__darwin (Denemo):
-    source = 'git://git.savannah.gnu.org/denemo.git'
-    branch = 'darwin'
-    patches = ['denemo.main.c-envelope.patch']
+    source = 'http://www.denemo.org/downloads/gub/denemo-1.0.0~rc11.tar.gz'
+    #source = 'git://git.savannah.gnu.org/denemo.git'
+    #branch = 'darwin'
+    patches = ['denemo.main.c-envelope.patch', 'denemo.utils.c-debug.patch']
     dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'libxml2', # Included in darwin-sdk, hmm?
-            'portaudio'
 	    ]] + [
         'fondu',
         'osx-lilypad',
@@ -129,13 +129,14 @@ class Denemo__darwin (Denemo):
 
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
-			   + ' --disable-portmidi'
-			   + ' --disable-portaudio'
+			   + ' --enable-portmidi'
+			   + ' --enable-portaudio'
 			   + ' --disable-x11'
-			   + ' --disable-jack')
+			   + ' --disable-jack'
+			   + ' --disable-rpath')
 	
     configure_variables = (Denemo.configure_variables
- 			   + ' CFLAGS="-g -O0 -D_MACH_O_ -I%(system_prefix)s/include/evince/2.30 " ')
+ 			   + ' CFLAGS="-g -O0 -D_MACH_O_ -I%(system_prefix)s/include/evince/2.30 " '
 			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument " ')
 
 class Denemo__darwin__ppc (Denemo__darwin):
