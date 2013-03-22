@@ -1,23 +1,13 @@
 diff --git a/src/prefops.c b/src/prefops.c
-index 6a72d77..4702386 100644
+index f9e9601..0fe4541 100644
 --- a/src/prefops.c
 +++ b/src/prefops.c
-@@ -106,7 +106,8 @@ initprefs ()
+@@ -105,7 +105,7 @@ initprefs ()
  #else /* !G_OS_WIN32 */
    ret->browser = g_string_new ("firefox");
    ret->audioplayer = g_string_new ("play");
 -  ret->lilypath = g_string_new ("lilypond");
 +  ret->lilypath = g_string_new (g_build_filename(get_bin_dir(), "lilypond", NULL));
-+  printf("\nsetting lilypath==%s\n", ret->lilypath->str);
    ret->pdfviewer = g_string_new ("evince");
    ret->imageviewer = g_string_new ("eog");
-   ret->profile = g_string_new("Arranger");
-@@ -279,7 +280,7 @@ parseConfig (xmlDocPtr doc, xmlNodePtr cur, DenemoPrefs * prefs)
- 	      g_free(curname);
- 	      prefs->lilypath = 
- 		g_string_assign (prefs->lilypath, (gchar *) tmp);
--	      //g_print ("Lilypond Path %s\n", tmp);
-+	        g_print ("Lilypond Path %s\n", tmp);
- 	      xmlFree (tmp);
- 	    }
- 	}
+ #endif /* !G_OS_WIN32 */
