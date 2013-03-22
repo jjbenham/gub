@@ -34,7 +34,8 @@ class Denemo (target.AutoBuild):
         'portaudio-devel',
  	'libsndfile',
 	'fluidsynth',
-	'portmidi'
+	'portmidi',
+	'alsa-devel'
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-fluidsynth'
@@ -54,19 +55,19 @@ class Denemo (target.AutoBuild):
             target.AutoBuild.compile (self)
 
 class Denemo__linux__x86 (Denemo):
-    #source = 'http://www.denemo.org/downloads/denemo-1.0.0~rc8.tar.gz'
+    #source = 'http://www.denemo.org/downloads/gub/denemo-1.0.0~rc11.tar.gz'
     source = 'git://git.savannah.gnu.org/denemo.git'
     branch = 'master'
-    patches = ['denemo.prefop.c.patch', 'denemo.main.c-envelope.patch']
-    #branch = 'linux'
+    patches = ['denemo.prefop.c.patch']
     #dependencies = + ['alsa-devel']
 
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
 				+ ' --enable-portmidi'
-			        + ' --enable-alsa')
+			 	+ ' --disable-alsa'
+				+ ' --enable-portaudio')
     configure_variables = (target.AutoBuild.configure_variables
- 			   + ' CFLAGS="-I%(system_prefix)s/include/evince/2.30 " '
+ 			   + ' CFLAGS="-O0 -g -I%(system_prefix)s/include/evince/2.30 " '
 			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
 
 
