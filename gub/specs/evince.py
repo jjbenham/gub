@@ -5,7 +5,7 @@ class Evince (target.AutoBuild):
   source = 'http://www.denemo.org/downloads/gub/evince-2.30.3.tar.bz2'
   
   dependencies = ['intltool',
-#		  'libxml2-devel',
+		  'libxml2-devel',
 		  'poppler-devel']
 
 #  patches = ['evince_stripped.patch']
@@ -32,10 +32,6 @@ class Evince__darwin__x86 (Evince):
   configure_variables = (tools.AutoBuild.configure_variables
                            + ' CFLAGS="-g -O0" ')
 
-class Evince__linux__x86 (Evince):
-  configure_variables = (tools.AutoBuild.configure_variables
-                           + ' CFLAGS="-g -O0 -DHAVE_POPPLER_PAGE_RENDER" ')
-
 class Evince__mingw (Evince):
 #  patches = ['evince-icon.patch']
   configure_flags = (Evince.configure_flags
@@ -49,6 +45,10 @@ class Evince__linux__x86 (Evince):
   configure_flags = (Evince.configure_flags
                            + ' --with-platform=gnome'
 			   + ' --with-smclient-backend=xsmp')
+  configure_variables = (Evince.configure_variables
+                           + ' CFLAGS="-g -O0 -DHAVE_POPPLER_PAGE_RENDER=1" ')
+
+
   dependencies = ['libsm']
 
                
