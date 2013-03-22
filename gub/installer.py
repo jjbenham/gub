@@ -438,6 +438,8 @@ class Linux_installer (Installer):
         return Installer.strip_prefixes (self)
 
     def create_tarball (self, bundle_tarball):
+	#fixme the Below hack should really be in the evince package itself
+	self.system ('wget http://www.denemo.org/downloads/gub/pdfdocument.evince-backend -O %(installer_root)s/usr/lib/evince/2/backends/pdfdocument.evince-backend')
         self.system ('tar --owner=0 --group=0 -C %(installer_root)s -jcf %(bundle_tarball)s .', locals ())
 
     def create (self):
