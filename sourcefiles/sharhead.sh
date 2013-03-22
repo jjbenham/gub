@@ -148,6 +148,7 @@ if test -d ${dollar}INSTALLER_PREFIX/lib/gtk-2.0/2.10.0/loaders; then
     export GTK_SYSCONFDIR=${dollar}INSTALLER_PREFIX/etc
 fi
 export LD_LIBRARY_PATH="${dollar}{INSTALLER_PREFIX}/lib"
+export EVINCE_MODULE_PATH="${dollar}{INSTALLER_PREFIX}/lib/evince/2/backends"
 $EOF
 
 for file in ${dollar}INSTALLER_PREFIX/etc/relocate/*.reloc; do
