@@ -5,19 +5,20 @@ from gub import target
 from gub import w32
 
 class Glib (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.27/2.27.91/sources/glib-2.21.5.tar.gz'
-    ##source = 'http://ftp.gnome.org/pub/GNOME/platform/2.25/2.25.5/sources/glib-2.19.5.tar.gz'
-    dependencies = ['tools::glib', 'tools::libtool', 'gettext-devel']
+    #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.27/2.27.91/sources/glib-2.21.5.tar.gz'
+    source = 'http://ftp.gnome.org/pub/GNOME/sources/glib/2.27/glib-2.27.93.tar.bz2'
+    dependencies = ['tools::glib', 'tools::libtool', 'gettext-devel', 'zlib']
+    patches = ['glib-2.27.ZLIB_VERNUM.patch']
     config_cache_overrides = target.AutoBuild.config_cache_overrides + '''
 glib_cv_stack_grows=${glib_cv_stack_grows=no}
 '''
     if 'stat' in misc.librestrict (): # stats for /USR/include/glib/...
         install_flags = (target.AutoBuild.install_flags
                          + ' LD_PRELOAD=%(tools_prefix)s/lib/librestrict-open.so')
-    def patch (self):
-        target.AutoBuild.patch (self)
-        self.file_sub ([('GIO_MODULE_DIR', 'getenv ("GIO_MODULE_DIR")')],
-                       '%(srcdir)s/gio/giomodule.c', must_succeed=True)
+    #def patch (self):
+        #target.AutoBuild.patch (self)
+        #self.file_sub ([('GIO_MODULE_DIR', 'getenv ("GIO_MODULE_DIR")')],
+         #              '%(srcdir)s/gio/giomodule.c', must_succeed=True)
     def update_libtool (self): # linux-x86, linux-ppc, freebsd-x86
         target.AutoBuild.update_libtool (self)
         self.map_locate (w32.libtool_disable_relink, '%(builddir)s', 'libtool')
@@ -55,7 +56,7 @@ class Glib__darwin__x86 (Glib__darwin):
 class Glib__mingw (Glib):
     dependencies = Glib.dependencies + ['libiconv-devel']
     def update_libtool (self): # linux-x86, linux-ppc, freebsd-x86
-        target.AutoBuild.update_libtool (self)
+        #target.AutoBuild.update_libtool (self)
         self.map_locate (w32.libtool_disable_relink, '%(builddir)s', 'libtool')
 
 class Glib__freebsd (Glib):
