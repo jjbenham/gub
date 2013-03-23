@@ -3,14 +3,16 @@ from gub import gnome
 from gub import target
 
 class Gtk_x_ (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.27/2.27.91/sources/gtk+-2.17.9.tar.gz'
+    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.32/2.32.1/sources/gtk+-2.22.1.tar.gz'
+    #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.27/2.27.91/sources/gtk+-2.17.9.tar.gz'
     #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.31/2.31.2/sources/gtk+-2.21.0.tar.gz'
     patches = [
         #'gtk+-2.15.3-substitute-env.patch',
-        'gtk+-2.21.0-substitute-env.patch',
+        #'gtk+-2.21.0-substitute-env.patch',
         ]
     dependencies = ['libtool',
                 'atk-devel',
+		'gdk-pixbuf-2',
                 'cairo-devel',
                 'libjpeg-devel',
                 'libpng-devel',
@@ -30,7 +32,7 @@ class Gtk_x_ (target.AutoBuild):
                 (' demos ', ' '), # actually, we'd need tools::gtk+
                 (' tests ', ' '),
                 ], '%(srcdir)s/Makefile.in')
-    configure_command = (' export gio_can_sniff=yes; '
+    configure_command = ('gdk-pixbuf-query-loaders --update-cache && export gio_can_sniff=yes; '
                 + target.AutoBuild.configure_command)
     def create_config_files (self, prefix='/usr'):
         gtk_module_version = '2.10.0' #FIXME!
@@ -41,7 +43,6 @@ set GTK_MODULE_VERSION=%(gtk_module_version)s
 set GTK_SO_EXTENSION=%(so_extension)s
 ''', '%(install_prefix)s/etc/relocate/gtk+.reloc', env=locals ())
         self.copy ('%(sourcefiledir)s/gdk-pixbuf.loaders', etc)
-
     def install (self):
         target.AutoBuild.install (self)
         self.create_config_files ()
@@ -49,10 +50,6 @@ set GTK_SO_EXTENSION=%(so_extension)s
 class Gtk_x___freebsd (Gtk_x_):
     configure_variables = (Gtk_x_.configure_variables
                 + ' CFLAGS=-pthread')
-class Gtk_x___linux__x86 (Gtk_x_):
-    configure_variables = (Gtk_x_.configure_variables
-                + ' CFLAGS="-L%(builddir)s/gdk/.libs -L%(builddir)s/gtk/.libs " ')
-
 
 class Gtk_x___freebsd__x86 (Gtk_x___freebsd):
     patches = Gtk_x___freebsd.patches + ['gtk+-2.15.3-configure.in-have-iswalnum.patch']
@@ -68,7 +65,6 @@ class Gtk_x___mingw (Gtk_x_without_X11):
 class Gtk_x___darwin (Gtk_x_without_X11):
     configure_flags = (Gtk_x_without_X11.configure_flags
                 + ' --with-gdktarget=quartz'
-		+ ' --with-included-loaders=ani,icns,pcx,ras,tga,png,pnm,wbmp,xbm,xpm'
                 )
 
 class Gtk_x___darwin__ppc (Gtk_x___darwin):
