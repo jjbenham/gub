@@ -6,7 +6,8 @@ class Evince (target.AutoBuild):
   
   dependencies = ['intltool',
 		  'libxml2-devel',
-		  'poppler-devel']
+		  'poppler-devel',
+		  'libsm']
 
 #  patches = ['evince_stripped.patch']
   configure_flags = (tools.AutoBuild.configure_flags
@@ -45,10 +46,10 @@ class Evince__linux__x86 (Evince):
   configure_flags = (Evince.configure_flags
                            + ' --with-platform=gnome'
 			   + ' --with-smclient-backend=xsmp')
-  configure_variables = (Evince.configure_variables
-                           + ' CFLAGS="-g -O0 -DHAVE_POPPLER_PAGE_RENDER=1" ')
+#  configure_variables = (Evince.configure_variables
+#                           + ' CFLAGS="-g -O0" ')
+  #make_flags = ' -DHAVE_POPPLER_PAGE_RENDER=1'
 
-
-  dependencies = ['libsm']
+  #dependencies = ['libsm']
 
                
