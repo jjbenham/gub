@@ -1,7 +1,6 @@
-diff --git a/src/prefops.c b/src/prefops.c
-index f9e9601..0fe4541 100644
---- a/src/prefops.c
-+++ b/src/prefops.c
+diff -rupN denemo-1.0.0/src/prefops.c denemo-1.0.0.new/src/prefops.c
+--- denemo-1.0.0/src/prefops.c	2013-03-22 22:42:16.000000000 -0500
++++ denemo-1.0.0.new/src/prefops.c	2013-03-24 15:08:34.859876111 -0500
 @@ -105,7 +105,7 @@ initprefs ()
  #else /* !G_OS_WIN32 */
    ret->browser = g_string_new ("firefox");
