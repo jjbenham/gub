@@ -10,8 +10,9 @@ efficient, highly customizable and portable while capable of producing
 high-quality output (glyph images). It can be used in graphics
 libraries, display servers, font conversion tools, text image generation
 tools, and many other products as well.'''
-
-    source = 'http://download.savannah.nongnu.org/releases/freetype/freetype-2.3.11.tar.gz&name=freetype'
+    #2.4.9-1.1
+    source = 'http://download.savannah.gnu.org/releases/freetype/freetype-2.4.9.tar.bz2'
+    #source = 'http://download.savannah.nongnu.org/releases/freetype/freetype-2.3.11.tar.gz&name=freetype'
     def __init__ (self, settings, source):
         target.AutoBuild.__init__ (self, settings, source)
         # Freetype stats /sbin, /usr/sbin and /hurd to determine if

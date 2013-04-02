@@ -1,10 +1,12 @@
 from gub import target
 
 class Cairo (target.AutoBuild):
-    source = 'http://www.cairographics.org/releases/cairo-1.8.8.tar.gz'
-    def patch (self):
-        target.AutoBuild.patch (self)
-        self.system ('rm -f %(srcdir)s/src/cairo-features.h')
+    #source = 'http://cairographics.org/releases/cairo-1.10.2.tar.gz'
+    source = 'http://cairographics.org/releases/cairo-1.12.2.tar.xz'
+    #patches = ['cairo-1.12.2.no_gtk_doc.patch']
+    #def patch (self):
+     #   target.AutoBuild.patch (self)
+      #  self.system ('rm -f %(srcdir)s/src/cairo-features.h')
     dependencies = ['tools::libtool',
                 'fontconfig-devel',
                 'ghostscript-devel',
@@ -18,6 +20,8 @@ class Cairo (target.AutoBuild):
                 # TRY: removing poppler from cairo...
                 'poppler-devel',
                 'zlib-devel']
+#    def autoupdate (self):
+ #       self.system ('cd %(srcdir)s && ./autogen.sh')
 
 class Cairo_without_X11 (Cairo):
     configure_flags = (Cairo.configure_flags
@@ -47,6 +51,12 @@ class Cairo__darwin (Cairo_without_X11):
 		+ ' --enable-quartz-font'
                 + ' --enable-freetype'
                 + ' --enable-quartz-image'
+		+ ' --enable-png'
+	        + ' --enable-pdf'
+                )
+class Cairo__Linux (Cairo):
+     configure_flags = (Cairo.configure_flags
+                + ' --enable-freetype'
 		+ ' --enable-png'
 	        + ' --enable-pdf'
                 )

@@ -3,7 +3,7 @@ from gub import context
 from gub import target
 
 class Libxcb (target.AutoBuild):
-    source = 'http://xcb.freedesktop.org/dist/libxcb-0.9.93.tar.gz'
+    source = 'http://xcb.freedesktop.org/dist/libxcb-1.8.1.tar.bz2'
     #1.1.92 removes libxcb-xlib, which libx11-1.1.15 needs?
     #source = 'http://xcb.freedesktop.org/dist/libxcb-1.1.93.tar.gz'
     '''
@@ -15,7 +15,7 @@ xproto.c:3056: error: conflicting types for 'xcb_get_atom_name_name'
 xproto.c: In function 'xcb_configure_window_checked':
 xproto.c:2479: error: 'xcb_configure_window_request_t' has no member named 'pad1'
 '''
-    patches = ['libxcb-1.1.93.patch']
+    #patches = ['libxcb-1.1.93.patch']
     dependencies = ['tools::libtool', 'libpthread-stubs-devel', 'libxau-devel', 'xcb-proto-devel', 'libxslt']
     parallel_build_broken = True
 

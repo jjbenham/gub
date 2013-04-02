@@ -3,33 +3,42 @@ from gub import gnome
 from gub import target
 
 class Gtk_x_ (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.27/2.27.91/sources/gtk+-2.17.9.tar.gz'
+    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.4/gtk+-3.4.2.tar.xz'
     #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.31/2.31.2/sources/gtk+-2.21.0.tar.gz'
-    patches = [
-        #'gtk+-2.15.3-substitute-env.patch',
-        'gtk+-2.21.0-substitute-env.patch',
-        ]
+    patches = ['gtk+-3.4.2.no-xinput.patch']
+#        #'gtk+-2.15.3-substitute-env.patch',
+#        'gtk+-2.21.0-substitute-env.patch',
+#        ]
     dependencies = ['libtool',
                 'atk-devel',
                 'cairo-devel',
                 'libjpeg-devel',
                 'libpng-devel',
                 'libtiff-devel',
-                #'pango-devel',
-                'pangocairo-devel',
+                'pango-devel',
+                #'pangocairo-devel',
                 'libxext-devel',
                 #, 'libxinerama-devel',
                 'libxfixes-devel',
+		'gdk-pixbuf-2'
                 ]
     configure_flags = (target.AutoBuild.configure_flags
                 + ' --without-libjasper'
-                + ' --disable-cups')
+                + ' --disable-cups'
+		+ ' --disable-xinput'
+		+ ' --disable-xinerama'
+		)
     def patch (self):
         target.AutoBuild.patch (self)
         self.file_sub ([
                 (' demos ', ' '), # actually, we'd need tools::gtk+
                 (' tests ', ' '),
                 ], '%(srcdir)s/Makefile.in')
+        self.file_sub ([('(have_xinput[_a-z0-9]*)=yes', '\\1=no'),
+                        ('(have_xinput2[_a-z0-9]*)=no', '\\1=yes')],
+			'%(srcdir)s/configure')
+
+
     configure_command = (' export gio_can_sniff=yes; '
                 + target.AutoBuild.configure_command)
     def create_config_files (self, prefix='/usr'):
@@ -50,7 +59,8 @@ class Gtk_x___linux__x86 (Gtk_x_):
                 + ' CFLAGS="-L%(builddir)s/gdk/.libs -L%(builddir)s/gtk/.libs " ')
     configure_flags = (Gtk_x_.configure_flags
 		+ ' --with-included-loaders=ani,icns,pcx,ras,tga,png,pnm,wbmp,xbm,xpm'
-		+ ' --enable-debug=yes'		
+		+ ' --enable-debug=yes'
+		+ ' --disable-xinput'
                 )
 
 class Gtk_x___freebsd (Gtk_x_):

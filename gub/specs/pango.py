@@ -12,25 +12,24 @@ pango_module_version_regexes = [
     (r'^1\.24', '1.6.0'),
     (r'^1\.26', '1.6.0'),
     (r'^1\.27', '1.6.0'),
+    (r'^1\.30', '1.6.0'),
+    (r'^1\.32', '1.8.0')
     ]
 
 class Pango (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.28/2.28.1/sources/pango-1.26.0.tar.gz'
-    patches = ['pango-1.20-substitute-env.patch']
+    source = 'http://ftp.gnome.org/pub/gnome/sources/pango/1.34/pango-1.34.0.tar.xz'
+    #patches = ['pango-1.20-substitute-env.patch', 'pango-1.32.configure-with-cairo.patch']
+    patches = ['pango-1.34.no_win_32.patch']
     dependencies = [
             'tools::glib', 
             'freetype-devel',
             'fontconfig-devel',
             'glib-devel',
-            'libtool'
+            'libtool',
+	    'cairo'
             ]
     def get_conflict_dict (self):
         return {'': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc'], 'devel': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc'], 'doc': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc'], 'runtime': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc']}
-    configure_flags = (target.AutoBuild.configure_flags
-                + misc.join_lines ('''
---without-x
---without-cairo
-'''))
     def module_version (self):
         result = None
         version = self.version()
@@ -38,8 +37,9 @@ class Pango (target.AutoBuild):
             if re.match(regex, version):
                 result = candidate
                 break
-        assert result
-        return result
+        #assert result #FIXME
+        #return result
+	return "1.8.0"
     def install (self):
         target.AutoBuild.install (self)
         self.create_config_files ()
@@ -65,15 +65,19 @@ set PANGO_MODULE_VERSION=%(pango_module_version)s
                                file_name)
         self.map_locate (fix_prefix, etc, '*')
 
+
 class Pango__linux (Pango):
     def untar (self):
         Pango.untar (self)
         # FIXME: --without-cairo switch is removed in 1.10.1,
         # pango only compiles without cairo if cairo is not
         # installed linkably on the build system.  UGH.
-        self.file_sub ([('(have_cairo[_a-z0-9]*)=true', '\\1=false'),
-                        ('(cairo[_a-z0-9]*)=yes', '\\1=no')],
-                       '%(srcdir)s/configure')
+        self.file_sub ([('(have_cairo[_a-z0-9]*)=false', '\\1=true'),
+                        ('(cairo[_a-z0-9]*)=false', '\\1=true'),
+			('(pango_os_win32[_a-z0-9]*)=yes', '\\1=no'),
+			('(pango_platform_win32[_a-z0-9]*)=yes', '\\1=no'),
+			('(have_freetype[_a-z0-9]*)=true', '\\1=false')],
+                        '%(srcdir)s/configure')
 
 class Pango__freebsd (Pango__linux):
     dependencies = Pango__linux.dependencies + ['libiconv-devel']

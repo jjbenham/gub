@@ -6,7 +6,7 @@ class Evince (target.AutoBuild):
   
   dependencies = ['intltool',
 		  'libxml2-devel',
-		  'poppler-devel',
+		  'poppler',
 		  'libsm']
 
 #  patches = ['evince_stripped.patch']
