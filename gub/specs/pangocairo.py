@@ -3,22 +3,9 @@ from gub import target
 from gub.specs import pango
 
 class Pangocairo (pango.Pango):
-    dependencies = pango.Pango.dependencies + ['cairo', 'cairo-devel']
+    dependencies = pango.Pango.dependencies + ['cairo-devel']
     def get_conflict_dict (self):
         return {'': ['pango', 'pango-devel', 'pango-doc'], 'devel': ['pango', 'pango-devel', 'pango-doc'], 'doc': ['pango', 'pango-devel', 'pango-doc'], 'runtime': ['pango', 'pango-devel', 'pango-doc']}
-
-class Pangocairo__linux__x86 (Pangocairo):
-    def untar (self):
-        Pangocairo.untar (self)
-        # FIXME: --without-cairo switch is removed in 1.10.1,
-        # pango only compiles without cairo if cairo is not
-        # installed linkably on the build system.  UGH.
-        self.file_sub ([('(have_cairo[_a-z0-9]*)=false', '\\1=true'),
-                        ('(cairo[_a-z0-9]*)=false', '\\1=true'),
-			('(pango_os_win32[_a-z0-9]*)=yes', '\\1=no'),
-			('(pango_platform_win32[_a-z0-9]*)=yes', '\\1=no'),
-			('(have_freetype[_a-z0-9]*)=true', '\\1=false')],
-                        '%(srcdir)s/configure')
 
 class Pangocairo__mingw (Pangocairo):
     # FIXME: cut and paste Pango__mingw

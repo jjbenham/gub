@@ -3,9 +3,10 @@ from gub import gnome
 from gub import target
 
 class Gtk_x_ (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.4/gtk+-3.4.2.tar.xz'
+    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.0/gtk+-3.0.12.tar.xz'
+    #source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.4/gtk+-3.4.2.tar.xz'
     #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.31/2.31.2/sources/gtk+-2.21.0.tar.gz'
-    patches = ['gtk+-3.4.2.no-xinput.patch']
+#    patches = ['gtk+-3.4.2.no-xinput.patch']
 #        #'gtk+-2.15.3-substitute-env.patch',
 #        'gtk+-2.21.0-substitute-env.patch',
 #        ]
@@ -15,8 +16,8 @@ class Gtk_x_ (target.AutoBuild):
                 'libjpeg-devel',
                 'libpng-devel',
                 'libtiff-devel',
-                'pango-devel',
-                #'pangocairo-devel',
+                #'pango-devel',
+                'pangocairo-devel',
                 'libxext-devel',
                 #, 'libxinerama-devel',
                 'libxfixes-devel',
@@ -35,7 +36,7 @@ class Gtk_x_ (target.AutoBuild):
                 (' tests ', ' '),
                 ], '%(srcdir)s/Makefile.in')
         self.file_sub ([('(have_xinput[_a-z0-9]*)=yes', '\\1=no'),
-                        ('(have_xinput2[_a-z0-9]*)=no', '\\1=yes')],
+                        ('(have_xinput2[_a-z0-9]*)=yes', '\\1=no')],
 			'%(srcdir)s/configure')
 
 
