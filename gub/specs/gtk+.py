@@ -3,13 +3,7 @@ from gub import gnome
 from gub import target
 
 class Gtk_x_ (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.0/gtk+-3.0.12.tar.xz'
-    #source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.4/gtk+-3.4.2.tar.xz'
-    #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.31/2.31.2/sources/gtk+-2.21.0.tar.gz'
-#    patches = ['gtk+-3.4.2.no-xinput.patch']
-#        #'gtk+-2.15.3-substitute-env.patch',
-#        'gtk+-2.21.0-substitute-env.patch',
-#        ]
+    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.2/gtk+-3.2.0.tar.xz'
     dependencies = ['libtool',
                 'atk-devel',
                 'cairo-devel',
