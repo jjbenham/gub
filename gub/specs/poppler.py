@@ -1,8 +1,9 @@
 from gub import target
 
 class Poppler (target.AutoBuild):
+    #source = 'http://poppler.freedesktop.org/poppler-0.22.2.tar.gz'
     source = 'http://cgit.freedesktop.org/poppler/poppler/snapshot/poppler-0.18.4.tar.gz'
-    dependencies = ['tools::libtool', 'tools::glib',
+    dependencies = ['tools::libtool', 'tools::glib', 'glib-devel',
                 'zlib-devel',
                 'fontconfig-devel',
                 #'gtk+-devel',
