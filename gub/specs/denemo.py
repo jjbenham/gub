@@ -66,11 +66,8 @@ class Denemo__linux__x86 (Denemo):
 				+ ' --enable-portmidi'
 			 	+ ' --disable-alsa'
 				+ ' --enable-portaudio')
-    configure_variables = (target.AutoBuild.configure_variables
- 			   + ' CFLAGS="-O0 -g -I%(system_prefix)s/include/evince/2.30 " '
-			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
-
-
+    configure_variables = (Denemo.configure_variables
+			   + ' CFLAGS="-O0 -g -I%(system_prefix)s/include/evince/3.0 " ')
 
 class Denemo__mingw__windows (Denemo):
  source = 'git://git.savannah.gnu.org/denemo.git'
