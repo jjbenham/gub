@@ -2,14 +2,14 @@ from gub import target
 from gub import tools
 
 class Evince (target.AutoBuild):
-  source = 'http://www.denemo.org/downloads/gub/evince-2.30.3.tar.bz2'
-  
+  source = 'http://ftp.gnome.org/pub/GNOME/sources/evince/3.2/evince-3.2.1.tar.xz'
   dependencies = ['intltool',
 		  'libxml2-devel',
 		  'poppler',
+		  'poppler-devel',
 		  'libsm']
 
-#  patches = ['evince_stripped.patch']
+  patches = ['evince-3.2.1-strip.patch']
   configure_flags = (tools.AutoBuild.configure_flags
                            + ' --without-help'
 			   + ' --without-libgnome'
