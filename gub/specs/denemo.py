@@ -72,9 +72,9 @@ class Denemo__linux__x86 (Denemo):
 
 
 class Denemo__mingw__windows (Denemo):
- source = 'http://www.denemo.org/downloads/denemo-1.0.0~rc10.tar.gz'
-# source = 'git://git.savannah.gnu.org/denemo.git'
-# branch = 'master'
+ #source = 'http://www.denemo.org/downloads/denemo-1.0.0.tar.gz'
+ source = 'git://git.savannah.gnu.org/denemo.git'
+ branch = 'master'
  dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'lash',
@@ -85,7 +85,6 @@ class Denemo__mingw__console (Denemo__mingw__windows):
     configure_flags = (Denemo__mingw__windows.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --enable-portmidi')
-			   #+ ' --with-static-portmidi')
 
     configure_variables = (Denemo.configure_variables
 			+ ' CFLAGS="-I%(system_prefix)s/include/evince/2.32" '
@@ -98,7 +97,6 @@ class Denemo__mingw__console (Denemo__mingw__windows):
     def compile (self):
         Denemo__mingw__windows.compile (self)
         self.system ('''
-#cd %(builddir)s/portmidi && make
 cd %(builddir)s && make
 cd %(builddir)s/src && mv .libs/denemo.exe denemo-console.exe && rm -f denemo.exe
 cd %(builddir)s/src && make AM_LDFLAGS="-mwindows" && cp -p .libs/denemo.exe denemo-windows.exe
