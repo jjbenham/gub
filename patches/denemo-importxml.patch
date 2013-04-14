@@ -1,0 +1,35 @@
+diff --git a/src/importxml.c b/src/importxml.c
+index a1eb41b..e0ec0a8 100644
+--- a/src/importxml.c
++++ b/src/importxml.c
+@@ -2978,13 +2978,6 @@ importXML (gchar * filename, DenemoGUI *gui, ImportType type)
+ 
+   rootElem = xmlDocGetRootElement (doc);
+   ns = rootElem->ns;
+-  if ((strcmp ((gchar *) ns->href, DENEMO_XML_NAMESPACE) != 0) &&
+-    /*backward compatibility */ (strcmp ((gchar *) ns->href,  "http://denemo.sourceforge.net/xmlns/Denemo") != 0))
+-    {
+-      g_warning ("Root element is not in Denemo namespace");
+-      ret = -1;
+-      goto cleanup;
+-    }
+   if (strcmp ((gchar *) rootElem->name, "score") != 0)
+     {
+       g_warning ("Root element is not <score>");
+@@ -3053,6 +3046,7 @@ importXML (gchar * filename, DenemoGUI *gui, ImportType type)
+       gui->has_script = FALSE;
+       /* this is dependent on the order of elements, which is not strictly correct */
+       FOREACH_CHILD_ELEM(childElem, rootElem){
++				printf("\nchildElem == %s\n", childElem->name);
+ 				if (ELEM_NAME_EQ (childElem, "scheme")) {
+ 					gchar *tmp = (gchar *) xmlNodeListGetString (childElem->doc,
+ 						       childElem->
+@@ -3103,6 +3097,8 @@ importXML (gchar * filename, DenemoGUI *gui, ImportType type)
+ 						}  else if (ELEM_NAME_EQ (childElem, "movement")){
+ 							point_to_empty_movement (gui);
+ 							ret |=  parseMovement(childElem, ns, gui, type);
++						}  else if (ELEM_NAME_EQ (childElem, "text")){
++							printf("\nfound childElem->name as text. Doing Nothing!\n");
+ 						} else {
+ 							g_warning("unrecognized element in score %s - abandoning file", childElem->name);
+ 							point_to_empty_movement(gui);
