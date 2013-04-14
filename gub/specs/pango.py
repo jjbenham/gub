@@ -24,7 +24,8 @@ class Pango (target.AutoBuild):
             'freetype-devel',
             'fontconfig-devel',
             'glib-devel',
-            'libtool'
+            'libtool',
+	    'libxml2-devel'
             ]
     def get_conflict_dict (self):
         return {'': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc'], 'devel': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc'], 'doc': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc'], 'runtime': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc']}
