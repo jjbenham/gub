@@ -5,7 +5,8 @@ from gub import target
 from gub import tools
 
 class Libxml2 (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.18/2.18.1/sources/libxml2-2.6.27.tar.gz'
+    source = 'ftp://xmlsoft.org/libxml2/libxml2-2.8.0.tar.gz'
+    patches = ['libxml2-2.8.0.gzdirect.patch']
     dependencies = ['zlib']
     configure_flags = (target.AutoBuild.configure_flags
                 + misc.join_lines ('''
