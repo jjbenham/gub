@@ -5,7 +5,7 @@ class Evince (target.AutoBuild):
   source = 'http://www.denemo.org/downloads/gub/evince-2.30.3.tar.bz2'
   
   dependencies = ['intltool',
-#		  'libxml2-devel',
+		  'libxml2-devel',
 		  'poppler-devel']
 
 #  patches = ['evince_stripped.patch']
@@ -28,9 +28,9 @@ class Evince (target.AutoBuild):
 			   + ' --disable-comics'
 			   + ' --without-gtk-unix-print')
 
-class Evince__darwin__x86 (Evince):
-  configure_variables = (tools.AutoBuild.configure_variables
-                           + ' CFLAGS="-g -O0" ')
+#class Evince__darwin__x86 (Evince):
+#  configure_variables = (tools.AutoBuild.configure_variables
+#                           + ' CFLAGS="-g -O0" ')
 
 class Evince__linux__x86 (Evince):
   configure_variables = (tools.AutoBuild.configure_variables
