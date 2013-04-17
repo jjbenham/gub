@@ -118,7 +118,7 @@ class Denemo__darwin (Denemo):
     #source = 'http://www.denemo.org/downloads/gub/denemo-1.0.0.tar.gz'
     source = 'git://git.savannah.gnu.org/denemo.git'
     branch = 'master'
-    patches = ['denemo.main.c.missing.prefix.patch', 'denemo-importxml.patch']
+    #patches = ['denemo-utils.c.patch']
     dependencies = Denemo.dependencies + ['fondu', 'osx-lilypad']
 
     configure_flags = (Denemo.configure_flags
@@ -127,8 +127,7 @@ class Denemo__darwin (Denemo):
 			   + ' --enable-portaudio'
 			   + ' --disable-x11'
 			   + ' --disable-jack'
-			   + ' --disable-rpath'
-			   + ' --enable-debug')
+			   + ' --disable-rpath')
 	
     configure_variables = (Denemo.configure_variables
  			   + ' CFLAGS="-g -O0 -D_MACH_O_ -I%(system_prefix)s/include/evince/2.30 " '
