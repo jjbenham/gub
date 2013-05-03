@@ -3,7 +3,7 @@ from gub import gnome
 from gub import target
 
 class Gtk_x_ (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.32/2.32.1/sources/gtk+-2.22.1.tar.gz'
+    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.0.tar.gz'
     #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.27/2.27.91/sources/gtk+-2.17.9.tar.gz'
     #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.31/2.31.2/sources/gtk+-2.21.0.tar.gz'
     patches = [
@@ -65,6 +65,7 @@ class Gtk_x___mingw (Gtk_x_without_X11):
 class Gtk_x___darwin (Gtk_x_without_X11):
     configure_flags = (Gtk_x_without_X11.configure_flags
                 + ' --with-gdktarget=quartz'
+		+ ' --with-included-loaders=ani,icns,pcx,ras,tga,png,pnm,wbmp,xbm,xpm'
                 )
 
 class Gtk_x___darwin__ppc (Gtk_x___darwin):
