@@ -32,11 +32,6 @@ class Expat__linux__arm__vfp (Expat):
         self.system ('touch %(srcdir)s/tests/xmltest.sh.in')
         target.AutoBuild.patch (self)
 
-class Expat__darwin (Expat):
-    dependencies = [x for x in Expat.dependencies
-                if x.replace ('-devel', '') not in [
-                'libxml2', # Included in darwin-sdk, hmm?
-                ]]
 
 class Expat__tools (tools.AutoBuild, Expat):
     dependencies = [
