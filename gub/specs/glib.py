@@ -5,9 +5,10 @@ from gub import target
 from gub import w32
 
 class Glib (target.AutoBuild):
-    #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.27/2.27.91/sources/glib-2.21.5.tar.gz'
-    source = 'http://ftp.gnome.org/pub/GNOME/sources/glib/2.27/glib-2.27.93.tar.bz2'
-    dependencies = ['tools::glib', 'tools::libtool', 'gettext-devel', 'zlib']
+    source = 'http://ftp.gnome.org/pub/GNOME/sources/glib/2.28/glib-2.28.8.tar.xz'
+    #source = 'http://ftp.gnome.org/pub/gnome/sources/glib/2.36/glib-2.36.0.tar.xz'
+    #source = 'http://ftp.gnome.org/pub/GNOME/sources/glib/2.27/glib-2.27.93.tar.bz2'
+    dependencies = ['tools::glib', 'tools::libtool', 'gettext-devel', 'zlib','libffi']
     patches = ['glib-2.27.ZLIB_VERNUM.patch']
     config_cache_overrides = target.AutoBuild.config_cache_overrides + '''
 glib_cv_stack_grows=${glib_cv_stack_grows=no}
