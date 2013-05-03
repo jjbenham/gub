@@ -332,19 +332,23 @@ rm -rf %(darwin_bundle_dir)s
 # FIXME: ask TarBall where source lives
 LIBRESTRICT_IGNORE=%(tools_prefix)s/bin/tar tar -C %(installerdir)s -zxf %(downloads)s/osx-lilypad/osx-lilypad-universal-%(osx_lilypad_version)s.tar.gz
 mkdir -p %(darwin_bundle_dir)s/Contents/Resources
-wget http://www.denemo.org/downloads/gub/Info.plist -O %(darwin_bundle_dir)s/Contents/Info.plist
+cp %(sourcefiledir)s/Info.plist %(darwin_bundle_dir)s/Contents/Info.plist
+#wget http://www.denemo.org/downloads/gub/Info.plist -O %(darwin_bundle_dir)s/Contents/Info.plist
 touch %(darwin_bundle_dir)s/Contents/Resources/Credits.html # FIXME - this may need content
 cp -pR --link %(installer_prefix)s/* %(darwin_bundle_dir)s/Contents/Resources/
 mkdir -p %(darwin_bundle_dir)s/Contents/MacOS
-wget http://www.denemo.org/downloads/gub/denemo -O %(darwin_bundle_dir)s/Contents/MacOS/denemo.sh
+cp %(sourcefiledir)s/denemo.sh %(darwin_bundle_dir)s/Contents/MacOS/denemo.sh
+#wget http://www.denemo.org/downloads/gub/denemo -O %(darwin_bundle_dir)s/Contents/MacOS/denemo.sh
 chmod +x %(darwin_bundle_dir)s/Contents/MacOS/denemo.sh
-wget http://www.denemo.org/downloads/gub/denemo.icns -O %(darwin_bundle_dir)s/Contents/denemo.icns
+cp %(sourcefiledir)s/denemo.icns %(darwin_bundle_dir)s/Contents/MacOS/denemo.icns
+#wget http://www.denemo.org/downloads/gub/denemo.icns -O %(darwin_bundle_dir)s/Contents/denemo.icns
 mkdir -p %(darwin_bundle_dir)s/Contents/Resources/license
 cp -pR --link %(installer_root)s/license*/* %(darwin_bundle_dir)s/Contents/Resources/license/
 touch %(darwin_bundle_dir)s/Contents/Resources/Credits.html # FIXME - this may need content
 #cp -pR --link %(installer_prefix)s/* %(darwin_bundle_dir)s/Contents/Resources/
-wget http://www.denemo.org/downloads/gub/denemo.icns -O %(darwin_bundle_dir)s/Contents/Resources/denemo.icns
-wget http://www.denemo.org/downloads/gub/pdfdocument.evince-backend -O %(darwin_bundle_dir)s/Contents/Resources/lib/evince/2/backends/pdfdocument.evince-backend
+cp %(sourcefiledir)s/denemo.icns %(darwin_bundle_dir)s/Contents/Resources/denemo.icns
+#wget http://www.denemo.org/downloads/gub/denemo.icns -O %(darwin_bundle_dir)s/Contents/Resources/denemo.icns
+cp %(sourcefiledir)s/pdfdocument.evince-backend %(darwin_bundle_dir)s/Contents/Resources/lib/evince/2/backends/pdfdocument.evince-backend
 ''', locals ())
         self.file_sub ([('''PACKAGE_NAME=Denemo
 MAJOR_VERSION=1
