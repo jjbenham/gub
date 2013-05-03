@@ -3,7 +3,7 @@
 .PHONY: nsis denemo denemo-installers
 default: all
 
-DENEMO_BRANCH="master"
+DENEMO_BRANCH="stable-1.0.2"
 DENEMO_REPO_URL=git://git.savannah.gnu.org/denemo.git
 
 PLATFORMS=darwin-x86

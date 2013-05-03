@@ -114,10 +114,11 @@ install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-
 Denemo__mingw = Denemo__mingw__console
 
 class Denemo__darwin (Denemo):
-    source = 'http://www.denemo.org/downloads/gub/denemo-1.0.0.tar.gz'
+    source = 'http://www.denemo.org/downloads/gub/denemo-1.0.2.tar.gz'
     #source = 'git://git.savannah.gnu.org/denemo.git'
-    #branch = 'darwin'
-    patches = ['denemo.main.c-envelope.patch', 'denemo.utils.c-debug.patch']
+    #branch = 'stable-1.0.2'
+    #patches = ['denemo-1.3-main.c.patch']
+    #patches = ['denemo.main.c-envelope.patch']#, 'denemo.utils.c-debug.patch']
     dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'libxml2', # Included in darwin-sdk, hmm?
