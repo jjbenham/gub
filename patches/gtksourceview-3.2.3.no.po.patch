@@ -1,0 +1,12 @@
+diff -rupN gtksourceview-3.2.3/Makefile.in gtksourceview-3.2.3.new/Makefile.in
+--- gtksourceview-3.2.3/Makefile.in	2011-11-01 13:45:38.000000000 -0500
++++ gtksourceview-3.2.3.new/Makefile.in	2013-04-02 19:48:07.326349282 -0500
+@@ -311,7 +311,7 @@ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+-SUBDIRS = gtksourceview po data docs tests
++SUBDIRS = gtksourceview data docs tests
+ pkgconfigdir = $(libdir)/pkgconfig
+ pkgconfig_DATA = gtksourceview-3.0.pc
+ EXTRA_DIST = \
