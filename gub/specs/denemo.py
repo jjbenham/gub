@@ -55,10 +55,10 @@ class Denemo (target.AutoBuild):
             target.AutoBuild.compile (self)
 
 class Denemo__linux__x86 (Denemo):
-    source = 'http://www.denemo.org/downloads/denemo-1.0.0.tar.gz'
-    #source = 'git://git.savannah.gnu.org/denemo.git'
-    #branch = 'master'
-    patches = ['denemo.prefop.c.patch']
+    #source = 'http://www.denemo.org/downloads/denemo-1.0.0.tar.gz'
+    source = 'git://git.savannah.gnu.org/denemo.git'
+    branch = 'master'
+    #patches = ['denemo.prefop.c.patch']
     #dependencies = + ['alsa-devel']
 
     configure_flags = (Denemo.configure_flags
