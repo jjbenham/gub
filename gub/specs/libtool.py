@@ -5,7 +5,7 @@ from gub import target
 from gub import tools
 
 class Libtool (target.AutoBuild):
-    source = 'http://ftp.gnu.org/pub/gnu/libtool/libtool-2.2.6a.tar.gz'
+    source = 'http://ftp.gnu.org/pub/gnu/libtool/libtool-2.2.6b.tar.gz'
     #source = 'git://git.sv.gnu.org/libtool.git?branch=master&revision=77e114998457cb6170ad84b360cb5b9be90f2191'
     dependencies = ['tools::libtool']
     configure_variables = (target.AutoBuild.configure_variables
