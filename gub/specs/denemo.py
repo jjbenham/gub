@@ -55,7 +55,7 @@ class Denemo (target.AutoBuild):
             target.AutoBuild.compile (self)
 
 class Denemo__linux__x86 (Denemo):
-    source = 'http://www.denemo.org/downloads/denemo-1.0.2.tar.gz'
+    source = 'http://www.denemo.org/downloads/denemo-1.0.4.tar.gz'
     #source = 'git://git.savannah.gnu.org/denemo.git'
     #branch = 'master'
     #patches = ['denemo.prefop.c.patch']
@@ -67,7 +67,7 @@ class Denemo__linux__x86 (Denemo):
 			 	+ ' --disable-alsa'
 				+ ' --enable-portaudio')
     configure_variables = (target.AutoBuild.configure_variables
- 			   + ' CFLAGS="-O0 -g -I%(system_prefix)s/include/evince/2.30 " '
+ 			   + ' CFLAGS=" -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/2.30 " '
 			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
 
 
