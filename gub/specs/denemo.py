@@ -114,11 +114,10 @@ install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-
 Denemo__mingw = Denemo__mingw__console
 
 class Denemo__darwin (Denemo):
-    source = 'http://www.denemo.org/downloads/denemo-1.0.2.tar.gz'
+    source = 'http://www.denemo.org/downloads/denemo-1.0.4.tar.gz'
     #source = 'git://git.savannah.gnu.org/denemo.git'
     #branch = 'master' #'stable-1.0.2'
-    patches = ['denemo-1.0.2.main.c.env.patch']
-    #patches = ['denemo.main.c-envelope.patch']#, 'denemo.utils.c-debug.patch']
+    patches = ['denemo-1.0.4.main.c.env.patch']
     dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'libxml2', # Included in darwin-sdk, hmm?
@@ -126,7 +125,6 @@ class Denemo__darwin (Denemo):
         'fondu',
         'osx-lilypad',
         ]
-    #patches = ['denemo-utils-apple.c']
 
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
@@ -137,8 +135,8 @@ class Denemo__darwin (Denemo):
 			   + ' --disable-rpath')
 	
     configure_variables = (Denemo.configure_variables
- 			   + ' CFLAGS="-g -O0 -D_MACH_O_ -I%(system_prefix)s/include/evince/2.30 " '
-			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument " ')
+                          + ' CFLAGS="-D_MACH_O_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/2.30 " '
+                          + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument " ')
 
 class Denemo__darwin__ppc (Denemo__darwin):
     # make sure that PREFIX/include/unistd.h gets included
