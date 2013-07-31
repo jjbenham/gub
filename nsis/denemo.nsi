@@ -37,7 +37,7 @@ SetCompressor bzip2  ;;
 
 Name "${PRETTY_NAME}"
 
-Caption "${PRETTY_NAME} ${INSTALLER_VERSION} for Microsoft Windows"
+Caption "${PRETTY_NAME} ${INSTALLER_VERSION} for Microsoft Windows - Please re-boot when done!"
 BrandingText "${PRETTY_NAME} installer v1.0"
 
 
