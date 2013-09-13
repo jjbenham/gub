@@ -34,7 +34,8 @@ class Denemo (target.AutoBuild):
         'portaudio-devel',
  	'libsndfile',
 	'fluidsynth',
-	'portmidi'
+	'portmidi',
+	'librubberband'
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-fluidsynth'
@@ -72,7 +73,7 @@ class Denemo__linux__x86 (Denemo):
 
 
 class Denemo__mingw__windows (Denemo):
- source = 'http://www.denemo.org/downloads/denemo-1.0.6.tar.gz'
+ source = 'http://www.denemo.org/downloads/denemo-1.0.8.tar.gz'
  #source = 'git://git.savannah.gnu.org/denemo.git'
  #branch = 'master'
  dependencies = [x for x in Denemo.dependencies
@@ -84,11 +85,12 @@ class Denemo__mingw__console (Denemo__mingw__windows):
     #patches = ['portmidi-denemo-test.patch']
     configure_flags = (Denemo__mingw__windows.configure_flags
 		       	   + ' --disable-binreloc'
-			   + ' --enable-portmidi')
+			   + ' --enable-portmidi'
+			   + ' --enable-rubberband')
 
     configure_variables = (Denemo.configure_variables
-			+ ' CFLAGS="-I%(system_prefix)s/include/evince/2.32" '
-			+ ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
+			+ ' CFLAGS="-I%(system_prefix)s/include/evince/2.32 -I%(system_prefix)s/../vamp-sdk/" '
+			+ ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument -L%(system_prefix)s/../vamp-plugin-sdk-2.5-binaries-win32-mingw -lvamp-sdk" ')
 
     def __init__ (self, settings, source):
         Denemo__mingw__windows.__init__ (self, settings, source)
