@@ -35,7 +35,7 @@ class Denemo (target.AutoBuild):
  	'libsndfile',
 	'fluidsynth',
 	'portmidi',
-	'librubberband'
+	#'librubberband'
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-fluidsynth'
@@ -55,7 +55,7 @@ class Denemo (target.AutoBuild):
             target.AutoBuild.compile (self)
 
 class Denemo__linux__x86 (Denemo):
-    source = 'http://www.denemo.org/downloads/denemo-1.0.8.tar.gz'
+    source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
     #source = 'git://git.savannah.gnu.org/denemo.git'
     #branch = 'master'
     #patches = ['denemo.prefop.c.patch', 'denemo.main.c-envelope.patch']
@@ -65,8 +65,8 @@ class Denemo__linux__x86 (Denemo):
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
 				+ ' --enable-portmidi'
-				+ ' --enable-rubberband'
-			        + ' --enable-alsa')
+			#	+ ' --enable-rubberband'
+			        + ' --disable-alsa')
     configure_variables = (target.AutoBuild.configure_variables
 			+ ' CFLAGS="-I%(system_prefix)s/include/evince/2.30 " '
 			+ ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
