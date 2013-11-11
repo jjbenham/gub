@@ -73,7 +73,8 @@ class Denemo__linux__x86 (Denemo):
 
 
 class Denemo__mingw__windows (Denemo):
- source = 'http://www.denemo.org/downloads/denemo-1.0.8.tar.gz'
+ #source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
+ source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
  #source = 'git://git.savannah.gnu.org/denemo.git'
  #branch = 'master'
  dependencies = [x for x in Denemo.dependencies
