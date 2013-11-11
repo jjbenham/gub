@@ -319,6 +319,10 @@ Function postinstall_denemo
 	CopyFiles /silent "$INSTDIR\usr\share\fonts\truetype\denemo\Denemo.ttf" "$WINDIR\Fonts\Denemo.ttf"
 	StrCpy $FONT_DIR "$WINDIR\Fonts"
 	!insertmacro InstallTTFFont "${ROOT}\usr\share\fonts\truetype\denemo\Denemo.ttf"
+	CopyFiles /silent "$INSTDIR\usr\share\fonts\truetype\denemo\feta.ttf" "$WINDIR\Fonts\feta.ttf"
+	!insertmacro InstallTTFFont "${ROOT}\usr\share\fonts\truetype\denemo\feta.ttf"
+	CopyFiles /silent "$INSTDIR\usr\share\fonts\truetype\denemo\emmentaler.ttf" "$WINDIR\Fonts\emmentaler.ttf"
+	!insertmacro InstallTTFFont "${ROOT}\usr\share\fonts\truetype\denemo\emmentaler.ttf"
 	ClearErrors
 FunctionEnd
 
