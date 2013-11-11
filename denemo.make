@@ -6,7 +6,7 @@ default: all
 DENEMO_BRANCH="master"
 DENEMO_REPO_URL=git://git.savannah.gnu.org/denemo.git
 
-PLATFORMS=mingw linux-x86 darwin-x86
+PLATFORMS=mingw
 
 # derived info
 DENEMO_SOURCE_URL=$(DENEMO_REPO_URL)?branch=$(DENEMO_BRANCH)
