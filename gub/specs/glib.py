@@ -6,9 +6,8 @@ from gub import w32
 
 class Glib (target.AutoBuild):
     #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.27/2.27.91/sources/glib-2.21.5.tar.gz'
-#    source = 'http://ftp.gnome.org/pub/gnome/sources/glib/2.34/glib-2.34.2.tar.xz'
-    source = 'http://ftp.acc.umu.se/pub/gnome/sources/glib/2.33/glib-2.33.3.tar.xz'
-    dependencies = ['tools::glib', 'tools::libtool', 'gettext-devel', 'zlib', 'libffi-devel', 'pthreads-w32']
+    source = 'http://ftp.gnome.org/pub/GNOME/sources/glib/2.27/glib-2.27.93.tar.bz2'
+    dependencies = ['tools::glib', 'tools::libtool', 'gettext-devel', 'zlib']
     config_cache_overrides = target.AutoBuild.config_cache_overrides + '''
 glib_cv_stack_grows=${glib_cv_stack_grows=no}
 '''
@@ -31,15 +30,6 @@ collect2: ld returned 1 exit status
 libtool: install: error: relink `libgio-2.0.la' with the above command before installing it
 make[5]: *** [install-libLTLIBRARIES] Error 1
 '''
-    configure_flags = (target.AutoBuild.configure_flags
-                       + ' --build=%(target_architecture)s'
-                       + ' --host=%(target_architecture)s'
-                       + ' --target=%(target_architecture)s'
-                       )
-
-    configure_variables = (target.AutoBuild.configure_variables
-                          + ' LDFLAGS=" -lpthread" ')
-
     def install (self):
         target.AutoBuild.install (self)
         self.system ('rm -f %(install_prefix)s/lib/charset.alias')
@@ -90,10 +80,6 @@ class Glib__tools (tools.AutoBuild, Glib):
                        + ' --host=%(build_architecture)s'
                        + ' --target=%(build_architecture)s'
                        )
-    configure_variables = (target.AutoBuild.configure_variables
-                          + ' LIBFFI_CFLAGS="-I%(system_prefix)s/lib/libffi-3.0.9/include" '
-                          + ' LIBFFI_LIBS="-L%(system_prefix)s/lib/libffi-3.0.9/include -lffi -lpthread" ')
-
     def install (self):
         tools.AutoBuild.install (self)
         self.system ('rm -f %(install_root)s%(packaging_suffix_dir)s%(prefix_dir)s/lib/charset.alias')
