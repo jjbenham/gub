@@ -1,7 +1,7 @@
 from gub import target
 
 class Librubberband (target.AutoBuild):
-    source = 'http://code.breakfastquay.com/attachments/download/34/rubberband-1.8.1.tar.gz'
+    source = 'http://denemo.org/downloads/gub/rubberband-1.8.1.tar.gz'
     dependencies = ['vamp-plugin-sdk', 'libsamplerate', 'libsndfile', 'libfftw']
 #    configure_variables = (target.AutoBuild.configure_variables
 # 			   + ' Vamp_CFLAGS="-I%(system_prefix)s/../vamp-sdk/" '
