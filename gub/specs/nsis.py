@@ -9,7 +9,7 @@ class Nsis (tools.SConsBuild):
     #source = ':pserver:anonymous@nsis.cvs.sourceforge.net:/cvsroot/nsis&module=NSIS&tag=HEAD'
     dependencies = ['mingw::cross/gcc']
     scons_flags = misc.join_lines ('''
-DEBUG=no
+DEBUG=yes
 NSIS_CONFIG_LOG=yes
 SKIPUTILS="NSIS Menu"
 ''')
@@ -47,12 +47,6 @@ defenv['CXX'] = os.environ['CXX']
 defenv['C_INCLUDE_PATH'] = ''
 defenv['CPLUS_INCLUDE_PATH'] = ''
 defenv['CFLAGS'] = ''
-# SCons will add double quotes when LINKFLAGS contains whitespace,
-# so start and end with double quotes as so to disarm them
-#defenv['LINKFLAGS'] = '"%(rpath)s -Wl,-rpath -Wl,%(alltargetdir)s/%(build_platform)s%(root_dir)s%(prefix_dir)s/lib"'
-# Nsis is built 32 bit -- this won't work for non-GNU/Linux build hosts
-defenv['LINKFLAGS'] = '"%(rpath)s -Wl,-rpath -Wl,%(alltargetdir)s/linux-x86%(root_dir)s%(prefix_dir)s/lib"'
-
 Export('defenv')
 ''')],
                        '%(srcdir)s/SConstruct')

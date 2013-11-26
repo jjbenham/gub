@@ -37,7 +37,7 @@ SetCompressor bzip2  ;;
 
 Name "${PRETTY_NAME}"
 
-Caption "${PRETTY_NAME} ${INSTALLER_VERSION} for Microsoft Windows"
+Caption "${PRETTY_NAME} ${INSTALLER_VERSION} for Microsoft Windows - Please re-boot when done!"
 BrandingText "${PRETTY_NAME} installer v1.0"
 
 
@@ -275,18 +275,18 @@ Function denemo_create_shortcuts
 	CreateShortCut "$SMPROGRAMS\Denemo\Denemo Website.lnk" \
 		"http://denemo.org/" "" \
 		"firefox.exe" 0
-	CreateShortCut "$SMPROGRAMS\Denemo\LilyPond.lnk" \
-		"$INSTDIR\usr\bin\lilypond-windows.exe" "-dgui" \
-		"$INSTDIR\usr\bin\lilypond-windows.exe" 0 SW_SHOWMINIMIZED
-	CreateShortCut "$SMPROGRAMS\Denemo\LilyPond Website.lnk" \
-		"http://lilypond.org/" "" \
-		"firefox.exe" 0
-	CreateShortCut "$SMPROGRAMS\Denemo\Music in Mutopia.lnk" \
-		"http://www.mutopiaproject.org" "" \
-		"$INSTDIR\usr\bin\lilypond-windows.exe" 1
-	CreateShortCut "$SMPROGRAMS\Denemo\Examples.lnk" \
-		"$INSTDIR\usr\share\doc\lilypond\input" "" \
-		"$INSTDIR\usr\bin\lilypond-windows.exe" 1
+	;;CreateShortCut "$SMPROGRAMS\Denemo\LilyPond.lnk" \
+		;;"$INSTDIR\usr\bin\lilypond-windows.exe" "-dgui" \
+		;;"$INSTDIR\usr\bin\lilypond-windows.exe" 0 SW_SHOWMINIMIZED
+	;;CreateShortCut "$SMPROGRAMS\Denemo\LilyPond Website.lnk" \
+		;;"http://lilypond.org/" "" \
+		;;"firefox.exe" 0
+	;;CreateShortCut "$SMPROGRAMS\Denemo\Music in Mutopia.lnk" \
+		;;"http://www.mutopiaproject.org" "" \
+		;;"$INSTDIR\usr\bin\lilypond-windows.exe" 1
+	;;CreateShortCut "$SMPROGRAMS\Denemo\Examples.lnk" \
+		;;"$INSTDIR\usr\share\doc\lilypond\input" "" \
+		;;"$INSTDIR\usr\bin\lilypond-windows.exe" 1
 	CreateShortCut "$SMPROGRAMS\Denemo\Uninstall.lnk" \
 		"$INSTDIR\uninstall.exe" "" "$INSTDIR\uninstall.exe" 0
 
@@ -305,9 +305,9 @@ windows:
 	CreateShortCut "$DESKTOP\Denemo.lnk" \
 		"$INSTDIR\usr\bin\denemo.exe" "" \
 		"$INSTDIR\usr\bin\denemo.exe" 0 SW_SHOWNORMAL
-	CreateShortCut "$DESKTOP\LilyPond.lnk" \
-		"$INSTDIR\usr\bin\lilypond-windows.exe" "-dgui" \
-		"$INSTDIR\usr\bin\lilypond-windows.exe" 0 SW_SHOWMINIMIZED
+	;;CreateShortCut "$DESKTOP\LilyPond.lnk" \
+		;;"$INSTDIR\usr\bin\lilypond-windows.exe" "-dgui" \
+		;;"$INSTDIR\usr\bin\lilypond-windows.exe" 0 SW_SHOWMINIMIZED
 		
 exit:
 FunctionEnd
@@ -319,6 +319,10 @@ Function postinstall_denemo
 	CopyFiles /silent "$INSTDIR\usr\share\fonts\truetype\denemo\Denemo.ttf" "$WINDIR\Fonts\Denemo.ttf"
 	StrCpy $FONT_DIR "$WINDIR\Fonts"
 	!insertmacro InstallTTFFont "${ROOT}\usr\share\fonts\truetype\denemo\Denemo.ttf"
+	CopyFiles /silent "$INSTDIR\usr\share\fonts\truetype\denemo\feta.ttf" "$WINDIR\Fonts\feta.ttf"
+	!insertmacro InstallTTFFont "${ROOT}\usr\share\fonts\truetype\denemo\feta.ttf"
+	CopyFiles /silent "$INSTDIR\usr\share\fonts\truetype\denemo\emmentaler.ttf" "$WINDIR\Fonts\emmentaler.ttf"
+	!insertmacro InstallTTFFont "${ROOT}\usr\share\fonts\truetype\denemo\emmentaler.ttf"
 	ClearErrors
 FunctionEnd
 
