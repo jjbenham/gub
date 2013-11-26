@@ -11,7 +11,8 @@ from gub import repository
 from gub import target
 
 class Denemo (target.AutoBuild):
-    source = 'git://git.savannah.gnu.org/denemo.git'
+     source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
+#    source = 'git://git.savannah.gnu.org/denemo.git'
 #    branch = 'master'
 #    patches = ['denemo-SIGCHLD.patch']
 #    subpackage_names = ['']
@@ -55,10 +56,8 @@ class Denemo (target.AutoBuild):
             target.AutoBuild.compile (self)
 
 class Denemo__linux__x86 (Denemo):
-    source = 'http://www.denemo.org/downloads/denemo-1.0.0~rc10.tar.gz'
     #source = 'git://git.savannah.gnu.org/denemo.git'
     #branch = 'master'
-    patches = ['denemo.prefop.c.patch', 'denemo.main.c-envelope.patch']
     #branch = 'linux'
     #dependencies = + ['alsa-devel']
 
@@ -73,8 +72,8 @@ class Denemo__linux__x86 (Denemo):
 
 
 class Denemo__mingw__windows (Denemo):
- #source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
- source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
+ source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
+ #source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
  #source = 'git://git.savannah.gnu.org/denemo.git'
  #branch = 'master'
  dependencies = [x for x in Denemo.dependencies
@@ -116,8 +115,8 @@ install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-
 Denemo__mingw = Denemo__mingw__console
 
 class Denemo__darwin (Denemo):
-    source = 'git://git.savannah.gnu.org/denemo.git'
-    branch = 'darwin'
+    source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
+    #branch = 'darwin'
     dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'libxml2', # Included in darwin-sdk, hmm?
