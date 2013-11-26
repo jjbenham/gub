@@ -35,7 +35,7 @@ class Denemo (target.AutoBuild):
  	'libsndfile',
 	'fluidsynth',
 	'portmidi',
-	#'librubberband'
+	'librubberband'
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-fluidsynth'
@@ -65,7 +65,7 @@ class Denemo__linux__x86 (Denemo):
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
 				+ ' --enable-portmidi'
-			#	+ ' --enable-rubberband'
+				+ ' --enable-rubberband'
 			        + ' --disable-alsa')
     configure_variables = (target.AutoBuild.configure_variables
 			+ ' CFLAGS="-I%(system_prefix)s/include/evince/2.30 " '
