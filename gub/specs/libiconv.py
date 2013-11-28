@@ -1,7 +1,7 @@
 from gub import target
 
 class Libiconv (target.AutoBuild):
-    source = 'http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.11.tar.gz'
+    source = 'http://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.14.tar.gz'
     parallel_build_broken = True
     dependencies = ['gettext-devel', 'libtool']
     def patch (self):
