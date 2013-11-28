@@ -13,8 +13,8 @@ from gub import target
 class Denemo (target.AutoBuild):
     #source = 'git://git.savannah.gnu.org/denemo.git'
     #branch = 'master'
-    source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
-    #source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
+    #source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
+    source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
 
     dependencies = [
         'cross/gcc-c++-runtime',
