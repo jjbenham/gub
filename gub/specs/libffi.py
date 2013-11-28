@@ -2,7 +2,7 @@ from gub import target
 from gub import tools
 
 class Libffi (target.AutoBuild):
-    source = 'ftp://sourceware.org/pub/libffi/libffi-3.0.9.tar.gz'
+    source = 'ftp://sourceware.org/pub/libffi/libffi-3.0.13.tar.gz'
     dependencies = [
         'tools::automake',
         'tools::libtool',
@@ -13,8 +13,8 @@ class Libffi (target.AutoBuild):
                      + """ includesdir='$(includedir)' """ )
     def install (self):
         target.AutoBuild.install (self)
-        self.system ('cd %(install_prefix)s && mv lib/libffi-3.0.9/include .')
-        self.system ('cd %(install_prefix)s && rm -rf lib/libffi-3.0.9')
+        self.system ('cd %(install_prefix)s && mv lib/libffi-3.0.13/include .')
+        self.system ('cd %(install_prefix)s && rm -rf lib/libffi-3.0.13')
                 
 class Libffi__tools (tools.AutoBuild, Libffi):
     dependencies = [
@@ -27,5 +27,5 @@ class Libffi__tools (tools.AutoBuild, Libffi):
                      + """ includesdir='$(includedir)' """ )
     def install (self):
         tools.AutoBuild.install (self)
-        self.system ('cd %(install_prefix)s && mv lib/libffi-3.0.9/include .')
-        self.system ('cd %(install_prefix)s && rm -rf lib/libffi-3.0.9')
+        self.system ('cd %(install_prefix)s && mv lib/libffi-3.0.13/include .')
+        self.system ('cd %(install_prefix)s && rm -rf lib/libffi-3.0.13')
