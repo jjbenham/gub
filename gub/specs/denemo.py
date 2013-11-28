@@ -53,7 +53,6 @@ class Denemo (target.AutoBuild):
 
 class Denemo__linux__x86 (Denemo):
     dependencies = dependencies + ['alsa-devel']
-
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
 				+ ' --enable-portmidi'
