@@ -52,7 +52,7 @@ class Denemo (target.AutoBuild):
             target.AutoBuild.compile (self)
 
 class Denemo__linux__x86 (Denemo):
-    dependencies = dependencies + ['alsa-devel']
+    dependencies = (Denemo.dependencies + ['alsa-devel'])
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
 				+ ' --enable-portmidi'
@@ -61,16 +61,9 @@ class Denemo__linux__x86 (Denemo):
 			+ ' CFLAGS="-I%(system_prefix)s/include/evince/2.30 " '
 			+ ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
 
-
-
-class Denemo__mingw__windows (Denemo):
-    dependencies = [x for x in Denemo.dependencies
-                    if x.replace ('-devel', '') not in [
-            'lash',
-            ]] + ['lilypad']
-
-class Denemo__mingw__console (Denemo__mingw__windows):
-    configure_flags = (Denemo__mingw__windows.configure_flags
+class Denemo__mingw (Denemo):
+    dependencies = (Denemo.dependencies + ['lilypad'])
+    configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --enable-portmidi'
 			   + ' --enable-rubberband')
@@ -96,10 +89,6 @@ cd %(builddir)s/src && make AM_LDFLAGS="-mwindows" && cp -p .libs/denemo.exe den
 install -m755 %(builddir)s/src/denemo-windows.exe %(install_prefix)s/bin/denemo.exe
 install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-console.exe
 ''')
-
-# Use console for debugging for Windows.
-#Denemo__mingw = Denemo__mingw__windows
-Denemo__mingw = Denemo__mingw__console
 
 class Denemo__darwin (Denemo):
     dependencies = [x for x in Denemo.dependencies
