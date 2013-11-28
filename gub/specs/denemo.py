@@ -11,10 +11,11 @@ from gub import repository
 from gub import target
 
 class Denemo (target.AutoBuild):
-    source = 'git://git.savannah.gnu.org/denemo.git'
-#    branch = 'master'
-#    patches = ['denemo-SIGCHLD.patch']
-#    subpackage_names = ['']
+    #source = 'git://git.savannah.gnu.org/denemo.git'
+    #branch = 'master'
+    source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
+    #source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
+
     dependencies = [
         'cross/gcc-c++-runtime',
         'tools::automake',
@@ -40,10 +41,6 @@ class Denemo (target.AutoBuild):
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-fluidsynth'
                        )
-#    configure_variables = (target.AutoBuild.configure_variables
-# 			   + ' CFLAGS="-O0 -g -I%(system_prefix)s/include/evince/2.30 " '
-#			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
-
     def __init__ (self, settings, source):
         target.AutoBuild.__init__ (self, settings, source)
         if isinstance (source, repository.Git):
@@ -55,12 +52,7 @@ class Denemo (target.AutoBuild):
             target.AutoBuild.compile (self)
 
 class Denemo__linux__x86 (Denemo):
-    source = 'http://www.denemo.org/downloads/denemo-1.0.0~rc10.tar.gz'
-    #source = 'git://git.savannah.gnu.org/denemo.git'
-    #branch = 'master'
-    patches = ['denemo.prefop.c.patch', 'denemo.main.c-envelope.patch']
-    #branch = 'linux'
-    #dependencies = + ['alsa-devel']
+    dependencies = dependencies + ['alsa-devel']
 
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
@@ -73,17 +65,12 @@ class Denemo__linux__x86 (Denemo):
 
 
 class Denemo__mingw__windows (Denemo):
- #source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
- source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
- #source = 'git://git.savannah.gnu.org/denemo.git'
- #branch = 'master'
- dependencies = [x for x in Denemo.dependencies
+    dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'lash',
             ]] + ['lilypad']
 
 class Denemo__mingw__console (Denemo__mingw__windows):
-    #patches = ['portmidi-denemo-test.patch']
     configure_flags = (Denemo__mingw__windows.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --enable-portmidi'
@@ -116,8 +103,6 @@ install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-
 Denemo__mingw = Denemo__mingw__console
 
 class Denemo__darwin (Denemo):
-    source = 'git://git.savannah.gnu.org/denemo.git'
-    branch = 'darwin'
     dependencies = [x for x in Denemo.dependencies
                     if x.replace ('-devel', '') not in [
             'libxml2', # Included in darwin-sdk, hmm?
