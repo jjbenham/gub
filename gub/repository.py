@@ -422,6 +422,7 @@ class TarBall (Repository):
                          or url.endswith (rety.vc_system + '.gz')
                          or url.endswith ('.tgz')
                          or url.endswith (rety.vc_system + '.bz2')
+                         or url.endswith (rety.vc_system + '.lzma')
 			 or url.endswith (rety.vc_system + '.xz'))
     def migrate (self, dir, dir_slash_vcs):
         pass
