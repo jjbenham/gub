@@ -73,18 +73,18 @@ class Denemo__mingw (Denemo):
 			+ ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument -L%(system_prefix)s/../vamp-plugin-sdk-2.5-binaries-win32-mingw -lvamp-sdk" ')
 
     def __init__ (self, settings, source):
-        Denemo__mingw__windows.__init__ (self, settings, source)
+        Denemo.__init__ (self, settings, source)
         # Configure (link) without -mwindows for denemo-console.exe
         self.target_gcc_flags = '-mms-bitfields'
     def compile (self):
-        Denemo__mingw__windows.compile (self)
+        Denemo.compile (self)
         self.system ('''
 cd %(builddir)s && make
 cd %(builddir)s/src && mv .libs/denemo.exe denemo-console.exe && rm -f denemo.exe
 cd %(builddir)s/src && make AM_LDFLAGS="-mwindows" && cp -p .libs/denemo.exe denemo-windows.exe
 ''')
     def install (self):
-        Denemo__mingw__windows.install (self)
+        Denemo.install (self)
         self.system ('''
 install -m755 %(builddir)s/src/denemo-windows.exe %(install_prefix)s/bin/denemo.exe
 install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-console.exe
