@@ -4,7 +4,9 @@ from gub import tools
 class Evince (target.AutoBuild):
   source = 'http://ftp.gnome.org/pub/GNOME/sources/evince/3.2/evince-3.2.1.tar.xz'
   dependencies = ['intltool',
-		  'libxml2-devel']
+		  'libxml2-devel',
+		  'poppler'
+			]
 
   patches = ['evince-3.2.1-strip.patch']
   configure_flags = (tools.AutoBuild.configure_flags
