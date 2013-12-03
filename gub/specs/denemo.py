@@ -67,11 +67,7 @@ class Denemo__mingw (Denemo):
 		       	   + ' --disable-binreloc'
 			   + ' --enable-portmidi'
 			   + ' --enable-rubberband'
-			   + ' --disable-evince')
-
-#    configure_variables = (Denemo.configure_variables
-#			+ ' CFLAGS="-I%(system_prefix)s/include/evince/3.0 -I%(system_prefix)s/../vamp-sdk/" '
-#			+ ' LDFLAGS="-L%(system_prefix)s/lib -levview3-levdocument3 -L%(system_prefix)s/../vamp-plugin-sdk-2.5-binaries-win32-mingw -lvamp-sdk" ')
+			   + ' --enable-evince')
 
     def __init__ (self, settings, source):
         Denemo.__init__ (self, settings, source)
