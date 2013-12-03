@@ -13,8 +13,8 @@ from gub import target
 class Denemo (target.AutoBuild):
     #source = 'git://git.savannah.gnu.org/denemo.git'
     #branch = 'master'
-    #source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
-    source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
+    source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
+    #source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
 
     dependencies = [
         'cross/gcc-c++-runtime',
@@ -66,11 +66,12 @@ class Denemo__mingw (Denemo):
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --enable-portmidi'
-			   + ' --enable-rubberband')
+			   + ' --enable-rubberband'
+			   + ' --disable-evince')
 
-    configure_variables = (Denemo.configure_variables
-			+ ' CFLAGS="-I%(system_prefix)s/include/evince/2.32 -I%(system_prefix)s/../vamp-sdk/" '
-			+ ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument -L%(system_prefix)s/../vamp-plugin-sdk-2.5-binaries-win32-mingw -lvamp-sdk" ')
+#    configure_variables = (Denemo.configure_variables
+#			+ ' CFLAGS="-I%(system_prefix)s/include/evince/3.0 -I%(system_prefix)s/../vamp-sdk/" '
+#			+ ' LDFLAGS="-L%(system_prefix)s/lib -levview3-levdocument3 -L%(system_prefix)s/../vamp-plugin-sdk-2.5-binaries-win32-mingw -lvamp-sdk" ')
 
     def __init__ (self, settings, source):
         Denemo.__init__ (self, settings, source)
