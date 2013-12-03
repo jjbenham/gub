@@ -2,34 +2,51 @@ from gub import target
 from gub import tools
 
 class Evince (target.AutoBuild):
-  source = 'http://ftp.gnome.org/pub/GNOME/sources/evince/2.32/evince-2.32.0.tar.bz2'
-  
+  source = 'http://ftp.gnome.org/pub/GNOME/sources/evince/3.2/evince-3.2.1.tar.xz'
   dependencies = ['intltool',
-		  'libxml2-devel',
-		  'poppler-devel']
-		  #'gnome-icon-theme', #needed if not win32
-		  #'libx11-devel'] #needed if not win32
-		  #FIXME needed for pdf support in evince 'poppler-devel'] 
-  patches = ['evince-4-Makefile.patch']
+		  'libxml2-devel']
+
+  patches = ['evince-3.2.1-strip.patch']
   configure_flags = (tools.AutoBuild.configure_flags
-			   #+ ' --with-libintl-prefix=%(install_prefix)s'
-                           #+ ' --enable-static'
+                           + ' --without-help'
 			   + ' --without-libgnome'
 			   + ' --without-gconf'
                            + ' --without-keyring'
-                           + ' --with-platform=win32'
-			   + ' --with-smclient-backend=win32' #not sure what this is
+                           + ' --with-platform=gnome'
+			   + ' --with-smclient-backend=no'
 			   + ' --disable-help'
 			   + ' --disable-thumbnailer'
 			   + ' --disable-nautilus'
 			   + ' --disable-dbus'
 			   + ' --disable-gtk-doc'
-			   #+ ' --disable-pdf' #FIXME probably need pdf support
-			   + ' --disable-previewer' #not sure if this is needed
+			   + ' --disable-previewer'
 			   + ' --disable-nls'
+			   + ' --disable-scrollkeeper'
+			   + ' --disable-tiff'
+			   + ' --disable-comics'
 			   + ' --without-gtk-unix-print')
 
+class Evince__darwin__x86 (Evince):
   configure_variables = (tools.AutoBuild.configure_variables
+                           + ' CFLAGS="-g -O0" ')
+
+class Evince__mingw (Evince):
+#  patches = ['evince-icon.patch']
+  configure_flags = (Evince.configure_flags
+                           + ' --with-platform=win32'
+			   + ' --with-smclient-backend=win32')
+
+  configure_variables = (Evince.configure_variables
                            + ' CPPFLAGS="-D_WIN32_WINNT=0x0501"')
 
+class Evince__linux__x86 (Evince):
+  configure_flags = (Evince.configure_flags
+                           + ' --with-platform=gnome'
+			   + ' --with-smclient-backend=xsmp')
+#  configure_variables = (Evince.configure_variables
+#                           + ' CFLAGS="-g -O0" ')
+  #make_flags = ' -DHAVE_POPPLER_PAGE_RENDER=1'
 
+  #dependencies = ['libsm']
+
+               
