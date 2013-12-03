@@ -3,10 +3,9 @@ from gub import gnome
 from gub import target
 
 class Gtk_x_ (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.32/2.32.1/sources/gtk+-2.22.1.tar.gz'
-    #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.27/2.27.91/sources/gtk+-2.17.9.tar.gz'
-    #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.31/2.31.2/sources/gtk+-2.21.0.tar.gz'
+    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.0/gtk+-3.0.12.tar.bz2'
     patches = [
+	'gtk+-3-no-perf.patch'
         #'gtk+-2.15.3-substitute-env.patch',
         #'gtk+-2.21.0-substitute-env.patch',
         ]
@@ -25,7 +24,17 @@ class Gtk_x_ (target.AutoBuild):
                 ]
     configure_flags = (target.AutoBuild.configure_flags
                 + ' --without-libjasper'
-                + ' --disable-cups')
+                + ' --disable-cups'
+		+ ' --disable-man'
+		+ ' --disable-print-backend'
+		+ ' --disable-modules'
+		+ ' --disable-gtk3-dependency'
+		+ ' --disable-glibtest'
+		+ ' --disable-gtk-doc'
+		+ ' --enable-explicit-deps'
+		+ ' --with-included-immodules'
+		+ ' --without-x'
+		+ ' --enable-win32-backend')
     def patch (self):
         target.AutoBuild.patch (self)
         self.file_sub ([
