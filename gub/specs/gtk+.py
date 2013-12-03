@@ -55,6 +55,7 @@ set GTK_SO_EXTENSION=%(so_extension)s
     def install (self):
         target.AutoBuild.install (self)
         self.create_config_files ()
+        self.system ('cd %(install_prefix)s/lib/ && ln -s libgtk-3.a libgtk-3.dll.a')
 
 class Gtk_x___freebsd (Gtk_x_):
     configure_variables = (Gtk_x_.configure_variables

@@ -27,6 +27,10 @@ class Evince (target.AutoBuild):
 			   + ' --disable-tiff'
 			   + ' --disable-comics'
 			   + ' --without-gtk-unix-print')
+  def install (self):
+	target.AutoBuild.install (self)
+        self.system ('cd %(install_prefix)s/lib/ && ln -s libevview3.a libevview3.dll.a')
+	self.system ('cd %(install_prefix)s/lib/ && ln -s libevdocument3.a libevdocument3.dll.a')
 
 class Evince__darwin__x86 (Evince):
   configure_variables = (tools.AutoBuild.configure_variables
