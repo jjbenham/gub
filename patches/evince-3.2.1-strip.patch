@@ -1,0 +1,65 @@
+diff -rupN evince-3.2.1/Makefile.am evince-3.2.1.new/Makefile.am
+--- evince-3.2.1/Makefile.am	2010-11-17 10:21:37.000000000 -0600
++++ evince-3.2.1.new/Makefile.am	2013-04-02 22:24:21.790352676 -0500
+@@ -12,10 +12,7 @@ SUBDIRS = \
+ 	backend \
+ 	libview \
+ 	libmisc \
+-	properties \
+-	shell \
+-	po \
+-	help
++	properties
+ 
+ if ENABLE_TESTS
+ SUBDIRS += test
+diff -rupN evince-3.2.1/Makefile.in evince-3.2.1.new/Makefile.in
+--- evince-3.2.1/Makefile.in	2011-10-17 10:50:56.000000000 -0500
++++ evince-3.2.1.new/Makefile.in	2013-04-02 23:10:48.510347104 -0500
+@@ -104,7 +104,7 @@ AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGE
+ ETAGS = etags
+ CTAGS = ctags
+ DIST_SUBDIRS = cut-n-paste data libdocument backend libview libmisc \
+-	properties shell po help test thumbnailer previewer
++	properties help test thumbnailer previewer
+ DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
+ distdir = $(PACKAGE)-$(VERSION)
+ top_distdir = $(distdir)
+@@ -386,7 +386,7 @@ ACLOCAL_AMFLAGS = -I m4 ${ACLOCAL_FLAGS}
+ # Set the minimum required Windows version to Windows 2000 (0x0500).
+ @PLATFORM_WIN32_TRUE@AM_CPPFLAGS = -D_WIN32_WINNT=0x0500
+ SUBDIRS = cut-n-paste data libdocument backend libview libmisc \
+-	properties shell po help $(am__append_1) $(am__append_2) \
++	properties help $(am__append_1) $(am__append_2) \
+ 	$(am__append_3)
+ NULL = 
+ pkgconfigdir = $(libdir)/pkgconfig
+diff -rupN evince-3.2.1/configure evince-3.2.1.new/configure
+--- evince-3.2.1/configure	2011-10-17 10:50:49.000000000 -0500
++++ evince-3.2.1.new/configure	2013-04-02 22:42:42.395329142 -0500
+@@ -19929,7 +19929,7 @@ $as_echo "#define PLATFORM_HILDON 1" >>c
+         # would like to require the icon theme at compile-time. But, because
+         # the hicolor-icon-theme does not have a pkgconfig file, on gnome we
+         # require the gnome icon theme instead.
+-        SHELL_PLATFORM_PKGS="gnome-icon-theme >= $GNOME_ICON_THEME_REQUIRED"
++        #SHELL_PLATFORM_PKGS="gnome-icon-theme >= $GNOME_ICON_THEME_REQUIRED"
+         # The totem-screensaver and egg_smclient code use x11 directly.
+         SHELL_PLATFORM_PKGS="$SHELL_PLATFORM_PKGS x11"
+         ;;
+@@ -22797,7 +22797,7 @@ EV_VIEW_LT_CURRENT_MINUS_AGE=3
+ # *****************************************************************************
+ # *****************************************************************************
+ 
+-ac_config_files="$ac_config_files backend/Makefile backend/comics/Makefile backend/djvu/Makefile backend/dvi/Makefile backend/dvi/mdvi-lib/Makefile backend/pdf/Makefile backend/ps/Makefile backend/tiff/Makefile backend/xps/Makefile cut-n-paste/Makefile cut-n-paste/gimpcellrenderertoggle/Makefile cut-n-paste/smclient/Makefile cut-n-paste/toolbar-editor/Makefile cut-n-paste/zoom-control/Makefile cut-n-paste/totem-screensaver/Makefile cut-n-paste/synctex/Makefile data/evince.desktop.in data/Makefile data/icons/Makefile data/icons/16x16/Makefile data/icons/16x16/apps/Makefile data/icons/16x16/actions/Makefile data/icons/16x16/mimetypes/Makefile data/icons/22x22/Makefile data/icons/22x22/apps/Makefile data/icons/22x22/actions/Makefile data/icons/22x22/mimetypes/Makefile data/icons/24x24/Makefile data/icons/24x24/apps/Makefile data/icons/24x24/actions/Makefile data/icons/24x24/mimetypes/Makefile data/icons/32x32/Makefile data/icons/32x32/actions/Makefile data/icons/32x32/mimetypes/Makefile data/icons/48x48/Makefile data/icons/48x48/apps/Makefile data/icons/48x48/actions/Makefile data/icons/256x256/Makefile data/icons/256x256/apps/Makefile data/icons/scalable/Makefile data/icons/scalable/actions/Makefile data/icons/scalable/mimetypes/Makefile help/Makefile help/reference/Makefile help/reference/libdocument/Makefile help/reference/libdocument/version.xml help/reference/libview/Makefile help/reference/libview/version.xml help/reference/shell/Makefile help/reference/shell/version.xml libdocument/Makefile libdocument/ev-version.h libmisc/Makefile libview/Makefile Makefile po/Makefile.in previewer/Makefile properties/Makefile shell/Makefile test/Makefile thumbnailer/Makefile"
++ac_config_files="$ac_config_files backend/Makefile backend/comics/Makefile backend/djvu/Makefile backend/dvi/Makefile backend/dvi/mdvi-lib/Makefile backend/pdf/Makefile backend/ps/Makefile backend/tiff/Makefile backend/xps/Makefile cut-n-paste/Makefile cut-n-paste/gimpcellrenderertoggle/Makefile cut-n-paste/smclient/Makefile cut-n-paste/toolbar-editor/Makefile cut-n-paste/zoom-control/Makefile cut-n-paste/totem-screensaver/Makefile cut-n-paste/synctex/Makefile data/evince.desktop.in data/Makefile data/icons/Makefile data/icons/16x16/Makefile data/icons/16x16/apps/Makefile data/icons/16x16/actions/Makefile data/icons/16x16/mimetypes/Makefile data/icons/22x22/Makefile data/icons/22x22/apps/Makefile data/icons/22x22/actions/Makefile data/icons/22x22/mimetypes/Makefile data/icons/24x24/Makefile data/icons/24x24/apps/Makefile data/icons/24x24/actions/Makefile data/icons/24x24/mimetypes/Makefile data/icons/32x32/Makefile data/icons/32x32/actions/Makefile data/icons/32x32/mimetypes/Makefile data/icons/48x48/Makefile data/icons/48x48/apps/Makefile data/icons/48x48/actions/Makefile data/icons/256x256/Makefile data/icons/256x256/apps/Makefile data/icons/scalable/Makefile data/icons/scalable/actions/Makefile data/icons/scalable/mimetypes/Makefile help/Makefile help/reference/Makefile help/reference/libdocument/Makefile help/reference/libdocument/version.xml help/reference/libview/Makefile help/reference/libview/version.xml help/reference/shell/Makefile help/reference/shell/version.xml libdocument/Makefile libdocument/ev-version.h libmisc/Makefile libview/Makefile Makefile po/Makefile.in previewer/Makefile properties/Makefile test/Makefile thumbnailer/Makefile"
+ 
+ 
+ ac_config_files="$ac_config_files evince-document-3.0.pc:evince-document.pc.in"
+@@ -24114,7 +24114,6 @@ do
+     "po/Makefile.in") CONFIG_FILES="$CONFIG_FILES po/Makefile.in" ;;
+     "previewer/Makefile") CONFIG_FILES="$CONFIG_FILES previewer/Makefile" ;;
+     "properties/Makefile") CONFIG_FILES="$CONFIG_FILES properties/Makefile" ;;
+-    "shell/Makefile") CONFIG_FILES="$CONFIG_FILES shell/Makefile" ;;
+     "test/Makefile") CONFIG_FILES="$CONFIG_FILES test/Makefile" ;;
+     "thumbnailer/Makefile") CONFIG_FILES="$CONFIG_FILES thumbnailer/Makefile" ;;
+     "evince-document-3.0.pc") CONFIG_FILES="$CONFIG_FILES evince-document-3.0.pc:evince-document.pc.in" ;;
