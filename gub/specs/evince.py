@@ -14,7 +14,6 @@ class Evince (target.AutoBuild):
 			   + ' --without-libgnome'
 			   + ' --without-gconf'
                            + ' --without-keyring'
-                           + ' --with-platform=gnome'
 			   + ' --with-smclient-backend=no'
 			   + ' --disable-help'
 			   + ' --disable-thumbnailer'
