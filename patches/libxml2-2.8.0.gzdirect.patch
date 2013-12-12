@@ -1,0 +1,21 @@
+diff -rupN libxml2-2.8.0/xmlIO.c libxml2-2.8.0.new/xmlIO.c
+--- libxml2-2.8.0/xmlIO.c	2012-02-12 21:11:00.000000000 -0600
++++ libxml2-2.8.0.new/xmlIO.c	2013-04-10 20:04:28.796913250 -0500
+@@ -2644,9 +2644,6 @@ __xmlParserInputBufferCreateFilename(con
+ #ifdef HAVE_ZLIB_H
+ 	if ((xmlInputCallbackTable[i].opencallback == xmlGzfileOpen) &&
+ 		(strcmp(URI, "-") != 0)) {
+-#if defined(ZLIB_VERNUM) && ZLIB_VERNUM >= 0x1230
+-            ret->compressed = !gzdirect(context);
+-#else
+ 	    if (((z_stream *)context)->avail_in > 4) {
+ 	        char *cptr, buff4[4];
+ 		cptr = (char *) ((z_stream *)context)->next_in;
+@@ -2658,7 +2655,6 @@ __xmlParserInputBufferCreateFilename(con
+ 		    gzrewind(context);
+ 		}
+ 	    }
+-#endif
+ 	}
+ #endif
+     }
