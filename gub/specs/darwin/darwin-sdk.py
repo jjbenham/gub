@@ -4,6 +4,8 @@ class Darwin_sdk (build.SdkBuild):
     source = 'http://lilypond.org/download/gub-sources/darwin7-sdk-0.4.tar.gz'
     def patch (self):
         self.system ('''
+rm %(srcdir)s/usr/lib/libxml*
+rm -rf %(srcdir)s/usr/include/libxml2
 rm %(srcdir)s/usr/lib/libgcc*
 rm %(srcdir)s/usr/lib/libstdc\+\+*
 rm %(srcdir)s/usr/lib/libltdl*
