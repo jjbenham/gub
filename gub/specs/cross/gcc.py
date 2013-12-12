@@ -8,7 +8,7 @@ from gub import misc
 from gub.specs import gcc
 
 class Gcc (cross.AutoBuild):
-    source = 'http://ftp.gnu.org/pub/gnu/gcc/gcc-4.8.1/gcc-4.8.1.tar.bz2'
+    source = 'http://ftp.gnu.org/pub/gnu/gcc/gcc-4.1.2/gcc-4.1.2.tar.bz2'
     dependencies = ['cross/binutils']
     configure_flags = (cross.AutoBuild.configure_flags
                 + '%(enable_languages)s'
@@ -18,16 +18,6 @@ class Gcc (cross.AutoBuild):
                 + ' --with-ld=%(cross_prefix)s/bin/%(target_architecture)s-ld'
                 + ' --with-nm=%(cross_prefix)s/bin/%(target_architecture)s-nm'
                 + ' --enable-version-specific-runtime-libs'
-		+ ' --with-gcc'
-		+ ' --with-gnu-ld'
-        	+ ' --with-gnu-as'
-        	+ ' --disable-nls'
-        	+ ' --disable-multilib'
-        	+ ' --without-x'
-		+ ' --disable-win32-registry'
-        	+ ' --enable-threads=win32'
-        	+ ' --disable-libgomp'
-        	+ ' --disable-libmudflap'
                 )
     make_flags = misc.join_lines ('''
 tooldir='%(cross_prefix)s/%(target_architecture)s'
