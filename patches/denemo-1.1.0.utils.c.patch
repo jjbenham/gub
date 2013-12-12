@@ -1,0 +1,11 @@
+diff -rupN denemo-1.1.0/src/utils.c denemo-1.1.0.edited/src/utils.c
+--- denemo-1.1.0/src/utils.c	2013-10-17 11:44:53.538430352 -0500
++++ denemo-1.1.0.edited/src/utils.c	2013-10-18 10:14:00.967826974 -0500
+@@ -2449,7 +2449,6 @@ get_executable_dir ()
+     GetModuleFileNameW(NULL, path, MAX_PATH);
+ 
+ #elif defined _MACH_O_
+-    char path[1024];
+     guint size = sizeof (path);
+     _NSGetExecutablePath (path, &size);
+ 
