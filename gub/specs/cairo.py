@@ -1,7 +1,7 @@
 from gub import target
 
 class Cairo (target.AutoBuild):
-    source = 'http://www.cairographics.org/releases/cairo-1.10.0.tar.gz'
+    source = 'http://www.cairographics.org/releases/cairo-1.10.2.tar.gz'
     def patch (self):
         target.AutoBuild.patch (self)
         self.system ('rm -f %(srcdir)s/src/cairo-features.h')
@@ -9,15 +9,13 @@ class Cairo (target.AutoBuild):
                 'fontconfig-devel',
                 'ghostscript-devel',
                 'libpng-devel',
-                'libx11-devel',
                 'libxrender-devel',
                 'pixman-devel',
-		# 'librsvg-devel',
                 # FIXME: poppler, librsvg, cairo, gtk dependencies?
                 # gtk+ depends on pango, pango on cairo, cairo on poppler, and poppler on gtk+?
                 # TRIED: removing gtk+ dependency from poppler -- no go
                 # TRY: removing poppler from cairo...
-#                'poppler-devel',
+                'poppler-devel',
                 'zlib-devel']
 
 class Cairo_without_X11 (Cairo):
@@ -42,7 +40,14 @@ class Cairo__mingw (Cairo_without_X11):
                     + ['pthreads-w32-devel'])
 
 class Cairo__darwin (Cairo_without_X11):
-    pass
+     configure_flags = (Cairo_without_X11.configure_flags
+                + ' --enable-quartz'
+		+ ' --enable-quartz-font'
+                + ' --enable-freetype'
+                + ' --enable-quartz-image'
+		+ ' --enable-png'
+	        + ' --enable-pdf'
+                )
 
 class Cairo__darwin__ppc (Cairo__darwin):
     patches = Cairo__darwin.patches + [
