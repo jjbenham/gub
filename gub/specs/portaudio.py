@@ -76,6 +76,7 @@ collect2: ld returned 1 exit status
 '''
 
 class Portaudio__darwin (Portaudio):
+    source = 'http://www.portaudio.com/archives/pa_stable_v19_20111121.tgz'
     configure_variables = (Portaudio.configure_variables
                            + ''' CFLAGS='-DMACH_KERNEL=1 -Wno-multichar' ''')
     def patch (self):
