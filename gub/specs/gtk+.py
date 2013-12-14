@@ -3,7 +3,7 @@ from gub import gnome
 from gub import target
 
 class Gtk_x_ (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.0/gtk+-3.0.12.tar.bz2'
+    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.1/gtk+-3.1.2.tar.bz2'
     patches = [
 	'gtk+-3-no-perf.patch'
         #'gtk+-2.15.3-substitute-env.patch',
@@ -33,8 +33,7 @@ class Gtk_x_ (target.AutoBuild):
 		+ ' --disable-gtk-doc'
 		+ ' --enable-explicit-deps'
 		+ ' --with-included-immodules'
-		+ ' --without-x'
-		+ ' --enable-win32-backend')
+		+ ' --without-x')
     def patch (self):
         target.AutoBuild.patch (self)
         self.file_sub ([
@@ -71,10 +70,14 @@ class Gtk_x_without_X11 (Gtk_x_):
 class Gtk_x___mingw (Gtk_x_without_X11):
     def patch (self):
         Gtk_x_.patch (self)
+    configure_flags = (Gtk_x_without_X11.configure_flags
+		+ ' --enable-win32-backend')
 
 class Gtk_x___darwin (Gtk_x_without_X11):
+    sources = "http://ftp.acc.umu.se/pub/gnome/sources/gtk+/3.1/gtk+-3.1.4.tar.bz2"
     configure_flags = (Gtk_x_without_X11.configure_flags
                 + ' --with-gdktarget=quartz'
+		+ ' --enable-quartz-backend'
                 )
 
 class Gtk_x___darwin__ppc (Gtk_x___darwin):
