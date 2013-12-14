@@ -332,16 +332,28 @@ rm -rf %(darwin_bundle_dir)s
 # FIXME: ask TarBall where source lives
 LIBRESTRICT_IGNORE=%(tools_prefix)s/bin/tar tar -C %(installerdir)s -zxf %(downloads)s/osx-lilypad/osx-lilypad-universal-%(osx_lilypad_version)s.tar.gz
 mkdir -p %(darwin_bundle_dir)s/Contents/Resources
-touch %(darwin_bundle_dir)s/Contents/Info.plist # FIXME - this may need content
+cp %(sourcefiledir)s/Info.plist %(darwin_bundle_dir)s/Contents/Info.plist
+#wget http://www.denemo.org/downloads/gub/Info.plist -O %(darwin_bundle_dir)s/Contents/Info.plist
 touch %(darwin_bundle_dir)s/Contents/Resources/Credits.html # FIXME - this may need content
 cp -pR --link %(installer_prefix)s/* %(darwin_bundle_dir)s/Contents/Resources/
+mkdir -p %(darwin_bundle_dir)s/Contents/MacOS
+cp %(sourcefiledir)s/denemo.sh %(darwin_bundle_dir)s/Contents/MacOS/denemo.sh
+#wget http://www.denemo.org/downloads/gub/denemo -O %(darwin_bundle_dir)s/Contents/MacOS/denemo.sh
+chmod +x %(darwin_bundle_dir)s/Contents/MacOS/denemo.sh
+cp %(sourcefiledir)s/denemo.icns %(darwin_bundle_dir)s/Contents/MacOS/denemo.icns
+#wget http://www.denemo.org/downloads/gub/denemo.icns -O %(darwin_bundle_dir)s/Contents/denemo.icns
 mkdir -p %(darwin_bundle_dir)s/Contents/Resources/license
 cp -pR --link %(installer_root)s/license*/* %(darwin_bundle_dir)s/Contents/Resources/license/
+touch %(darwin_bundle_dir)s/Contents/Resources/Credits.html # FIXME - this may need content
+#cp -pR --link %(installer_prefix)s/* %(darwin_bundle_dir)s/Contents/Resources/
+cp %(sourcefiledir)s/denemo.icns %(darwin_bundle_dir)s/Contents/Resources/denemo.icns
+#wget http://www.denemo.org/downloads/gub/denemo.icns -O %(darwin_bundle_dir)s/Contents/Resources/denemo.icns
+#cp %(sourcefiledir)s/pdfdocument.evince-backend %(darwin_bundle_dir)s/Contents/Resources/lib/evince/2/backends/pdfdocument.evince-backend
 ''', locals ())
-        self.file_sub ([('''PACKAGE_NAME=LilyPond
-MAJOR_VERSION=2
-MINOR_VERSION=11
-PATCH_LEVEL=41
+        self.file_sub ([('''PACKAGE_NAME=Denemo
+MAJOR_VERSION=1
+MINOR_VERSION=1
+PATCH_LEVEL=0
 MY_PATCH_LEVEL=
 ''', '%(installer_version)s-%(installer_build)s'),
                         ('2.[0-9]+.[0-9]+-[0-9]', '%(installer_version)s-%(installer_build)s'),
@@ -456,8 +468,9 @@ class Shar (Linux_installer):
             shar_head = self.expand ('%(sourcefiledir)s/lilypond-sharhead.sh')
         tarball = self.expand (self.bundle_tarball)
         version = self.expand ('%(installer_version)s')
-        target_cpu = self.settings.target_cpu
-        self.runner._execute (commands.CreateShar (name=name, pretty_name=pretty_name, release=release, shar_file=shar_file, shar_head=shar_head, tarball=tarball, target_cpu=target_cpu, version=version))
+        self.runner._execute (commands.CreateShar (name=name, pretty_name=pretty_name, release=release, shar_file=shar_file, shar_head=shar_head, tarball=tarball, version=version))
+#target_cpu = self.settings.target_cpu
+        #self.runner._execute (commands.CreateShar (name=name, pretty_name=pretty_name, release=release, shar_file=shar_file, shar_head=shar_head, tarball=tarball, target_cpu=target_cpu, version=version))
 # hmm?
 #    @context.subst_method
     def installer_file (self):
