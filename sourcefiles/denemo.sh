@@ -5,6 +5,12 @@ PREFIX=$DIR/../Resources
 export LD_LIBRARY_PATH=$PREFIX/lib:$LD_LIBRARY_PATH
 export DYLD_FALLBACK_LIBRARY_PATH=$PREFIX/lib:$HOME/lib:/usr/local/lib:/usr/lib
 
+#
+# compile the glib schemas
+#
+$PREFIX/bin/glib-compile-schemas $PREFIX/share/glib-2.0/schemas/
+export XDG_DATA_DIRS=$PREFIX/share/
+
 export GUILE_LOAD_PATH=$PREFIX/share/guile/1.8:$PREFIX/share/denemo/actions/denemo-modules/
 
 export PANGO_RC_FILE=$PREFIX/etc/pango/pangorc
