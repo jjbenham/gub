@@ -11,6 +11,11 @@ export DYLD_FALLBACK_LIBRARY_PATH=$PREFIX/lib:$HOME/lib:/usr/local/lib:/usr/lib
 $PREFIX/bin/glib-compile-schemas $PREFIX/share/glib-2.0/schemas/
 export XDG_DATA_DIRS=$PREFIX/share/
 
+#
+# Set Lilypond path
+#
+export LILYPOND_PATH=$PREFIX/bin/lilypond
+
 export GUILE_LOAD_PATH=$PREFIX/share/guile/1.8:$PREFIX/share/denemo/actions/denemo-modules/
 
 export PANGO_RC_FILE=$PREFIX/etc/pango/pangorc
@@ -18,7 +23,7 @@ export PANGO_PREFIX=$PREFIX
 export PANGO_MODULE_VERSION="1.6.0"
 export PANGO_SO_EXTENSION=".so"
 
-export EVINCE_MODULE_PATH=$PREFIX/lib/evince/2/backends
+export EVINCE_MODULE_PATH=$PREFIX/lib/evince/3/backends
 
 export FONTCONFIG_PATH=$PREFIX/etc/fonts
 export FONTCONFIG_FILE=$PREFIX/etc/fonts/fonts.conf 
