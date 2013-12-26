@@ -40,7 +40,7 @@ class Glib__darwin (Glib):
         Glib.configure (self)
         self.file_sub ([('nmedit', '%(target_architecture)s-nmedit')],
                        '%(builddir)s/libtool')
-    patches = ['patches/glib-2.27.ZLIB_VERNUM.patch']
+    #patches = ['patches/glib-2.27.ZLIB_VERNUM.patch']
 class Glib__darwin__x86 (Glib__darwin):
     # LIBS bugfix from:
     #   https://bugzilla.gnome.org/show_bug.cgi?id=586150
