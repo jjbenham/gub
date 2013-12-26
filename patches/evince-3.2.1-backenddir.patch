@@ -1,0 +1,14 @@
+diff -rupN evince-3.2.1/libdocument/ev-backends-manager.c evince-3.2.1.new/libdocument/ev-backends-manager.c
+--- evince-3.2.1/libdocument/ev-backends-manager.c	2010-07-14 02:54:39.000000000 -0500
++++ evince-3.2.1.new/libdocument/ev-backends-manager.c	2013-12-15 15:23:41.824153064 -0600
+@@ -56,7 +56,9 @@ backends_dir (void)
+ 						"backends", NULL);
+ 		g_free (dir);
+ #else
+-		backendsdir = g_strdup (EV_BACKENDSDIR);
++		//backendsdir = g_strdup (EV_BACKENDSDIR);
++		backendsdir = getenv("EVINCE_MODULE_PATH");
++
+ #endif
+ 	}
+ 
