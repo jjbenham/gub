@@ -8,6 +8,7 @@ class Glib (target.AutoBuild):
     #source = 'http://ftp.gnome.org/pub/GNOME/sources/glib/2.30/glib-2.30.3.tar.xz'
     source = 'http://ftp.gnome.org/pub/GNOME/sources/glib/2.28/glib-2.28.8.tar.xz'
     dependencies = ['tools::glib', 'tools::libtool', 'gettext-devel', 'zlib']
+    patches = ['glib-2.27.ZLIB_VERNUM.patch']
     config_cache_overrides = target.AutoBuild.config_cache_overrides + '''
 glib_cv_stack_grows=${glib_cv_stack_grows=no}
 '''
@@ -39,7 +40,7 @@ class Glib__darwin (Glib):
         Glib.configure (self)
         self.file_sub ([('nmedit', '%(target_architecture)s-nmedit')],
                        '%(builddir)s/libtool')
-
+    patches = ['patches/glib-2.27.ZLIB_VERNUM.patch']
 class Glib__darwin__x86 (Glib__darwin):
     # LIBS bugfix from:
     #   https://bugzilla.gnome.org/show_bug.cgi?id=586150

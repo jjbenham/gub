@@ -2,7 +2,7 @@ from gub import gnome
 from gub import target
 
 class Atk (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.32/2.32.1/sources/atk-1.32.0.tar.gz'
+    source = 'http://ftp.acc.umu.se/pub/gnome/sources/atk/2.4/atk-2.4.0.tar.xz'
     dependencies = ['tools::libtool', 'glib-devel']
 
 class Atk__mingw (Atk):

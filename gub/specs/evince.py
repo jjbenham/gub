@@ -34,6 +34,9 @@ class Evince (target.AutoBuild):
 class Evince__darwin__x86 (Evince):
   configure_variables = (tools.AutoBuild.configure_variables
                            + ' CFLAGS="-g -O0" ')
+  configure_flags = (Evince.configure_flags
+                           + ' --with-smclient-backend=quartz'
+			)
 
 class Evince__mingw (Evince):
 #  patches = ['evince-icon.patch']

@@ -1,0 +1,38 @@
+diff -rupN glib-2.27.5/gio/gzlibcompressor.c glib-2.27.5.new/gio/gzlibcompressor.c
+--- glib-2.27.5/gio/gzlibcompressor.c	2010-09-03 13:54:21.000000000 -0500
++++ glib-2.27.5.new/gio/gzlibcompressor.c	2013-03-22 13:11:38.717131551 -0500
+@@ -73,6 +73,7 @@ static void
+ g_zlib_compressor_set_gzheader (GZlibCompressor *compressor)
+ {
+   /* On win32, these functions were not exported before 1.2.4 */
++#if 0
+ #if !defined (G_OS_WIN32) || ZLIB_VERNUM >= 0x1240
+   const gchar *filename;
+ 
+@@ -94,6 +95,7 @@ g_zlib_compressor_set_gzheader (GZlibCom
+   if (deflateSetHeader (&compressor->zstream, &compressor->gzheader) != Z_OK)
+     g_warning ("unexpected zlib error: %s\n", compressor->zstream.msg);
+ #endif /* !G_OS_WIN32 || ZLIB >= 1.2.4 */
++#endif
+ }
+ 
+ G_DEFINE_TYPE_WITH_CODE (GZlibCompressor, g_zlib_compressor, G_TYPE_OBJECT,
+diff -rupN glib-2.27.5/gio/gzlibdecompressor.c glib-2.27.5.new/gio/gzlibdecompressor.c
+--- glib-2.27.5/gio/gzlibdecompressor.c	2010-09-03 13:54:21.000000000 -0500
++++ glib-2.27.5.new/gio/gzlibdecompressor.c	2013-03-22 13:40:03.281173920 -0500
+@@ -76,6 +76,7 @@ static void
+ g_zlib_decompressor_set_gzheader (GZlibDecompressor *decompressor)
+ {
+   /* On win32, these functions were not exported before 1.2.4 */
++#if 0
+ #if !defined (G_OS_WIN32) || ZLIB_VERNUM >= 0x1240
+   if (decompressor->format != G_ZLIB_COMPRESSOR_FORMAT_GZIP)
+     return;
+@@ -99,6 +100,7 @@ g_zlib_decompressor_set_gzheader (GZlibD
+   if (inflateGetHeader (&decompressor->zstream, &decompressor->header_data->gzheader) != Z_OK)
+     g_warning ("unexpected zlib error: %s\n", decompressor->zstream.msg);
+ #endif /* !G_OS_WIN32 || ZLIB >= 1.2.4 */
++#endif
+ }
+ 
+ G_DEFINE_TYPE_WITH_CODE (GZlibDecompressor, g_zlib_decompressor, G_TYPE_OBJECT,
