@@ -8,7 +8,7 @@ class Evince (target.AutoBuild):
 		  'poppler'
 			]
 
-  patches = ['evince-3.2.1-strip.patch']
+  patches = ['evince-3.2.1-strip.patch', 'evince-3.2.1-no-x11.patch']
   configure_flags = (tools.AutoBuild.configure_flags
                            + ' --without-help'
 			   + ' --without-libgnome'
