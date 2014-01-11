@@ -35,7 +35,8 @@ class Denemo (target.AutoBuild):
  	'libsndfile',
 	'fluidsynth',
 	'portmidi',
-	'libxml2-devel'
+	'libxml2-devel',
+	'librubberband'
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-fluidsynth'
@@ -115,11 +116,11 @@ install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-
 Denemo__mingw = Denemo__mingw__console
 
 class Denemo__darwin (Denemo):
-    #source = 'http://www.denemo.org/downloads/gub/denemo-1.0.0.tar.gz'
-    source = 'git://git.savannah.gnu.org/denemo.git'
-    branch = 'master'
-    #patches = ['denemo-utils.c.patch']
+    source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
+    #source = 'git://git.savannah.gnu.org/denemo.git'
+    #branch = 'master'
     dependencies = Denemo.dependencies + ['fondu', 'osx-lilypad']
+    patches = ['denemo-utils.c.patch', 'denemo-lilypondpath.patch']
 
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
@@ -130,7 +131,7 @@ class Denemo__darwin (Denemo):
 			   + ' --disable-rpath')
 	
     configure_variables = (Denemo.configure_variables
- 			   + ' CFLAGS="-g -O0 -D_MACH_O_ -I%(system_prefix)s/include/evince/2.30 " '
+ 			   + ' CFLAGS="-g -O0 -D_MACH_O_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/2.30 " '
 			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument " ')
 
 class Denemo__darwin__ppc (Denemo__darwin):
