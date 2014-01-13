@@ -119,8 +119,11 @@ class Denemo__darwin (Denemo):
     source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
     #source = 'git://git.savannah.gnu.org/denemo.git'
     #branch = 'master'
-    dependencies = Denemo.dependencies + ['fondu', 'osx-lilypad']
+    #dependencies = Denemo.dependencies + ['fondu', 'osx-lilypad']
     patches = ['denemo-utils.c.patch', 'denemo-lilypondpath.patch']
+    #def patch (self):
+    #    self.system ("./lgcc.sh")
+
 
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
