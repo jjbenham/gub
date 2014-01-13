@@ -3,7 +3,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 PREFIX=$DIR/../Resources
 
 export LD_LIBRARY_PATH=$PREFIX/lib:$LD_LIBRARY_PATH
-export DYLD_FALLBACK_LIBRARY_PATH=$PREFIX/lib:$HOME/lib:/usr/local/lib:/usr/lib
 export LILYPOND_PATH=$PREFIX/bin/lilypond
 export GUILE_LOAD_PATH=$PREFIX/share/guile/1.8:$PREFIX/share/denemo/actions/denemo-modules/
 
