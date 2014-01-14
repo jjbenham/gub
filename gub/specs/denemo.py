@@ -130,7 +130,7 @@ class Denemo__darwin (Denemo):
 			   + ' --disable-rpath')
 	
     configure_variables = (Denemo.configure_variables
- 			   + ' CFLAGS="-g -O0 -D_MACH_O_ -I%(system_prefix)s/include/evince/2.30 " '
+			   + ' CFLAGS="-g -O0 -D_MACH_O_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/2.30 " '
 			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument " ')
 
 class Denemo__darwin__ppc (Denemo__darwin):
