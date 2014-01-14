@@ -35,7 +35,8 @@ class Denemo (target.AutoBuild):
  	'libsndfile',
 	'fluidsynth',
 	'portmidi',
-	'libxml2-devel'
+	'libxml2-devel',
+	'librubberband'
         ]
     configure_flags = (target.AutoBuild.configure_flags
                        + ' --enable-fluidsynth'
@@ -119,8 +120,7 @@ class Denemo__darwin (Denemo):
     source = 'git://git.savannah.gnu.org/denemo.git'
     branch = 'master'
     patches = ['denemo-print.c.patch']
-    dependencies = Denemo.dependencies + ['fondu', 'osx-lilypad']
-
+    #dependencies = Denemo.dependencies + ['fondu', 'osx-lilypad']
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --enable-portmidi'
