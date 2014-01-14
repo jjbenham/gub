@@ -118,7 +118,7 @@ class Denemo__darwin (Denemo):
     #source = 'http://www.denemo.org/downloads/gub/denemo-1.0.0.tar.gz'
     source = 'git://git.savannah.gnu.org/denemo.git'
     branch = 'master'
-    #patches = ['denemo-utils.c.patch']
+    patches = ['denemo-print.c.patch']
     dependencies = Denemo.dependencies + ['fondu', 'osx-lilypad']
 
     configure_flags = (Denemo.configure_flags
