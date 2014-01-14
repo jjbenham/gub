@@ -1,0 +1,14 @@
+diff -rupN denemo-1.1.0/src/print.c denemo-1.1.0.new/src/print.c
+--- denemo-1.1.0/src/print.c	2013-11-25 10:12:02.000000000 -0500
++++ denemo-1.1.0.new/src/print.c	2013-12-20 16:32:16.000000000 -0500
+@@ -75,8 +75,8 @@ advance_printname ()
+       get_print_status()->printname_ly[1] = g_strconcat (get_print_status()->printbasename[1], ".ly", NULL);
+     }
+ 
+-  get_print_status()->cycle = !get_print_status()->cycle;
+-  /*gint success =*/ g_unlink (get_print_status()->printname_pdf[get_print_status()->cycle]);
++  //get_print_status()->cycle = !get_print_status()->cycle;
++  ///*gint success =*/ g_unlink (get_print_status()->printname_pdf[get_print_status()->cycle]);
+   //g_print("Removed old pdf file %s %d\n",get_print_status()->printname_pdf[get_print_status()->cycle], success);
+ }
+ 
