@@ -6,7 +6,7 @@ from gub.specs import lilypond
 # in.  Hmm.
 
 class Lilypondcairo (lilypond.Lilypond):
-    source = 'http://lilypond.org/download/source/v2.16/lilypond-2.16.2.tar.gz'
+    source = 'http://lilypond.org/download/source/v2.18/lilypond-2.18.0.tar.gz'
     dependencies = [x.replace ('pango', 'pangocairo')
                     for x in lilypond.Lilypond.dependencies]
     def get_conflict_dict (self):
