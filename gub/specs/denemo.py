@@ -11,9 +11,9 @@ from gub import repository
 from gub import target
 
 class Denemo (target.AutoBuild):
-    #source = 'git://git.savannah.gnu.org/denemo.git'
-    #branch = 'master'
-    source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
+    source = 'git://git.savannah.gnu.org/denemo.git'
+    branch = 'master'
+    #source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
 
     #source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
 
@@ -95,7 +95,7 @@ class Denemo__darwin (Denemo):
         'fondu',
         'osx-lilypad',
         ])
-    patches = ['denemo-utils.c.patch', 'denemo-lilypondpath.patch', 'denemo-print.c.patch']
+    patches = ['denemo-run-lilypond.patch']
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --enable-portmidi'
