@@ -1,7 +1,7 @@
 from gub import target
 
 class Cairo (target.AutoBuild):
-    source = 'http://www.cairographics.org/releases/cairo-1.10.2.tar.gz'
+    source = 'http://www.cairographics.org/releases/cairo-1.12.2.tar.xz'
     def patch (self):
         target.AutoBuild.patch (self)
         self.system ('rm -f %(srcdir)s/src/cairo-features.h')
