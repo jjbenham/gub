@@ -1,7 +1,7 @@
 from gub import build
 
 class Darwin_sdk (build.SdkBuild):
-    source = 'http://lilypond.org/download/gub-sources/darwin7-sdk-0.4.tar.gz'
+    source = 'http://lilypond.org/download/gub-sources/darwin8-sdk/darwin8-sdk-0.4.tar.gz'
     def patch (self):
         self.system ('''
 rm %(srcdir)s/usr/lib/libxml*

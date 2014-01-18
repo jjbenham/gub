@@ -1,0 +1,22 @@
+--- evince-3.2.1/libdocument/ev-init.c	2011-04-26 03:14:49.000000000 -0500
++++ evince-3.2.1.new/libdocument/ev-init.c	2013-12-16 20:14:42.362598508 -0600
+@@ -37,19 +37,6 @@ static int ev_init_count;
+ static HMODULE evdocument_dll = NULL;
+ static gchar *locale_dir = NULL;
+ 
+-#ifdef DLL_EXPORT
+-BOOL WINAPI
+-DllMain (HINSTANCE hinstDLL,
+-	 DWORD     fdwReason,
+-	 LPVOID    lpvReserved)
+-{
+-	if (fdwReason == DLL_PROCESS_ATTACH)
+-		evdocument_dll = hinstDLL;
+-
+-	return TRUE;
+-}
+-#endif
+-
+ static const gchar *
+ _ev_win32_get_locale_dir (HMODULE module)
+ {

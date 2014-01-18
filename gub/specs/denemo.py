@@ -14,6 +14,7 @@ class Denemo (target.AutoBuild):
     #source = 'git://git.savannah.gnu.org/denemo.git'
     #branch = 'master'
     source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
+
     #source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
 
     dependencies = [
@@ -66,9 +67,11 @@ class Denemo__mingw (Denemo):
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --enable-portmidi'
-			   + ' --enable-rubberband'
-			   + ' --enable-evince')
-
+			   + ' --enable-rubberband')
+    configure_variables = (Denemo.configure_variables
+                           + ' CFLAGS="-I%(system_prefix)s/include/evince/3.0 " '
+                           + ' LDFLAGS="-L%(system_prefix)s/lib" ')
+	
     def __init__ (self, settings, source):
         Denemo.__init__ (self, settings, source)
         # Configure (link) without -mwindows for denemo-console.exe
@@ -88,29 +91,22 @@ install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-
 ''')
 
 class Denemo__darwin (Denemo):
-    dependencies = [x for x in Denemo.dependencies
-                    if x.replace ('-devel', '') not in [
-            'libxml2', # Included in darwin-sdk, hmm?
-            'portaudio'
-	    ]] + [
+    dependencies = (Denemo.dependencies + [
         'fondu',
         'osx-lilypad',
-        ]
-    #patches = ['denemo-utils-apple.c']
-
+        ])
+    patches = ['denemo-utils.c.patch', 'denemo-lilypondpath.patch', 'denemo-print.c.patch']
     configure_flags = (Denemo.configure_flags
-	#		   + ' --enable-debug'
 		       	   + ' --disable-binreloc'
-			   + ' --disable-portmidi'
-			   + ' --with-static-portmidi'
-			   + ' --disable-portaudio'
+			   + ' --enable-portmidi'
+			   + ' --enable-portaudio'
 			   + ' --disable-x11'
+			   + ' --enable-rubberband'
 			   + ' --disable-jack')
-	
     configure_variables = (Denemo.configure_variables
- 			   + ' CFLAGS="-g -O0 -D__APPLE__ -I%(system_prefix)s/include/evince/2.30 -D__APPLE__" '
-			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument -D__APPLE__" ')
-
+                           + ' CFLAGS="-g -O0 -D_MACH_O_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/3.0 " '
+                           + ' LDFLAGS="-L%(system_prefix)s/lib -Wl,-framework,CoreMIDI -lgcc_eh -lgcc -lc -lfftw3" ')
+	
 class Denemo__darwin__ppc (Denemo__darwin):
     # make sure that PREFIX/include/unistd.h gets included
     def patch (self):

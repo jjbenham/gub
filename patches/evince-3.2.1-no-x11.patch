@@ -1,0 +1,12 @@
+diff -rupN evince-3.2.1/configure evince-3.2.1.new/configure
+--- evince-3.2.1/configure	2013-12-14 19:43:52.068699878 -0600
++++ evince-3.2.1.new/configure	2013-12-14 19:49:15.882305581 -0600
+@@ -19931,7 +19931,7 @@ $as_echo "#define PLATFORM_HILDON 1" >>c
+         # require the gnome icon theme instead.
+         SHELL_PLATFORM_PKGS="gnome-icon-theme >= $GNOME_ICON_THEME_REQUIRED"
+         # The totem-screensaver and egg_smclient code use x11 directly.
+-        SHELL_PLATFORM_PKGS="$SHELL_PLATFORM_PKGS x11"
++        #SHELL_PLATFORM_PKGS="$SHELL_PLATFORM_PKGS x11"
+         ;;
+   *)
+         # On all other platforms we issue a warning about the runtime

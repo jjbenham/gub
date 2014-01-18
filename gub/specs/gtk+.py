@@ -68,6 +68,8 @@ class Gtk_x_without_X11 (Gtk_x_):
                 if 'libx' not in x]
 
 class Gtk_x___mingw (Gtk_x_without_X11):
+    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.0/gtk+-3.0.12.tar.bz2'
+#    sources = "http://ftp.acc.umu.se/pub/gnome/sources/gtk+/3.1/gtk+-3.1.4.tar.bz2" 
     def patch (self):
         Gtk_x_.patch (self)
     configure_flags = (Gtk_x_without_X11.configure_flags

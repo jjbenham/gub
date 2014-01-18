@@ -1,7 +1,7 @@
 from gub import target
 
 class Pixman (target.AutoBuild):
-    source = 'http://xorg.freedesktop.org/archive/individual/lib/pixman-0.20.0.tar.bz2'
+    source = 'http://xorg.freedesktop.org/archive/individual/lib/pixman-0.24.0.tar.gz'
     dependencies = ['libtool']
 
 class Pixman__linux__ppc (Pixman):
