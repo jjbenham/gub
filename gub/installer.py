@@ -444,13 +444,13 @@ class Linux_installer (Installer):
     def __init__ (self, *args):
         Installer.__init__ (self, *args)
 
-        self.bundle_tarball = '%(installer_uploads)s/%(name)s-%(installer_version)s-%(installer_build)s.%(platform)s.tar.bz2'
+        self.bundle_tarball = '%(installer_uploads)s/%(name)s-%(installer_version)s-%(installer_build)s.%(platform)s.tar.xz'
 
     def strip_prefixes (self):
         return Installer.strip_prefixes (self)
 
     def create_tarball (self, bundle_tarball):
-        self.system ('tar --owner=0 --group=0 -C %(installer_root)s -jcf %(bundle_tarball)s .', locals ())
+        self.system ('tar -c --xz -f %(bundle_tarball)s %(installer_root)s ', locals ())
 
     def create (self):
         Installer.create (self)
