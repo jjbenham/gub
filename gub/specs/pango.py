@@ -16,8 +16,8 @@ pango_module_version_regexes = [
     ]
 
 class Pango (target.AutoBuild):
-    #source = 'http://ftp.gnome.org/pub/GNOME/platform/2.28/2.28.1/sources/pango-1.26.0.tar.gz'
-    source = 'http://ftp.acc.umu.se/pub/GNOME/platform/2.30/2.30.2/sources/pango-1.28.1.tar.bz2'
+    #source = 'Dhttp://ftp.gnome.org/pub/GNOME/platform/2.28/2.28.1/sources/pango-1.26.0.tar.gz'
+    source = 'http://ftp.acc.umu.se/pub/gnome/sources/pango/1.28/pango-1.28.4.tar.gz'
     patches = ['pango-1.20-substitute-env.patch']
     dependencies = [
             'tools::glib', 
@@ -40,8 +40,8 @@ class Pango (target.AutoBuild):
             if re.match(regex, version):
                 result = candidate
                 break
-        assert result
-        return result
+        #assert result
+        return "1.6.0" #result
     def install (self):
         target.AutoBuild.install (self)
         self.create_config_files ()
