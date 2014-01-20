@@ -306,7 +306,6 @@ class DarwinRoot (Installer):
         Installer.create (self)
         self.rewirer.rewire_root (self.expand ('%(installer_root)s'))
         
-    
 class DarwinBundle (DarwinRoot):
     def __init__ (self, *args):
         DarwinRoot.__init__ (self, *args)
@@ -444,7 +443,7 @@ class Linux_installer (Installer):
     def __init__ (self, *args):
         Installer.__init__ (self, *args)
 
-        self.bundle_tarball = '%(installer_uploads)s/%(name)s-%(installer_version)s-%(installer_build)s.%(platform)s.tar.bz2'
+        self.bundle_tarball = '%(installer_uploads)s/%(name)s-%(installer_version)s-%(installer_build)s.%(platform)s.tar.gz'
 
     def strip_prefixes (self):
         return Installer.strip_prefixes (self)
@@ -475,7 +474,23 @@ class Shar (Linux_installer):
 #    @context.subst_method
     def installer_file (self):
         return self.expand ('%(installer_uploads)s/%(name)s-%(installer_version)s-%(installer_build)s.%(platform)s.sh')
-        
+
+class LinuxBundle (Installer):
+    def __init__ (self, *args):
+        Installer.__init__ (self, *args)
+
+        self.bundle_tarball = '%(installer_uploads)s/%(name)s-%(installer_version)s-%(installer_build)s.%(platform)s.tar.xz'
+
+    def strip_prefixes (self):
+        return Installer.strip_prefixes (self)
+
+    def create_tarball (self, bundle_tarball):
+        self.system ('tar --owner=0 --group=0 -C %(installer_root)s -Jcf %(bundle_tarball)s .', locals ())
+
+    def create (self):
+        Installer.create (self)
+        self.create_tarball (self.bundle_tarball)
+
 def get_installer (settings, *arguments):
 
     installer_class = {
@@ -492,7 +507,7 @@ def get_installer (settings, *arguments):
         'freebsd-64' : Shar,
         'linux-arm-softfloat' : Shar,
         'linux-arm-vfp' : Linux_installer,
-        'linux-x86' : Shar,
+        'linux-x86' : LinuxBundle,
         'linux-64' : Shar,
         'linux-ppc' : Shar,
         'mingw' : Nsis,
