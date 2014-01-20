@@ -4,11 +4,7 @@ from gub import target
 
 class Gtk_x_ (target.AutoBuild):
     source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.1/gtk+-3.1.2.tar.bz2'
-    patches = [
-	'gtk+-3-no-perf.patch'
-        #'gtk+-2.15.3-substitute-env.patch',
-        #'gtk+-2.21.0-substitute-env.patch',
-        ]
+    patches = ['gtk+-3-no-perf.patch']
     dependencies = ['libtool',
                 'atk-devel',
 		'gdk-pixbuf-2',
@@ -32,8 +28,7 @@ class Gtk_x_ (target.AutoBuild):
 		+ ' --disable-glibtest'
 		+ ' --disable-gtk-doc'
 		+ ' --enable-explicit-deps'
-		+ ' --with-included-immodules'
-		+ ' --without-x')
+		+ ' --with-included-immodules')
     def patch (self):
         target.AutoBuild.patch (self)
         self.file_sub ([
@@ -73,14 +68,15 @@ class Gtk_x___mingw (Gtk_x_without_X11):
     def patch (self):
         Gtk_x_.patch (self)
     configure_flags = (Gtk_x_without_X11.configure_flags
-		+ ' --enable-win32-backend')
+		+ ' --enable-win32-backend'
+		+ ' --without-x')
 
 class Gtk_x___darwin (Gtk_x_without_X11):
     sources = "http://ftp.acc.umu.se/pub/gnome/sources/gtk+/3.1/gtk+-3.1.4.tar.bz2"
     configure_flags = (Gtk_x_without_X11.configure_flags
                 + ' --with-gdktarget=quartz'
 		+ ' --enable-quartz-backend'
-                )
+		+ ' --without-x')
 
 class Gtk_x___darwin__ppc (Gtk_x___darwin):
 #    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.28/2.28.2/sources/gtk+-2.18.5.tar.gz'
