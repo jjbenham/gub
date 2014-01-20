@@ -6,9 +6,12 @@ class Libx11 (target.AutoBuild):
     configure_flags = (target.AutoBuild.configure_flags
                 + ' --disable-xf86bigfont'
                 + ' --disable-malloc0returnsnull')
+    configure_variables = (target.AutoBuild.configure_variables
+                        + ' CFLAGS="-I%(system_prefix)s/include" ')
+
     def patch (self):
         self.file_sub ([('pkg-config', '$PKG_CONFIG')],
                        '%(srcdir)s/configure')
     def compile (self):
-        self.system ('cd %(builddir)s && make -C src/util makekeys CC=gcc CFLAGS= makekeys_CFLAGS= LDFLAGS=')
+        self.system ('cd %(builddir)s && make -C src/util makekeys CC=gcc makekeys_CFLAGS=')
         target.AutoBuild.compile (self)
