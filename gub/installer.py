@@ -468,9 +468,9 @@ class Shar (Linux_installer):
             shar_head = self.expand ('%(sourcefiledir)s/lilypond-sharhead.sh')
         tarball = self.expand (self.bundle_tarball)
         version = self.expand ('%(installer_version)s')
-        self.runner._execute (commands.CreateShar (name=name, pretty_name=pretty_name, release=release, shar_file=shar_file, shar_head=shar_head, tarball=tarball, version=version))
-#target_cpu = self.settings.target_cpu
-        #self.runner._execute (commands.CreateShar (name=name, pretty_name=pretty_name, release=release, shar_file=shar_file, shar_head=shar_head, tarball=tarball, target_cpu=target_cpu, version=version))
+        target_cpu = self.settings.target_cpu
+        self.runner._execute (commands.CreateShar (name=name, pretty_name=pretty_name, release=release, shar_file=shar_file, shar_head=shar_head, tarball=tarball, target_cpu=target_cpu, version=version))
+
 # hmm?
 #    @context.subst_method
     def installer_file (self):
