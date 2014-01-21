@@ -485,7 +485,11 @@ class LinuxBundle (Installer):
         return Installer.strip_prefixes (self)
 
     def create_tarball (self, bundle_tarball):
-        self.system ('tar --owner=0 --group=0 -C %(installer_root)s -Jcf %(bundle_tarball)s .', locals ())
+	lbundle_dir = '%(installerdir)s/%(name)s-%(installer_version)s'
+
+	self.system ('mkdir %(lbundle_dir)s && cp -r %(installer_root)s/* %(lbundle_dir)s/', locals ())
+	self.system ('cp %(sourcefiledir)s/Launch_Denemo.sh %(lbundle_dir)s', locals())
+	self.system ('tar -C %(installerdir)s -Jcf %(bundle_tarball)s %(name)s-%(installer_version)s', locals ())
 
     def create (self):
         Installer.create (self)
