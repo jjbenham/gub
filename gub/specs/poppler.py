@@ -27,8 +27,4 @@ class Poppler__mingw (Poppler):
     #patches = ['poppler-0.11.2-mingw.patch']
     pass
 
-class Poppler__darwin (Poppler):
-    dependencies = [x for x in Poppler.dependencies
-                if x.replace ('-devel', '') not in [
-                'libxml2', # Included in darwin-sdk, hmm?
-                ]]
+
