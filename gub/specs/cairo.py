@@ -5,17 +5,12 @@ class Cairo (target.AutoBuild):
     def patch (self):
         target.AutoBuild.patch (self)
         self.system ('rm -f %(srcdir)s/src/cairo-features.h')
-    dependencies = ['tools::libtool',
+    dependencies = [
                 'fontconfig-devel',
                 'ghostscript-devel',
                 'libpng-devel',
                 'libxrender-devel',
                 'pixman-devel',
-                # FIXME: poppler, librsvg, cairo, gtk dependencies?
-                # gtk+ depends on pango, pango on cairo, cairo on poppler, and poppler on gtk+?
-                # TRIED: removing gtk+ dependency from poppler -- no go
-                # TRY: removing poppler from cairo...
-                'poppler-devel',
                 'zlib-devel']
 
 class Cairo_without_X11 (Cairo):
@@ -23,10 +18,6 @@ class Cairo_without_X11 (Cairo):
                 + ' --disable-xlib'
                 + ' --disable-xlib-xrender'
                 + ' --disable-xcb'
-                )
-    dependencies = ([x for x in Cairo.dependencies
-                 if 'libx' not in x
-                 and 'poppler' not in x] # poppler does not build for mingw
                 )
 
 class Cairo__mingw (Cairo_without_X11):
