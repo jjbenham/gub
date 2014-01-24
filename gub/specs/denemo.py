@@ -14,18 +14,9 @@ class Denemo (target.AutoBuild):
     source = 'git://git.savannah.gnu.org/denemo.git'
     branch = 'master'
     #source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
-
-    #source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
+    patches = ['denemo-run-lilypond.patch', 'denemo-lilypond-path.patch']
 
     dependencies = [
-        'cross/gcc-c++-runtime',
-        'tools::automake',
-        'tools::gettext',
-        'tools::libtool',
-        'tools::pkg-config',
- 	'glib-devel',
-	'tools::glib',
-       	'cairo',
         'lilypondcairo',
 	'gtk+-devel',
 	'librsvg', 
@@ -39,9 +30,6 @@ class Denemo (target.AutoBuild):
 	'portmidi',
 	'librubberband'
         ]
-    configure_flags = (target.AutoBuild.configure_flags
-                       + ' --enable-fluidsynth'
-                       )
     def __init__ (self, settings, source):
         target.AutoBuild.__init__ (self, settings, source)
         if isinstance (source, repository.Git):
@@ -53,25 +41,26 @@ class Denemo (target.AutoBuild):
             target.AutoBuild.compile (self)
 
 class Denemo__linux__x86 (Denemo):
-    dependencies = (Denemo.dependencies + ['alsa-devel'])
+    #dependencies = (Denemo.dependencies + ['alsa-devel'])
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
-				+ ' --enable-portmidi'
-			        + ' --enable-alsa')
-    configure_variables = (target.AutoBuild.configure_variables
-			+ ' CFLAGS="-I%(system_prefix)s/include/evince/2.30 " '
-			+ ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
+				+ ' --disable-portmidi')
+    configure_variables = (Denemo.configure_variables
+			   + ' CFLAGS="-D_HAVE_PORTMIDI_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/3.0 " '			   
+			   + ' LDFLAGS="-L%(system_prefix)s/lib" ')
+    make_flags = Denemo.make_flags + ' LDFLAGS+="-lportmidi -lporttime"'
 
 class Denemo__mingw (Denemo):
     dependencies = (Denemo.dependencies + ['lilypad'])
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --enable-portmidi'
+			   + ' --disable-alsa'
 			   + ' --enable-rubberband')
     configure_variables = (Denemo.configure_variables
-                           + ' CFLAGS="-I%(system_prefix)s/include/evince/3.0 " '
-                           + ' LDFLAGS="-L%(system_prefix)s/lib" ')
-	
+			   + ' CFLAGS="-D_HAVE_PORTMIDI_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/3.0 " '
+			   + ' LDFLAGS="-L%(system_prefix)s/lib" ')
+    make_flags = Denemo.make_flags + ' LDFLAGS+="-lportmidi -lporttime"'
     def __init__ (self, settings, source):
         Denemo.__init__ (self, settings, source)
         # Configure (link) without -mwindows for denemo-console.exe
@@ -91,10 +80,10 @@ install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-
 ''')
 
 class Denemo__darwin (Denemo):
-    dependencies = (Denemo.dependencies + [
-        'fondu',
-        'osx-lilypad',
-        ])
+    #dependencies = (Denemo.dependencies + [
+    #    'fondu',
+    #    'osx-lilypad',
+    #    ])
     patches = ['denemo-run-lilypond.patch']
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
@@ -103,10 +92,13 @@ class Denemo__darwin (Denemo):
 			   + ' --disable-x11'
 			   + ' --enable-rubberband'
 			   + ' --disable-jack')
+
     configure_variables = (Denemo.configure_variables
-                           + ' CFLAGS="-g -O0 -D_MACH_O_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/3.0 " '
+                           + ' CFLAGS="-g -O0 -D_HAVE_PORTMIDI_ -D_MACH_O_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/3.0 " '
                            + ' LDFLAGS="-L%(system_prefix)s/lib -Wl,-framework,CoreMIDI -lgcc_eh -lgcc -lc -lfftw3" ')
-	
+	 
+    make_flags = Denemo.make_flags + ' LDFLAGS+="-lportmidi -lporttime"'
+
 class Denemo__darwin__ppc (Denemo__darwin):
     # make sure that PREFIX/include/unistd.h gets included
     def patch (self):
