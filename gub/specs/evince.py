@@ -1,23 +1,18 @@
 from gub import target
-from gub import tools
 
 class Evince (target.AutoBuild):
   source = 'http://ftp.gnome.org/pub/GNOME/sources/evince/3.2/evince-3.2.1.tar.xz'
-  dependencies = ['intltool',
-		  'libxml2-devel',
-		  'poppler'
-			]
+  dependencies = ['intltool', 'libxml2', 'poppler']
 
   patches = ['evince-3.2.1-strip.patch',
-		'evince-3.2.1-no-x11.patch',
-		'evince-3.2.1-backenddir.patch',
-		'evince-3.2.1-ev-init.c-no-DLLMain.patch']
-  configure_flags = (tools.AutoBuild.configure_flags
+		'evince-3.2.1-backenddir.patch']
+  configure_flags = (target.AutoBuild.configure_flags
+			   + ' --enable-static'
+			   + ' --disable-shared'
                            + ' --without-help'
 			   + ' --without-libgnome'
 			   + ' --without-gconf'
                            + ' --without-keyring'
-			   + ' --with-smclient-backend=no'
 			   + ' --disable-help'
 			   + ' --disable-thumbnailer'
 			   + ' --disable-nautilus'
@@ -35,14 +30,14 @@ class Evince (target.AutoBuild):
 	self.system ('cd %(install_prefix)s/lib/ && ln -s libevdocument3.a libevdocument3.dll.a')
 
 class Evince__darwin__x86 (Evince):
-  configure_variables = (tools.AutoBuild.configure_variables
+  patches = (Evince.patches + ['evince-3.2.1-no-x11.patch'])
+  configure_variables = (target.AutoBuild.configure_variables
                            + ' CFLAGS="-g -O0" ')
   configure_flags = (Evince.configure_flags
                            + ' --with-smclient-backend=quartz'
 			)
 
 class Evince__mingw (Evince):
-#  patches = ['evince-icon.patch']
   configure_flags = (Evince.configure_flags
                            + ' --with-platform=win32'
 			   + ' --with-smclient-backend=win32')
@@ -54,10 +49,5 @@ class Evince__linux__x86 (Evince):
   configure_flags = (Evince.configure_flags
                            + ' --with-platform=gnome'
 			   + ' --with-smclient-backend=xsmp')
-#  configure_variables = (Evince.configure_variables
-#                           + ' CFLAGS="-g -O0" ')
-  #make_flags = ' -DHAVE_POPPLER_PAGE_RENDER=1'
-
-  #dependencies = ['libsm']
 
                
