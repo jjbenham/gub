@@ -8,17 +8,13 @@ class Gtk_x_ (target.AutoBuild):
     dependencies = ['libtool',
                 'atk-devel',
 		'gdk-pixbuf-2',
-                'cairo-devel',
-                'libjpeg-devel',
-                'libpng-devel',
-                'libtiff-devel',
-                #'pango-devel',
-                'pangocairo-devel',
+                'pango-devel',
                 'libxext-devel',
-                #, 'libxinerama-devel',
                 'libxfixes-devel',
                 ]
     configure_flags = (target.AutoBuild.configure_flags
+		+ ' --enable-static'
+		+ ' --disable-shared'
                 + ' --without-libjasper'
                 + ' --disable-cups'
 		+ ' --disable-man'
@@ -50,6 +46,11 @@ set GTK_SO_EXTENSION=%(so_extension)s
         target.AutoBuild.install (self)
         self.create_config_files ()
         self.system ('cd %(install_prefix)s/lib/ && ln -s libgtk-3.a libgtk-3.dll.a')
+
+class Gtk_x___linux__x86 (Gtk_x_):
+    #configure_variables = (Gtk_x_.configure_variables
+    #            + ' CFLAGS=-pthread')
+    dependencies = (Gtk_x_.dependencies + ['libsm'])
 
 class Gtk_x___freebsd (Gtk_x_):
     configure_variables = (Gtk_x_.configure_variables
