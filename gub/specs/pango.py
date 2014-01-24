@@ -16,7 +16,6 @@ pango_module_version_regexes = [
     ]
 
 class Pango (target.AutoBuild):
-    #source = 'Dhttp://ftp.gnome.org/pub/GNOME/platform/2.28/2.28.1/sources/pango-1.26.0.tar.gz'
     source = 'http://ftp.acc.umu.se/pub/gnome/sources/pango/1.28/pango-1.28.4.tar.gz'
     patches = ['pango-1.20-substitute-env.patch']
     dependencies = [
@@ -25,10 +24,9 @@ class Pango (target.AutoBuild):
             'fontconfig-devel',
             'glib-devel',
             'libtool',
-	    'libxml2-devel'
+	    'libxml2-devel',
+	    'cairo-devel'
             ]
-    def get_conflict_dict (self):
-        return {'': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc'], 'devel': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc'], 'doc': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc'], 'runtime': ['pangocairo', 'pangocairo-devel', 'pangocairo-doc']}
     configure_flags = (target.AutoBuild.configure_flags
                 + misc.join_lines ('''
 --without-x
@@ -77,14 +75,7 @@ class Pango__darwin (Pango):
 '''))
 
 class Pango__linux (Pango):
-    def untar (self):
-        Pango.untar (self)
-        # FIXME: --without-cairo switch is removed in 1.10.1,
-        # pango only compiles without cairo if cairo is not
-        # installed linkably on the build system.  UGH.
-        self.file_sub ([('(have_cairo[_a-z0-9]*)=true', '\\1=false'),
-                        ('(cairo[_a-z0-9]*)=yes', '\\1=no')],
-                       '%(srcdir)s/configure')
+  pass
 
 class Pango__freebsd (Pango__linux):
     dependencies = Pango__linux.dependencies + ['libiconv-devel']
