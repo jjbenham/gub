@@ -9,8 +9,6 @@ class Gtk_x_ (target.AutoBuild):
                 'atk-devel',
 		'gdk-pixbuf-2',
                 'pango-devel',
-                'libxext-devel',
-                'libxfixes-devel',
                 ]
     configure_flags = (target.AutoBuild.configure_flags
 		+ ' --enable-static'
@@ -50,7 +48,7 @@ set GTK_SO_EXTENSION=%(so_extension)s
 class Gtk_x___linux__x86 (Gtk_x_):
     #configure_variables = (Gtk_x_.configure_variables
     #            + ' CFLAGS=-pthread')
-    dependencies = (Gtk_x_.dependencies + ['libsm'])
+    dependencies = (Gtk_x_.dependencies + ['libsm', 'libxfixes-devel', 'libxext-devel'])
 
 class Gtk_x___freebsd (Gtk_x_):
     configure_variables = (Gtk_x_.configure_variables
