@@ -117,7 +117,7 @@ LDFLAGS='-L%(system_prefix)s/lib %(rpath)s %(libs)s'
             if self.platform_name () not in bootstrap_names + [
                 'tools::git',
                 'tools::gettext',
-                'tools::tar'
+                #'tools::tar'
                 ]:
                 self.configure_variables = (self.configure_variables
                                             + ' SHELL=%(tools_prefix)s/bin/sh ')
