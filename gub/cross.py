@@ -117,10 +117,10 @@ def set_cross_dependencies (package_object_dict):
                                         or isinstance (p, target.SConsBuild))]
     
     subversion_packs = [p for p in packs if isinstance (p.source, repository.Subversion)]
-    tar_packs = [p for p in packs if (isinstance (p.source, repository.TarBall)
-                                      and p.platform_name () not in
-                                      (bootstrap_names + ['tools::tar']))]
-    bzip2_packs = [p for p in tar_packs if p.source.source.endswith ('bz2')]
+    #tar_packs = [p for p in packs if (isinstance (p.source, repository.TarBall)
+    #                                  and p.platform_name () not in
+    #                                  (bootstrap_names + ['tools::tar']))]
+    #bzip2_packs = [p for p in tar_packs if p.source.source.endswith ('bz2')]
 
     sdk_names = [s.platform_name () for s in sdk_packs]
     cross_names = [s.platform_name () for s in cross_packs]
@@ -164,14 +164,14 @@ def set_cross_dependencies (package_object_dict):
     extra_names = []
     rsync_packs = bazaar_packs or cvs_packs or subversion_packs
     for packs, names in (
-        (bzip2_packs, ['tools::bzip2']),
+        #(bzip2_packs, ['tools::bzip2']),
         (git_packs, ['tools::git']),
         (patch_packs, ['tools::patch']),
         (perl_packs, ['tools::perl']),
         (rsync_packs, ['tools::rsync']),
         (scons_packs, ['tools::scons']),
         (subversion_packs, ['tools::subversion']),
-        (tar_packs, ['tools::tar']),
+        #(tar_packs, ['tools::tar']),
         ):
         if packs:
             extra_names += names
