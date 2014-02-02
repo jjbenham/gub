@@ -9,9 +9,10 @@ class Cairo (target.AutoBuild):
                 'fontconfig-devel',
                 'ghostscript-devel',
                 'libpng-devel',
-                'libxrender-devel',
                 'pixman-devel',
                 'zlib-devel']
+class Cairo__linux (Cairo):
+    dependencies = (Cairo.dependencies + ['libxrender-devel'])
 
 class Cairo_without_X11 (Cairo):
     configure_flags = (Cairo.configure_flags
