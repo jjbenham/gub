@@ -66,7 +66,7 @@ bootstrap_names = [
 #    'tools::gcc',
     'tools::make',
     'tools::libtool',
-    'tools::file',
+    #'tools::file',
     'tools::zlib',
     ]
 
@@ -166,7 +166,7 @@ def set_cross_dependencies (package_object_dict):
     for packs, names in (
         #(bzip2_packs, ['tools::bzip2']),
         (git_packs, ['tools::git']),
-        (patch_packs, ['tools::patch']),
+        #(patch_packs, ['tools::patch']),
         (perl_packs, ['tools::perl']),
         (rsync_packs, ['tools::rsync']),
         (scons_packs, ['tools::scons']),
