@@ -42,7 +42,7 @@ sheet music from a high-level description file.'''
         'tools::autoconf',
         'tools::bison',
         'tools::flex',
-        'tools::fontforge',
+        #'tools::fontforge',
         'tools::gettext', # AM_GNU_GETTEXT
         'tools::pkg-config',
         'tools::t1utils',
