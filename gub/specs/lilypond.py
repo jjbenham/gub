@@ -40,7 +40,6 @@ sheet music from a high-level description file.'''
         'urw-fonts',
 
         'tools::autoconf',
-        'tools::bison',
         'tools::flex',
         #'tools::fontforge',
         'tools::gettext', # AM_GNU_GETTEXT
