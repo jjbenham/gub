@@ -11,7 +11,7 @@ from gub import repository
 from gub import target
 
 class Denemo (target.AutoBuild):
-    source = 'git://git.savannah.gnu.org/denemo.git'
+#    source = 'git://git.savannah.gnu.org/denemo.git'
 #    branch = 'master'
 #    patches = ['denemo-SIGCHLD.patch']
 #    subpackage_names = ['']
@@ -73,8 +73,8 @@ class Denemo__linux__x86 (Denemo):
 
 
 class Denemo__mingw__windows (Denemo):
- #source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
- source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
+ source = 'http://www.denemo.org/downloads/denemo-1.1.2.tar.gz'
+ #source = 'http://git.savannah.gnu.org/cgit/denemo.git/snapshot/denemo-master.tar.gz'
  #source = 'git://git.savannah.gnu.org/denemo.git'
  #branch = 'master'
  dependencies = [x for x in Denemo.dependencies
