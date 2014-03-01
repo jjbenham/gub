@@ -26,10 +26,10 @@ export EVINCE_MODULE_PATH=$PREFIX/lib/evince/3/backends
 
 export FONTCONFIG_PATH=$PREFIX/etc/fonts
 export FONTCONFIG_FILE=$PREFIX/etc/fonts/fonts.conf 
-#if [ ! -d "~/Library/Fonts" ]; then
-#    mkdir -p ~/Library/Fonts
-#fi
-#cp -r $PREFIX/share/fonts/* ~/Library/Fonts/
-#$PREFIX/bin/fc-cache -fv ~/Library/Fonts/
-#$PREFIX/bin/pango-querymodules > $PREFIX/etc/pango/pango.modules
+if [ ! -d "~/.fonts" ]; then
+    mkdir ~/.fonts
+fi
+cp -r $PREFIX/share/fonts/* ~/.fonts/
+$PREFIX/bin/fc-cache -fv ~/.fonts/
+$PREFIX/bin/pango-querymodules > $PREFIX/etc/pango/pango.modules
 $PREFIX/bin/denemo
