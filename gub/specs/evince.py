@@ -4,7 +4,7 @@ from gub import tools
 class Evince (target.AutoBuild):
   source = 'http://ftp.gnome.org/pub/GNOME/sources/evince/2.32/evince-2.32.0.tar.bz2'
   
-  dependencies = ['intltool',
+  dependencies = ['intltool','tools::intltool',
 		  'libxml2-devel',
 		  'poppler-devel']
 		  #'gnome-icon-theme', #needed if not win32
