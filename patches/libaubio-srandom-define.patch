@@ -1,0 +1,458 @@
+diff -rupN aubio-0.4.0/build/c4che/build.config.py aubio-0.4.0.edited/build/c4che/build.config.py
+--- aubio-0.4.0/build/c4che/build.config.py	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/c4che/build.config.py	2014-02-06 11:43:51.362686070 -0600
+@@ -0,0 +1,2 @@
++version = 0x1070d00
++tools = [{'tool': 'ar', 'tooldir': None, 'funs': None}, {'tool': 'c', 'tooldir': None, 'funs': None}, {'tool': 'gcc', 'tooldir': None, 'funs': None}, {'tool': 'compiler_c', 'tooldir': None, 'funs': None}, {'tool': 'waf_unit_test', 'tooldir': None, 'funs': None}, {'tool': 'gnu_dirs', 'tooldir': None, 'funs': None}]
+diff -rupN aubio-0.4.0/build/c4che/_cache.py aubio-0.4.0.edited/build/c4che/_cache.py
+--- aubio-0.4.0/build/c4che/_cache.py	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/c4che/_cache.py	2014-02-06 11:43:51.362686070 -0600
+@@ -0,0 +1,63 @@
++AR = '/usr/bin/ar'
++ARFLAGS = 'rcs'
++BINDIR = '/usr/local/bin'
++CC = ['/usr/bin/gcc']
++CCLNK_SRC_F = []
++CCLNK_TGT_F = ['-o']
++CC_NAME = 'gcc'
++CC_SRC_F = []
++CC_TGT_F = ['-c', '-o']
++CC_VERSION = ('4', '6', '3')
++CFLAGS = ['-g', '-Wall', '-Wextra', '-fPIC']
++CFLAGS_MACBUNDLE = ['-fPIC']
++CFLAGS_cshlib = ['-fPIC']
++COMPILER_CC = 'gcc'
++CPPPATH_ST = '-I%s'
++DATADIR = '/usr/local/share'
++DATAROOTDIR = '/usr/local/share'
++DEFINES = ['AUBIO_PREFIX="/usr/local"', 'PACKAGE="aubio"']
++DEFINES_ST = '-D%s'
++DEST_BINFMT = 'elf'
++DEST_CPU = 'x86'
++DEST_OS = 'linux'
++DOCDIR = '/usr/local/share/doc/aubio'
++DVIDIR = '/usr/local/share/doc/aubio'
++EXEC_PREFIX = '/usr/local'
++HTMLDIR = '/usr/local/share/doc/aubio'
++INCLUDEDIR = '/usr/local/include'
++INFODIR = '/usr/local/share/info'
++LIBDIR = '/usr/local/lib'
++LIBEXECDIR = '/usr/local/libexec'
++LIBPATH_ST = '-L%s'
++LIB_JACK = ['jack']
++LIB_SAMPLERATE = ['samplerate']
++LIB_SNDFILE = ['sndfile']
++LIB_ST = '-l%s'
++LINKFLAGS_MACBUNDLE = ['-bundle', '-undefined', 'dynamic_lookup']
++LINKFLAGS_cshlib = ['-shared']
++LINKFLAGS_cstlib = ['-Wl,-Bstatic']
++LINK_CC = ['/usr/bin/gcc']
++LOCALEDIR = '/usr/local/share/locale'
++LOCALSTATEDIR = '/usr/local/var'
++MANDIR = '/usr/local/share/man'
++OLDINCLUDEDIR = '/usr/include'
++PACKAGE = 'aubio'
++PDFDIR = '/usr/local/share/doc/aubio'
++PKGCONFIG = '/usr/bin/pkg-config'
++PREFIX = '/usr/local'
++PSDIR = '/usr/local/share/doc/aubio'
++RPATH_ST = '-Wl,-rpath,%s'
++SBINDIR = '/usr/local/sbin'
++SHAREDSTATEDIR = '/usr/local/com'
++SHLIB_MARKER = '-Wl,-Bdynamic'
++SONAME_ST = '-Wl,-h,%s'
++STLIBPATH_ST = '-L%s'
++STLIB_MARKER = '-Wl,-Bstatic'
++STLIB_ST = '-l%s'
++SYSCONFDIR = '/usr/local/etc'
++cfg_files = ['/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0/build/src/config.h']
++cprogram_PATTERN = '%s'
++cshlib_PATTERN = 'lib%s.so'
++cstlib_PATTERN = 'lib%s.a'
++define_key = ['AUBIO_PREFIX', 'PACKAGE']
++macbundle_PATTERN = '%s.bundle'
+diff -rupN aubio-0.4.0/build/.conf_check_04da5dac25a948d76524a22d894f46b2/cache_run_c_code aubio-0.4.0.edited/build/.conf_check_04da5dac25a948d76524a22d894f46b2/cache_run_c_code
+--- aubio-0.4.0/build/.conf_check_04da5dac25a948d76524a22d894f46b2/cache_run_c_code	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_04da5dac25a948d76524a22d894f46b2/cache_run_c_code	2014-02-06 11:43:50.270680643 -0600
+@@ -0,0 +1 @@
++cache_run_c_code = 0
+Binary files aubio-0.4.0/build/.conf_check_04da5dac25a948d76524a22d894f46b2/testbuild/test.c.1.o and aubio-0.4.0.edited/build/.conf_check_04da5dac25a948d76524a22d894f46b2/testbuild/test.c.1.o differ
+Binary files aubio-0.4.0/build/.conf_check_04da5dac25a948d76524a22d894f46b2/testbuild/testprog and aubio-0.4.0.edited/build/.conf_check_04da5dac25a948d76524a22d894f46b2/testbuild/testprog differ
+Binary files aubio-0.4.0/build/.conf_check_04da5dac25a948d76524a22d894f46b2/testbuild/.wafpickle-linux2-34014192-98 and aubio-0.4.0.edited/build/.conf_check_04da5dac25a948d76524a22d894f46b2/testbuild/.wafpickle-linux2-34014192-98 differ
+diff -rupN aubio-0.4.0/build/.conf_check_04da5dac25a948d76524a22d894f46b2/test.c aubio-0.4.0.edited/build/.conf_check_04da5dac25a948d76524a22d894f46b2/test.c
+--- aubio-0.4.0/build/.conf_check_04da5dac25a948d76524a22d894f46b2/test.c	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_04da5dac25a948d76524a22d894f46b2/test.c	2014-02-06 11:43:50.046679525 -0600
+@@ -0,0 +1,6 @@
++#include <math.h>
++
++int main(int argc, char **argv) {
++	(void)argc; (void)argv;
++	return 0;
++}
+diff -rupN aubio-0.4.0/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/cache_run_c_code aubio-0.4.0.edited/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/cache_run_c_code
+--- aubio-0.4.0/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/cache_run_c_code	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/cache_run_c_code	2014-02-06 11:43:50.814683345 -0600
+@@ -0,0 +1 @@
++cache_run_c_code = 0
+Binary files aubio-0.4.0/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/testbuild/libtestprog.a and aubio-0.4.0.edited/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/testbuild/libtestprog.a differ
+Binary files aubio-0.4.0/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/testbuild/test.c.1.o and aubio-0.4.0.edited/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/testbuild/test.c.1.o differ
+Binary files aubio-0.4.0/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/testbuild/.wafpickle-linux2-34014192-98 and aubio-0.4.0.edited/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/testbuild/.wafpickle-linux2-34014192-98 differ
+diff -rupN aubio-0.4.0/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/test.c aubio-0.4.0.edited/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/test.c
+--- aubio-0.4.0/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/test.c	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/test.c	2014-02-06 11:43:50.666682597 -0600
+@@ -0,0 +1,3 @@
++
++#include <stdio.h>
++#define AUBIO_ERR(...) fprintf(stderr, __VA_ARGS__)
+diff -rupN aubio-0.4.0/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/cache_run_c_code aubio-0.4.0.edited/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/cache_run_c_code
+--- aubio-0.4.0/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/cache_run_c_code	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/cache_run_c_code	2014-02-06 11:43:50.446681511 -0600
+@@ -0,0 +1 @@
++cache_run_c_code = 0
+Binary files aubio-0.4.0/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/testbuild/test.c.1.o and aubio-0.4.0.edited/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/testbuild/test.c.1.o differ
+Binary files aubio-0.4.0/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/testbuild/testprog and aubio-0.4.0.edited/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/testbuild/testprog differ
+Binary files aubio-0.4.0/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/testbuild/.wafpickle-linux2-34014192-98 and aubio-0.4.0.edited/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/testbuild/.wafpickle-linux2-34014192-98 differ
+diff -rupN aubio-0.4.0/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/test.c aubio-0.4.0.edited/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/test.c
+--- aubio-0.4.0/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/test.c	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/test.c	2014-02-06 11:43:50.274680655 -0600
+@@ -0,0 +1,6 @@
++#include <string.h>
++
++int main(int argc, char **argv) {
++	(void)argc; (void)argv;
++	return 0;
++}
+diff -rupN aubio-0.4.0/build/.conf_check_e531d2da128ce329dae077bc3212d47c/cache_run_c_code aubio-0.4.0.edited/build/.conf_check_e531d2da128ce329dae077bc3212d47c/cache_run_c_code
+--- aubio-0.4.0/build/.conf_check_e531d2da128ce329dae077bc3212d47c/cache_run_c_code	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_e531d2da128ce329dae077bc3212d47c/cache_run_c_code	2014-02-06 11:43:50.042679515 -0600
+@@ -0,0 +1 @@
++cache_run_c_code = 0
+Binary files aubio-0.4.0/build/.conf_check_e531d2da128ce329dae077bc3212d47c/testbuild/test.c.1.o and aubio-0.4.0.edited/build/.conf_check_e531d2da128ce329dae077bc3212d47c/testbuild/test.c.1.o differ
+Binary files aubio-0.4.0/build/.conf_check_e531d2da128ce329dae077bc3212d47c/testbuild/testprog and aubio-0.4.0.edited/build/.conf_check_e531d2da128ce329dae077bc3212d47c/testbuild/testprog differ
+Binary files aubio-0.4.0/build/.conf_check_e531d2da128ce329dae077bc3212d47c/testbuild/.wafpickle-linux2-34014192-98 and aubio-0.4.0.edited/build/.conf_check_e531d2da128ce329dae077bc3212d47c/testbuild/.wafpickle-linux2-34014192-98 differ
+diff -rupN aubio-0.4.0/build/.conf_check_e531d2da128ce329dae077bc3212d47c/test.c aubio-0.4.0.edited/build/.conf_check_e531d2da128ce329dae077bc3212d47c/test.c
+--- aubio-0.4.0/build/.conf_check_e531d2da128ce329dae077bc3212d47c/test.c	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_e531d2da128ce329dae077bc3212d47c/test.c	2014-02-06 11:43:49.806678336 -0600
+@@ -0,0 +1,6 @@
++#include <stdio.h>
++
++int main(int argc, char **argv) {
++	(void)argc; (void)argv;
++	return 0;
++}
+diff -rupN aubio-0.4.0/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/cache_run_c_code aubio-0.4.0.edited/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/cache_run_c_code
+--- aubio-0.4.0/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/cache_run_c_code	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/cache_run_c_code	2014-02-06 11:43:49.802678327 -0600
+@@ -0,0 +1 @@
++cache_run_c_code = 0
+Binary files aubio-0.4.0/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/testbuild/test.c.1.o and aubio-0.4.0.edited/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/testbuild/test.c.1.o differ
+Binary files aubio-0.4.0/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/testbuild/testprog and aubio-0.4.0.edited/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/testbuild/testprog differ
+Binary files aubio-0.4.0/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/testbuild/.wafpickle-linux2-34014192-98 and aubio-0.4.0.edited/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/testbuild/.wafpickle-linux2-34014192-98 differ
+diff -rupN aubio-0.4.0/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/test.c aubio-0.4.0.edited/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/test.c
+--- aubio-0.4.0/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/test.c	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/test.c	2014-02-06 11:43:48.914673922 -0600
+@@ -0,0 +1,6 @@
++#include <stdlib.h>
++
++int main(int argc, char **argv) {
++	(void)argc; (void)argv;
++	return 0;
++}
+diff -rupN aubio-0.4.0/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/cache_run_c_code aubio-0.4.0.edited/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/cache_run_c_code
+--- aubio-0.4.0/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/cache_run_c_code	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/cache_run_c_code	2014-02-06 11:43:50.662682576 -0600
+@@ -0,0 +1 @@
++cache_run_c_code = 0
+Binary files aubio-0.4.0/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/testbuild/test.c.1.o and aubio-0.4.0.edited/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/testbuild/test.c.1.o differ
+Binary files aubio-0.4.0/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/testbuild/testprog and aubio-0.4.0.edited/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/testbuild/testprog differ
+Binary files aubio-0.4.0/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/testbuild/.wafpickle-linux2-34014192-98 and aubio-0.4.0.edited/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/testbuild/.wafpickle-linux2-34014192-98 differ
+diff -rupN aubio-0.4.0/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/test.c aubio-0.4.0.edited/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/test.c
+--- aubio-0.4.0/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/test.c	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/test.c	2014-02-06 11:43:50.450681542 -0600
+@@ -0,0 +1,6 @@
++#include <limits.h>
++
++int main(int argc, char **argv) {
++	(void)argc; (void)argv;
++	return 0;
++}
+diff -rupN aubio-0.4.0/build/config.log aubio-0.4.0.edited/build/config.log
+--- aubio-0.4.0/build/config.log	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/config.log	2014-02-06 11:43:51.362686070 -0600
+@@ -0,0 +1,182 @@
++# project aubio (0.4.0) configured on Thu Feb  6 11:43:48 2014 by
++# waf 1.7.13 (abi 98, python 20703f0 on linux2)
++# using ./waf configure --notests
++#
++----------------------------------------
++Setting top to
++/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0
++----------------------------------------
++Setting out to
++/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0/build
++----------------------------------------
++Checking for 'gcc' (c compiler)
++find program=['gcc', 'cc'] paths=['/home/jjbenham/bin', '/usr/lib/lightdm/lightdm', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/home/jjbenham/.local/bin', '/home/jjbenham/.local/bin'] var='CC' -> '/usr/bin/gcc'
++find program=['ar'] paths=['/home/jjbenham/bin', '/usr/lib/lightdm/lightdm', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/home/jjbenham/.local/bin', '/home/jjbenham/.local/bin'] var='AR' -> '/usr/bin/ar'
++/usr/bin/gcc
++----------------------------------------
++Checking for header stdlib.h
++==>
++#include <stdlib.h>
++
++int main(int argc, char **argv) {
++	(void)argc; (void)argv;
++	return 0;
++}
++
++<==
++[1/2] [32mc: build/.conf_check_ecfddc2ce29c573b1079b107c2434884/test.c -> build/.conf_check_ecfddc2ce29c573b1079b107c2434884/testbuild/test.c.1.o
++[0m
++['/usr/bin/gcc', '-g', '-Wall', '-Wextra', '-fPIC', '../test.c', '-c', '-o', 'test.c.1.o']
++[2/2] [33mcprogram: build/.conf_check_ecfddc2ce29c573b1079b107c2434884/testbuild/test.c.1.o -> build/.conf_check_ecfddc2ce29c573b1079b107c2434884/testbuild/testprog
++[0m
++['/usr/bin/gcc', 'test.c.1.o', '-o', '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0/build/.conf_check_ecfddc2ce29c573b1079b107c2434884/testbuild/testprog', '-Wl,-Bstatic', '-Wl,-Bdynamic']
++yes
++----------------------------------------
++Checking for header stdio.h
++==>
++#include <stdio.h>
++
++int main(int argc, char **argv) {
++	(void)argc; (void)argv;
++	return 0;
++}
++
++<==
++[1/2] [32mc: build/.conf_check_e531d2da128ce329dae077bc3212d47c/test.c -> build/.conf_check_e531d2da128ce329dae077bc3212d47c/testbuild/test.c.1.o
++[0m
++['/usr/bin/gcc', '-g', '-Wall', '-Wextra', '-fPIC', '-DHAVE_STDLIB_H=1', '../test.c', '-c', '-o', 'test.c.1.o']
++[2/2] [33mcprogram: build/.conf_check_e531d2da128ce329dae077bc3212d47c/testbuild/test.c.1.o -> build/.conf_check_e531d2da128ce329dae077bc3212d47c/testbuild/testprog
++[0m
++['/usr/bin/gcc', 'test.c.1.o', '-o', '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0/build/.conf_check_e531d2da128ce329dae077bc3212d47c/testbuild/testprog', '-Wl,-Bstatic', '-Wl,-Bdynamic']
++yes
++----------------------------------------
++Checking for header math.h
++==>
++#include <math.h>
++
++int main(int argc, char **argv) {
++	(void)argc; (void)argv;
++	return 0;
++}
++
++<==
++[1/2] [32mc: build/.conf_check_04da5dac25a948d76524a22d894f46b2/test.c -> build/.conf_check_04da5dac25a948d76524a22d894f46b2/testbuild/test.c.1.o
++[0m
++['/usr/bin/gcc', '-g', '-Wall', '-Wextra', '-fPIC', '-DHAVE_STDLIB_H=1', '-DHAVE_STDIO_H=1', '../test.c', '-c', '-o', 'test.c.1.o']
++[2/2] [33mcprogram: build/.conf_check_04da5dac25a948d76524a22d894f46b2/testbuild/test.c.1.o -> build/.conf_check_04da5dac25a948d76524a22d894f46b2/testbuild/testprog
++[0m
++['/usr/bin/gcc', 'test.c.1.o', '-o', '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0/build/.conf_check_04da5dac25a948d76524a22d894f46b2/testbuild/testprog', '-Wl,-Bstatic', '-Wl,-Bdynamic']
++yes
++----------------------------------------
++Checking for header string.h
++==>
++#include <string.h>
++
++int main(int argc, char **argv) {
++	(void)argc; (void)argv;
++	return 0;
++}
++
++<==
++[1/2] [32mc: build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/test.c -> build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/testbuild/test.c.1.o
++[0m
++['/usr/bin/gcc', '-g', '-Wall', '-Wextra', '-fPIC', '-DHAVE_STDLIB_H=1', '-DHAVE_STDIO_H=1', '-DHAVE_MATH_H=1', '../test.c', '-c', '-o', 'test.c.1.o']
++[2/2] [33mcprogram: build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/testbuild/test.c.1.o -> build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/testbuild/testprog
++[0m
++['/usr/bin/gcc', 'test.c.1.o', '-o', '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0/build/.conf_check_ce68401a8fd39d5809b9c6fae15145d6/testbuild/testprog', '-Wl,-Bstatic', '-Wl,-Bdynamic']
++yes
++----------------------------------------
++Checking for header limits.h
++==>
++#include <limits.h>
++
++int main(int argc, char **argv) {
++	(void)argc; (void)argv;
++	return 0;
++}
++
++<==
++[1/2] [32mc: build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/test.c -> build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/testbuild/test.c.1.o
++[0m
++['/usr/bin/gcc', '-g', '-Wall', '-Wextra', '-fPIC', '-DHAVE_STDLIB_H=1', '-DHAVE_STDIO_H=1', '-DHAVE_MATH_H=1', '-DHAVE_STRING_H=1', '../test.c', '-c', '-o', 'test.c.1.o']
++[2/2] [33mcprogram: build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/testbuild/test.c.1.o -> build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/testbuild/testprog
++[0m
++['/usr/bin/gcc', 'test.c.1.o', '-o', '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0/build/.conf_check_f8a3756fab0052b04fa807bed856ef1c/testbuild/testprog', '-Wl,-Bstatic', '-Wl,-Bdynamic']
++yes
++----------------------------------------
++Checking for C99 __VA_ARGS__ macro
++==>
++
++#include <stdio.h>
++#define AUBIO_ERR(...) fprintf(stderr, __VA_ARGS__)
++
++<==
++[1/2] [32mc: build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/test.c -> build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/testbuild/test.c.1.o
++[0m
++['/usr/bin/gcc', '-g', '-Wall', '-Wextra', '-fPIC', '-DHAVE_STDLIB_H=1', '-DHAVE_STDIO_H=1', '-DHAVE_MATH_H=1', '-DHAVE_STRING_H=1', '-DHAVE_LIMITS_H=1', '../test.c', '-c', '-o', 'test.c.1.o']
++[2/2] [33mcstlib: build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/testbuild/test.c.1.o -> build/.conf_check_3b6ea1b38de4af6eab67fa43577690ab/testbuild/libtestprog.a
++[0m
++['/usr/bin/ar', 'rcs', 'libtestprog.a', 'test.c.1.o']
++yes
++----------------------------------------
++Checking for FFT implementation
++ooura
++----------------------------------------
++Checking for program pkg-config
++/usr/bin/pkg-config
++find program=['pkg-config'] paths=['/home/jjbenham/bin', '/usr/lib/lightdm/lightdm', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/home/jjbenham/.local/bin', '/home/jjbenham/.local/bin'] var='PKGCONFIG' -> '/usr/bin/pkg-config'
++----------------------------------------
++Checking for 'sndfile' >= 1.0.4
++['/usr/bin/pkg-config', '--atleast-version=1.0.4', 'sndfile']
++['/usr/bin/pkg-config', '--cflags', '--libs', 'sndfile']
++out:  -lsndfile  
++
++yes
++----------------------------------------
++Checking for 'samplerate' >= 0.0.15
++['/usr/bin/pkg-config', '--atleast-version=0.0.15', 'samplerate']
++['/usr/bin/pkg-config', '--cflags', '--libs', 'samplerate']
++out:  -lsamplerate  
++
++yes
++----------------------------------------
++Checking for 'jack'
++['/usr/bin/pkg-config', '--cflags', '--libs', 'jack']
++out:  -ljack  
++
++yes
++----------------------------------------
++Checking for 'libavcodec' >= 54.35.0
++['/usr/bin/pkg-config', '--atleast-version=54.35.0', 'libavcodec']
++not found
++from /home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0: The configuration failed
++----------------------------------------
++Checking for 'libavformat' >= 52.3.0
++['/usr/bin/pkg-config', '--atleast-version=52.3.0', 'libavformat']
++not found
++from /home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0: The configuration failed
++----------------------------------------
++Checking for 'libavutil' >= 52.3.0
++['/usr/bin/pkg-config', '--atleast-version=52.3.0', 'libavutil']
++not found
++from /home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0: The configuration failed
++----------------------------------------
++Checking for 'libavresample' >= 1.0.1
++['/usr/bin/pkg-config', '--atleast-version=1.0.1', 'libavresample']
++not found
++from /home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0: The configuration failed
++----------------------------------------
++Checking for all libav libraries
++not found
++----------------------------------------
++Checking for program txt2man
++not found
++find program=['txt2man'] paths=['/home/jjbenham/bin', '/usr/lib/lightdm/lightdm', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/home/jjbenham/.local/bin', '/home/jjbenham/.local/bin'] var='TXT2MAN' -> ''
++from /home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0: Could not find the program txt2man
++txt2man was not found (ignoring)
++----------------------------------------
++Checking for program doxygen
++not found
++find program=['doxygen'] paths=['/home/jjbenham/bin', '/usr/lib/lightdm/lightdm', '/usr/local/sbin', '/usr/local/bin', '/usr/sbin', '/usr/bin', '/sbin', '/bin', '/usr/games', '/home/jjbenham/.local/bin', '/home/jjbenham/.local/bin'] var='DOXYGEN' -> ''
++from /home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0: Could not find the program doxygen
++doxygen was not found (ignoring)
+diff -rupN aubio-0.4.0/build/.lock-waf_linux2_build aubio-0.4.0.edited/build/.lock-waf_linux2_build
+--- aubio-0.4.0/build/.lock-waf_linux2_build	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/.lock-waf_linux2_build	2014-02-06 11:43:51.366686075 -0600
+@@ -0,0 +1,8 @@
++argv = ['./waf', 'configure', '--notests']
++environ = {'LADSPA_PATH': '/home/jjbenham/.ladspa:/usr/lib/ladspa:/usr/local/lib/ladspa', 'HISTTIMEFORMAT': '%d/%m/%y %T ', 'LC_CTYPE': 'en_US.UTF-8', 'LV2_PATH': '/home/jjbenham/.lv2:/usr/lib/lv2:/usr/local/lib/lv2', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'LOGNAME': 'jjbenham', 'USER': 'jjbenham', 'PATH': '/home/jjbenham/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jjbenham/.local/bin:/home/jjbenham/.local/bin', 'HOME': '/home/jjbenham', 'DISPLAY': ':0', 'SSH_AGENT_PID': '1713', 'LANG': 'en_US.UTF-8', 'TERM': 'xterm', 'SHELL': '/bin/bash', 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0', 'XDG_SESSION_COOKIE': '2ee2c7837f0740b1fe696da60000000d-1391445486.438859-1226509119', 'SHLVL': '1', 'MANDATORY_PATH': '/usr/share/gconf/openbox.mandatory.path', 'DSSI_PATH': '/home/jjbenham/.dssi:/usr/lib/dssi:/usr/local/lib/dssi', 'WINDOWID': '23068677', 'SUIL_MODULE_DIR': '/opt/kxstudio/lib/suil-0', 'SSH_AUTH_SOCK': '/tmp/ssh-SAQLMgFM1295/agent.1295', 'GDMSESSION': 'openbox', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-r73Z7az6bd,guid=f1d84825504d91585329b0d700000029', '_': './waf', 'VST_PATH': '/home/jjbenham/.vst:/usr/lib/vst:/usr/local/lib/vst', 'DESKTOP_SESSION': 'openbox', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-openbox:/usr/share/kxstudio/menu:/etc/xdg', 'DEFAULTS_PATH': '/usr/share/gconf/openbox.default.path', 'UBUNTU_MENUPROXY': '/usr/local/bin/denemo', 'OLDPWD': '/home/jjbenham/src/gub/downloads/libaubio', 'XAUTHORITY': '/home/jjbenham/.Xauthority', 'XDG_DATA_DIRS': '/usr/share/openbox:/usr/local/share/:/usr/share/', 'PWD': '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0', 'COLORTERM': 'gnome-terminal', 'KMIX_PULSEAUDIO_DISABLE': '1', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'}
++files = ['/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0/wscript']
++hash = -982593346
++options = {'enable_fftw3f': False, 'force': False, 'verbose': 0, 'SHAREDSTATEDIR': '', 'destdir': '', 'zones': '', 'prefix': '/usr/local/', 'download': False, 'testcmd': False, 'targets': '', 'out': '', 'enable_sndfile': None, 'INFODIR': '', 'nocache': False, 'progress_bar': 0, 'EXEC_PREFIX': '', 'top': '', 'LOCALSTATEDIR': '', 'INCLUDEDIR': '', 'LIBEXECDIR': '', 'all_tests': False, 'MANDIR': '', 'PSDIR': '', 'BINDIR': '', 'files': '', 'DOCDIR': '', 'enable_fftw3': False, 'SYSCONFDIR': '', 'jobs': 2, 'DATAROOTDIR': '', 'distcheck_args': None, 'PDFDIR': '', 'DATADIR': '', 'LIBDIR': '', 'SBINDIR': '', 'target_platform': None, 'no_tests': True, 'enable_memcpy': True, 'LOCALEDIR': '', 'enable_jack': None, 'HTMLDIR': '', 'enable_double': False, 'keep': 0, 'enable_samplerate': None, 'enable_avcodec': None, 'DVIDIR': '', 'enable_complex': False, 'check_c_compiler': 'gcc icc', 'OLDINCLUDEDIR': ''}
++out_dir = '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0/build'
++run_dir = '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0'
++top_dir = '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0'
+diff -rupN aubio-0.4.0/build/src/config.h aubio-0.4.0.edited/build/src/config.h
+--- aubio-0.4.0/build/src/config.h	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/build/src/config.h	2014-02-06 11:43:51.346685979 -0600
+@@ -0,0 +1,18 @@
++/* WARNING! All changes made to this file will be lost! */
++
++#ifndef W_SRC_CONFIG_H_WAF
++#define W_SRC_CONFIG_H_WAF
++
++#define HAVE_STDLIB_H 1
++#define HAVE_STDIO_H 1
++#define HAVE_MATH_H 1
++#define HAVE_STRING_H 1
++#define HAVE_LIMITS_H 1
++#define HAVE_C99_VARARGS_MACROS 1
++#define HAVE_AUBIO_DOUBLE 0
++#define HAVE_SNDFILE 1
++#define HAVE_SAMPLERATE 1
++#define HAVE_JACK 1
++#define HAVE_MEMCPY_HACKS 1
++
++#endif /* W_SRC_CONFIG_H_WAF */
+diff -rupN aubio-0.4.0/.lock-waf_linux2_build aubio-0.4.0.edited/.lock-waf_linux2_build
+--- aubio-0.4.0/.lock-waf_linux2_build	1969-12-31 18:00:00.000000000 -0600
++++ aubio-0.4.0.edited/.lock-waf_linux2_build	2014-02-06 11:43:51.362686070 -0600
+@@ -0,0 +1,8 @@
++argv = ['./waf', 'configure', '--notests']
++environ = {'LADSPA_PATH': '/home/jjbenham/.ladspa:/usr/lib/ladspa:/usr/local/lib/ladspa', 'HISTTIMEFORMAT': '%d/%m/%y %T ', 'LC_CTYPE': 'en_US.UTF-8', 'LV2_PATH': '/home/jjbenham/.lv2:/usr/lib/lv2:/usr/local/lib/lv2', 'LESSOPEN': '| /usr/bin/lesspipe %s', 'LOGNAME': 'jjbenham', 'USER': 'jjbenham', 'PATH': '/home/jjbenham/bin:/usr/lib/lightdm/lightdm:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/home/jjbenham/.local/bin:/home/jjbenham/.local/bin', 'HOME': '/home/jjbenham', 'DISPLAY': ':0', 'SSH_AGENT_PID': '1713', 'LANG': 'en_US.UTF-8', 'TERM': 'xterm', 'SHELL': '/bin/bash', 'XDG_SESSION_PATH': '/org/freedesktop/DisplayManager/Session0', 'XDG_SESSION_COOKIE': '2ee2c7837f0740b1fe696da60000000d-1391445486.438859-1226509119', 'SHLVL': '1', 'MANDATORY_PATH': '/usr/share/gconf/openbox.mandatory.path', 'DSSI_PATH': '/home/jjbenham/.dssi:/usr/lib/dssi:/usr/local/lib/dssi', 'WINDOWID': '23068677', 'SUIL_MODULE_DIR': '/opt/kxstudio/lib/suil-0', 'SSH_AUTH_SOCK': '/tmp/ssh-SAQLMgFM1295/agent.1295', 'GDMSESSION': 'openbox', 'XDG_SEAT_PATH': '/org/freedesktop/DisplayManager/Seat0', 'LESSCLOSE': '/usr/bin/lesspipe %s %s', 'DBUS_SESSION_BUS_ADDRESS': 'unix:abstract=/tmp/dbus-r73Z7az6bd,guid=f1d84825504d91585329b0d700000029', '_': './waf', 'VST_PATH': '/home/jjbenham/.vst:/usr/lib/vst:/usr/local/lib/vst', 'DESKTOP_SESSION': 'openbox', 'XDG_CONFIG_DIRS': '/etc/xdg/xdg-openbox:/usr/share/kxstudio/menu:/etc/xdg', 'DEFAULTS_PATH': '/usr/share/gconf/openbox.default.path', 'UBUNTU_MENUPROXY': '/usr/local/bin/denemo', 'OLDPWD': '/home/jjbenham/src/gub/downloads/libaubio', 'XAUTHORITY': '/home/jjbenham/.Xauthority', 'XDG_DATA_DIRS': '/usr/share/openbox:/usr/local/share/:/usr/share/', 'PWD': '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0', 'COLORTERM': 'gnome-terminal', 'KMIX_PULSEAUDIO_DISABLE': '1', 'LS_COLORS': 'rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:'}
++files = ['/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0/wscript']
++hash = -982593346
++options = {'enable_fftw3f': False, 'force': False, 'verbose': 0, 'SHAREDSTATEDIR': '', 'destdir': '', 'zones': '', 'prefix': '/usr/local/', 'download': False, 'testcmd': False, 'targets': '', 'out': '', 'enable_sndfile': None, 'INFODIR': '', 'nocache': False, 'progress_bar': 0, 'EXEC_PREFIX': '', 'top': '', 'LOCALSTATEDIR': '', 'INCLUDEDIR': '', 'LIBEXECDIR': '', 'all_tests': False, 'MANDIR': '', 'PSDIR': '', 'BINDIR': '', 'files': '', 'DOCDIR': '', 'enable_fftw3': False, 'SYSCONFDIR': '', 'jobs': 2, 'DATAROOTDIR': '', 'distcheck_args': None, 'PDFDIR': '', 'DATADIR': '', 'LIBDIR': '', 'SBINDIR': '', 'target_platform': None, 'no_tests': True, 'enable_memcpy': True, 'LOCALEDIR': '', 'enable_jack': None, 'HTMLDIR': '', 'enable_double': False, 'keep': 0, 'enable_samplerate': None, 'enable_avcodec': None, 'DVIDIR': '', 'enable_complex': False, 'check_c_compiler': 'gcc icc', 'OLDINCLUDEDIR': ''}
++out_dir = '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0/build'
++run_dir = '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0'
++top_dir = '/home/jjbenham/src/gub/downloads/libaubio/aubio-0.4.0'
+diff -rupN aubio-0.4.0/tests/utils_tests.h aubio-0.4.0.edited/tests/utils_tests.h
+--- aubio-0.4.0/tests/utils_tests.h	2013-12-14 20:23:59.000000000 -0600
++++ aubio-0.4.0.edited/tests/utils_tests.h	2014-02-06 11:52:17.509195902 -0600
+@@ -10,7 +10,6 @@
+ #define PRINT_DBG(format, args...)   fprintf(stderr, format , ##args)
+ #define PRINT_WRN(format, args...)   fprintf(stderr, "AUBIO-TESTS WARNING: " format, ##args)
+ 
+-#ifdef HAVE_WIN_HACKS
+ // http://en.wikipedia.org/wiki/Linear_congruential_generator
+ // no srandom/random on win32
+ 
+@@ -24,7 +23,6 @@ uint_t random(void) {
+     srandom_seed = 1664525 * srandom_seed + 1013904223;
+     return srandom_seed;
+ }
+-#endif
+ 
+ void utils_init_random () {
+   time_t now = time(0);
+Binary files aubio-0.4.0/waflib/ansiterm.pyc and aubio-0.4.0.edited/waflib/ansiterm.pyc differ
+Binary files aubio-0.4.0/waflib/Build.pyc and aubio-0.4.0.edited/waflib/Build.pyc differ
+Binary files aubio-0.4.0/waflib/ConfigSet.pyc and aubio-0.4.0.edited/waflib/ConfigSet.pyc differ
+Binary files aubio-0.4.0/waflib/Configure.pyc and aubio-0.4.0.edited/waflib/Configure.pyc differ
+Binary files aubio-0.4.0/waflib/Context.pyc and aubio-0.4.0.edited/waflib/Context.pyc differ
+Binary files aubio-0.4.0/waflib/Errors.pyc and aubio-0.4.0.edited/waflib/Errors.pyc differ
+Binary files aubio-0.4.0/waflib/__init__.pyc and aubio-0.4.0.edited/waflib/__init__.pyc differ
+Binary files aubio-0.4.0/waflib/Logs.pyc and aubio-0.4.0.edited/waflib/Logs.pyc differ
+Binary files aubio-0.4.0/waflib/Node.pyc and aubio-0.4.0.edited/waflib/Node.pyc differ
+Binary files aubio-0.4.0/waflib/Options.pyc and aubio-0.4.0.edited/waflib/Options.pyc differ
+Binary files aubio-0.4.0/waflib/Runner.pyc and aubio-0.4.0.edited/waflib/Runner.pyc differ
+Binary files aubio-0.4.0/waflib/Scripting.pyc and aubio-0.4.0.edited/waflib/Scripting.pyc differ
+Binary files aubio-0.4.0/waflib/TaskGen.pyc and aubio-0.4.0.edited/waflib/TaskGen.pyc differ
+Binary files aubio-0.4.0/waflib/Task.pyc and aubio-0.4.0.edited/waflib/Task.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/ar.pyc and aubio-0.4.0.edited/waflib/Tools/ar.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/c_aliases.pyc and aubio-0.4.0.edited/waflib/Tools/c_aliases.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/c_config.pyc and aubio-0.4.0.edited/waflib/Tools/c_config.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/ccroot.pyc and aubio-0.4.0.edited/waflib/Tools/ccroot.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/compiler_c.pyc and aubio-0.4.0.edited/waflib/Tools/compiler_c.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/c_osx.pyc and aubio-0.4.0.edited/waflib/Tools/c_osx.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/c_preproc.pyc and aubio-0.4.0.edited/waflib/Tools/c_preproc.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/c.pyc and aubio-0.4.0.edited/waflib/Tools/c.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/c_tests.pyc and aubio-0.4.0.edited/waflib/Tools/c_tests.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/gcc.pyc and aubio-0.4.0.edited/waflib/Tools/gcc.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/gnu_dirs.pyc and aubio-0.4.0.edited/waflib/Tools/gnu_dirs.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/icc.pyc and aubio-0.4.0.edited/waflib/Tools/icc.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/__init__.pyc and aubio-0.4.0.edited/waflib/Tools/__init__.pyc differ
+Binary files aubio-0.4.0/waflib/Tools/waf_unit_test.pyc and aubio-0.4.0.edited/waflib/Tools/waf_unit_test.pyc differ
+Binary files aubio-0.4.0/waflib/Utils.pyc and aubio-0.4.0.edited/waflib/Utils.pyc differ
