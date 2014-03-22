@@ -8,6 +8,7 @@ class Nsis (tools.SConsBuild):
     source = 'http://surfnet.dl.sourceforge.net/sourceforge/nsis/nsis-2.46-src.tar.bz2'
     #source = ':pserver:anonymous@nsis.cvs.sourceforge.net:/cvsroot/nsis&module=NSIS&tag=HEAD'
     dependencies = ['mingw::cross/gcc']
+    patches = ['nsis-noistd.h.patch']
     scons_flags = misc.join_lines ('''
 DEBUG=yes
 NSIS_CONFIG_LOG=yes
@@ -37,6 +38,7 @@ SKIPUTILS="NSIS Menu"
                      + '/bin')
         return {'PATH': mingw_bin + ':' + tools_bin + ':' + os.environ['PATH'] }
     def patch (self):
+	tools.SConsBuild.patch (self)
         self.system ('mkdir -p %(allbuilddir)s', ignore_errors=True)
         self.system ('ln -s %(srcdir)s %(builddir)s')
         if 'x86_64-linux' in self.settings.build_architecture:
