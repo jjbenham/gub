@@ -1,0 +1,10 @@
+--- nsis-2.46-src.new/Source/util.h	2014-03-21 16:20:21.000000000 -0400
++++ nsis-2.46-src/Source/util.h	2014-03-21 16:22:39.000000000 -0400
+@@ -25,6 +25,7 @@
+ #ifndef _WIN32
+ #  include <iconv.h>
+ #  include <stdio.h>
++#  include <unistd.h> 
+ #endif
+ 
+ 
