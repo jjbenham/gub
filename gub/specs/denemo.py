@@ -13,7 +13,7 @@ from gub import target
 class Denemo (target.AutoBuild):
 #    source = 'git://git.savannah.gnu.org/denemo.git'
 #    branch = 'master'
-#    patches = ['denemo-SIGCHLD.patch']
+    patches = ['denemo-audio.patch']
 #    subpackage_names = ['']
     dependencies = [
         'cross/gcc-c++-runtime',
