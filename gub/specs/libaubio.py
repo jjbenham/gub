@@ -5,14 +5,14 @@ from gub import target
 
 class Libaubio (target.WafBuild):
     source = 'http://aubio.org/pub/aubio-0.4.0.tar.bz2'
-    patches = ['libaubio-srandom-define.patch']
+    patches = ['libaubio-srandom-define.patch', 'libaubio-no-tests.patch']
     dependencies = ['tools::automake', 'tools::pkg-config',
                 'libfftw-devel',
                 'libsamplerate-devel',
                 'libsndfile-devel',
                 'python-devel',
                 ]
-    configure_flags = (target.WafBuild.configure_flags
+    configure_command = (target.WafBuild.configure_command
                            + ' --notests')
     def install (self):
         target.WafBuild.install (self)
