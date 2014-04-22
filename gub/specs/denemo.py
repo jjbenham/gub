@@ -11,17 +11,18 @@ from gub import repository
 from gub import target
 
 class Denemo (target.AutoBuild):
-    source = 'git://git.savannah.gnu.org/denemo.git'
-    branch = 'master'
-    #source = 'http://www.denemo.org/downloads/denemo-1.1.0.tar.gz'
-    patches = ['denemo-run-lilypond.patch', 'denemo-lilypond-path.patch']
+    #source = 'git://git.savannah.gnu.org/denemo.git'
+    #branch = 'master'
+    #patches = ['denemo-audio.patch']
+    source = 'http://www.denemo.org/downloads/denemo-1.1.4.tar.gz'
+    patches = ['denemo-audio.patch', 'denemo-1.1.4-run-lilypond.patch', 'denemo-lilypond-path.patch']
 
     dependencies = [
         'lilypondcairo',
 	'gtk+-devel',
 	'librsvg', 
 	'evince',
-        'libaubio-devel',
+        'aubio-devel',
         'libgtksourceview',
  	'guile-devel',
         'portaudio-devel',
@@ -42,6 +43,8 @@ class Denemo (target.AutoBuild):
 
 class Denemo__linux__x86 (Denemo):
     #dependencies = (Denemo.dependencies + ['alsa-devel'])
+    #patches = Denemo.patches + ['denemo-run-lilypond.patch']
+
     configure_flags = (Denemo.configure_flags
                    		+ ' --enable-binreloc'
 				+ ' --disable-portmidi')
@@ -80,11 +83,11 @@ install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-
 ''')
 
 class Denemo__darwin (Denemo):
-    #dependencies = (Denemo.dependencies + [
-    #    'fondu',
-    #    'osx-lilypad',
-    #    ])
-    patches = ['denemo-run-lilypond.patch']
+    dependencies = (Denemo.dependencies + [
+        'fondu',
+        'osx-lilypad',
+        ])
+    #patches = Denemo.patches + ['denemo-run-lilypond.patch']
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --enable-portmidi'
