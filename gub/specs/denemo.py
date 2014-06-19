@@ -49,9 +49,9 @@ class Denemo__linux__x86 (Denemo):
                    		+ ' --enable-binreloc'
 				+ ' --disable-portmidi')
     configure_variables = (Denemo.configure_variables
-			   + ' CFLAGS="-D_HAVE_PORTMIDI_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/3.0 " '			   
+			   + ' CFLAGS="-g -D_HAVE_PORTMIDI_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/3.0 " '			   
 			   + ' LDFLAGS="-L%(system_prefix)s/lib" ')
-    make_flags = Denemo.make_flags + ' LDFLAGS+="-lportmidi -lporttime"'
+    make_flags = Denemo.make_flags + 'LDFLAGS+="-lportmidi -lporttime" '
 
 class Denemo__mingw (Denemo):
     dependencies = (Denemo.dependencies + ['lilypad'])
