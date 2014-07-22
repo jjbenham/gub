@@ -14,8 +14,8 @@ class Denemo (target.AutoBuild):
     #source = 'git://git.savannah.gnu.org/denemo.git'
     #branch = 'master'
     #patches = ['denemo-audio.patch']
-    source = 'http://www.denemo.org/downloads/denemo-1.1.6.tar.gz'
-    patches = ['denemo-audio.patch', 'denemo-1.1.4-run-lilypond.patch', 'denemo-lilypond-path.patch']
+    source = 'http://www.denemo.org/downloads/denemo-1.1.8.tar.gz'
+    patches = ['denemo-1.1.4-run-lilypond.patch', 'denemo-lilypond-path.patch']
 
     dependencies = [
         'lilypondcairo',
