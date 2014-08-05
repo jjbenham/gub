@@ -49,6 +49,10 @@ class Gcc__darwin (cross_gcc.Gcc):
         cross_gcc.Gcc.install (self)
         # conflicts with darwin-SDK
         self.system ('mv %(install_prefix)s/lib/libsupc++.a %(install_prefix)s/lib/libsupc++.a-')
+        self.system ('mkdir -p %(cross_prefix)s/lib/gcc/i686-apple-darwin8/4.3.2')
+        self.system ('mkdir %(cross_prefix)s/i686-apple-darwin8/lib/')
+        self.system ('cp %(install_prefix)s/lib/libgcc_s.1.dylib %(cross_prefix)s/lib/gcc/i686-apple-darwin8/4.3.2')
+        self.system ('cp %(install_prefix)s/lib/libgcc_s.1.dylib %(cross_prefix)s/i686-apple-darwin8/lib/')
         self.rewire_gcc_libs ()
     
 class Gcc__darwin__x86 (Gcc__darwin):
