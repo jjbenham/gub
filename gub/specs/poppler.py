@@ -5,7 +5,7 @@ class Poppler (target.AutoBuild):
     dependencies = ['tools::libtool', 'tools::glib',
                 'zlib-devel',
                 'fontconfig-devel',
-                'gtk+-devel',
+                'libpng',
                 'libjpeg-devel',
                 'libxml2-devel',
                 ]
