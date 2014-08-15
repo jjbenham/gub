@@ -5,8 +5,9 @@ class Evince2 (target.AutoBuild):
   source = 'http://ftp.gnome.org/pub/GNOME/sources/evince/2.32/evince-2.32.0.tar.bz2'
   
   dependencies = [
-		  #'intltool','tools::intltool',
-		  #'libxml2-devel',
+		  #'intltool',
+		  'tools::intltool',
+		  'gtk2',
 		  'poppler-devel']
   patches = ['evince-4-Makefile.patch']
   configure_flags = (tools.AutoBuild.configure_flags
