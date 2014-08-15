@@ -66,7 +66,7 @@ bootstrap_names = [
 #    'tools::gcc',
     'tools::make',
     'tools::libtool',
-    #'tools::file',
+    'tools::file',
     'tools::zlib',
     ]
 
