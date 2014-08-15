@@ -12,17 +12,29 @@ class Aubio (target.WafBuild):
                 'libsndfile-devel',
                 'python-devel',
                 ]
-#    configure_command = (target.WafBuild.configure_command
-#                           + ' --notests'
-#                          + ' --prefix=%(install_prefix)s/'
-#                               )
+    configure_command = (target.WafBuild.configure_command
+                           + ' --notests'
+                          + ' --prefix=%(install_prefix)s/'
+                               )
 
 
     configure_flags = (target.WafBuild.configure_flags
                            + ' --notests')
     
-
+ 
 class Aubio__mingw (Aubio):
+    source = 'http://aubio.org/pub/aubio-0.4.0.tar.bz2'
+    patches = ['libaubio-srandom-define.patch', 'libaubio-no-tests.patch']
+ 
+    #configure_command = (target.WafBuild.configure_command
+    def install (self):
+	target.WafBuild.install (self)
+	self.system ('''
+install -m755 %(builddir)s/build/src/aubio-4.dll %(install_prefix)s/bin/
+''')
+ 
+class Aubio__linux (Aubio):
+    #patches = ['libAubio-no-duplicate-definition.patch']
 
     def install (self):
         Aubio.install (self)
@@ -30,14 +42,6 @@ class Aubio__mingw (Aubio):
 install -m755 %(builddir)s/build/src/Aubio-4.dll %(install_prefix)s/bin/
 #install -m755 %(builddir)s/src/ %(install_prefix)s/bin/
 ''')
-
-#--notests
-#    force_autoupdate = True
-#    config_cache_overrides = (target.AutoBuild.config_cache_overrides + '''
-#ac_cv_path_PYTHON=${ac_cv_path_PYTHON=no}
-#ac_cv_path_SWIG=${ac_cv_path_SWIG=no}
-#''')
-
 class Aubio__linux (Aubio):
    #patches = ['libAubio-no-duplicate-definition.patch']
    #source = 'git://git.aubio.org/git/aubio'
