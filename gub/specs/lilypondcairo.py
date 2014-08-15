@@ -12,6 +12,8 @@ class Lilypondcairo (lilypond.Lilypond):
 
 class Lilypondcairo__mingw (lilypond.Lilypond__mingw):
     source = Lilypondcairo.source
+    dependencies = [x.replace ('pango', 'pangocairo')
+             for x in lilypond.Lilypond__mingw.dependencies]
     def get_conflict_dict (self):
         return {'': ['lilypond']}
 
