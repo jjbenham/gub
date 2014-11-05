@@ -16,9 +16,10 @@ class Lilypondcairo__mingw (lilypond.Lilypond__mingw):
     source = Lilypondcairo.source
     dependencies = [x.replace ('pango', 'pangocairo')
                 for x in lilypond.Lilypond__mingw.dependencies]
-    #patches = [
-    #    '0003-Start-OTF-font-from-E800-avoids-hardcoded-linux-unic.patch',
-    #    ]
+    patches = [
+		'lilypond-chord-names.patch',
+#        '0003-Start-OTF-font-from-E800-avoids-hardcoded-linux-unic.patch',
+        ]
     def get_conflict_dict (self):
         return {'': ['lilypond']}
 
