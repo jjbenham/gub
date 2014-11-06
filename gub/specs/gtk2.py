@@ -64,13 +64,8 @@ class Gtk2__mingw (Gtk2_x___mingw):
     pass
 
 
-class Gtk2_x___darwin (Gtk2_x_without_X11):
+class Gtk2__darwin (Gtk2_x_without_X11):
     configure_flags = (Gtk2_x_without_X11.configure_flags
                 + ' --with-gdktarget=quartz'
                 )
 
-class Gtk2_x___darwin__ppc (Gtk2_x___darwin):
-#    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.28/2.28.2/sources/gtk+-2.18.5.tar.gz'
-    patches = Gtk2_x___darwin.patches + [
-        'gtk+-2.16-darwin-ppc.patch',
-        ]
