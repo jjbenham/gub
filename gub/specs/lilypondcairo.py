@@ -6,6 +6,9 @@ from gub.specs import lilypond
 # in.  Hmm.
 
 class Lilypondcairo (lilypond.Lilypond):
+    patches = [
+               'lilypond-chord-names.patch',
+        ]
     source = 'http://download.linuxaudio.org/lilypond/sources/v2.18/lilypond-2.18.0.tar.gz'
     def get_conflict_dict (self):
         return {'': ['lilypond']}
