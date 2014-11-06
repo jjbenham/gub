@@ -11,17 +11,17 @@ from gub import repository
 from gub import target
 
 class Denemo (target.AutoBuild):
-    source = 'git://git.savannah.gnu.org/denemo.git'
-    branch = 'master'
+    #source = 'git://git.savannah.gnu.org/denemo.git'
+    #branch = 'master'
     #patches = ['denemo-audio.patch']
-    #source = 'http://www.denemo.org/downloads/denemo-1.1.8.tar.gz'
-    patches = ['denemo-1.1.4-run-lilypond.patch', 'denemo-lilypond-path.patch']
+    source = 'http://www.denemo.org/downloads/denemo-1.2.0.tar.gz'
+    patches = ['denemo-1.1.4-run-lilypond.patch', 'denemo-lilypond-path.patch','denemo_mutex.patch']
 
     dependencies = [
         'lilypondcairo',
 	'gtk+-devel',
 	'librsvg', 
-	'evince',
+	#'evince',
         'aubio-devel',
         'libgtksourceview',
  	'guile-devel',
@@ -54,15 +54,28 @@ class Denemo__linux__x86 (Denemo):
     make_flags = Denemo.make_flags + 'LDFLAGS+="-lportmidi -lporttime" '
 
 class Denemo__mingw (Denemo):
-    dependencies = (Denemo.dependencies + ['lilypad'])
+    dependencies = [
+        'lilypondcairo',
+	'gtk2',
+	'librsvg', 
+	'evince2',
+        'aubio-devel',
+        'libgtksourceview2',
+ 	'guile-devel',
+        'portaudio-devel',
+ 	'libsndfile',
+	'fluidsynth',
+	'portmidi',
+	'librubberband',
+        'lilypad']	
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
 			   + ' --enable-portmidi'
 			   + ' --disable-alsa'
 			   + ' --enable-rubberband')
     configure_variables = (Denemo.configure_variables
-			   + ' CFLAGS="-D_HAVE_PORTMIDI_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/3.0 " '
-			   + ' LDFLAGS="-L%(system_prefix)s/lib" ')
+			   + ' CFLAGS="-D_HAVE_PORTMIDI_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/2.32 "' 
+			   + ' LDFLAGS="-L%(system_prefix)s/lib -levview -levdocument" ')
     make_flags = Denemo.make_flags + ' LDFLAGS+="-lportmidi -lporttime"'
     def __init__ (self, settings, source):
         Denemo.__init__ (self, settings, source)
@@ -83,10 +96,22 @@ install -m755 %(builddir)s/src/denemo-console.exe %(install_prefix)s/bin/denemo-
 ''')
 
 class Denemo__darwin (Denemo):
-    dependencies = (Denemo.dependencies + [
-        'fondu',
-        'osx-lilypad',
-        ])
+    gtk_dependencies = [
+        'lilypondcairo',
+	'gtk2',
+	'librsvg', 
+	'evince2',
+        'aubio-devel',
+        'libgtksourceview2',
+ 	'guile-devel',
+        'portaudio-devel',
+ 	'libsndfile',
+	'fluidsynth',
+	'portmidi',
+	'librubberband',
+	'fondu',
+	'osx-lilypad']
+    dependencies = gtk_dependencies 
     #patches = Denemo.patches + ['denemo-run-lilypond.patch']
     configure_flags = (Denemo.configure_flags
 		       	   + ' --disable-binreloc'
@@ -94,12 +119,17 @@ class Denemo__darwin (Denemo):
 			   + ' --enable-portaudio'
 			   + ' --disable-x11'
 			   + ' --enable-rubberband'
-			   + ' --disable-jack')
+				)
 
-    configure_variables = (Denemo.configure_variables
+    gtk2_configure_variables = (Denemo.configure_variables
+			   + ' CFLAGS="-D_HAVE_PORTMIDI_ -D_MACH_O_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/2.30 "' 
+			   + ' LDFLAGS="-L%(system_prefix)s/lib -Wl,-framework,CoreMIDI -levview -levdocument" ')
+
+
+    gtk3_configure_variables = (Denemo.configure_variables
                            + ' CFLAGS="-g -O0 -D_HAVE_PORTMIDI_ -D_MACH_O_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/3.0 " '
                            + ' LDFLAGS="-L%(system_prefix)s/lib -Wl,-framework,CoreMIDI -lgcc_eh -lgcc -lc -lfftw3" ')
-	 
+    configure_variables = gtk2_configure_variables
     make_flags = Denemo.make_flags + ' LDFLAGS+="-lportmidi -lporttime"'
 
 class Denemo__darwin__ppc (Denemo__darwin):
