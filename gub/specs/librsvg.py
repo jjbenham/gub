@@ -5,7 +5,7 @@ class Librsvg (target.AutoBuild):
     dependencies = ['tools::libtool',
                 'fontconfig-devel',
                 'glib-devel',
-                'gtk+-devel',
+                #'gtk+-devel',
                 'libxml2-devel']
     configure_flags = (target.AutoBuild.configure_flags
                        	+ ' --enable-static'
