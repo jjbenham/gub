@@ -23,7 +23,7 @@ export PANGO_PREFIX=$PREFIX
 export PANGO_MODULE_VERSION="1.6.0"
 export PANGO_SO_EXTENSION=".so"
 
-export EVINCE_MODULE_PATH=$PREFIX/lib/evince/3/backends
+export EVINCE_MODULE_PATH=$PREFIX/lib/evince/2/backends
 
 export FONTCONFIG_PATH=$PREFIX/etc/fonts
 export FONTCONFIG_FILE=$PREFIX/etc/fonts/fonts.conf 
