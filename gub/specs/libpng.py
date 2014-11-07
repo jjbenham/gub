@@ -4,7 +4,7 @@ from gub import tools
 class Libpng (target.AutoBuild):
     source = 'http://surfnet.dl.sourceforge.net/sourceforge/libpng/libpng-1.2.8-config.tar.gz'
     patches = ['libpng-pngconf.h-setjmp.patch']
-    dependencies = ['zlib-devel']
+    dependencies = ['zlib-devel','tools::libtool']
     def name (self):
         return 'libpng'
     def patch (self):
