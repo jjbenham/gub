@@ -33,11 +33,13 @@ class Fluidsynth__linux (Fluidsynth):
    dependencies = [
         'glib-devel',
         'portaudio-devel',
-        'alsa-devel'
+        'alsa-devel',
+	'jack1'
         ]
    xconfigure_flags = (Fluidsynth.configure_flags
-                       .replace ('--disable-alsa-support', '--enable-alsa-support')
-                      .replace ('--disable-oss-support', '--enable-oss-support')
+                       	.replace ('--disable-alsa-support', '--enable-alsa-support')
+                       	.replace ('--disable-oss-support', '--enable-oss-support')
+		 	.replace ('--disable-jack-support', '--enable-jack-support')
                        )
 
 class Fluidsynth__mingw (Fluidsynth):
