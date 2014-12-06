@@ -1,7 +1,7 @@
 from gub import target
 
 class Popt (target.AutoBuild):
-    source = 'http://rpm5.org/files/popt/popt-1.14.tar.gz'
+    source = 'http://gd.tuwien.ac.at/utils/rpm.org/dist/rpm-4.1.x/popt-1.7.tar.gz'
     config_cache_overrides = target.AutoBuild.config_cache_overrides + '''
 ac_cv_va_copy=${ac_cv_va_copy=C99}
 '''
