@@ -6,12 +6,18 @@ from gub import w32
 
 class Glib (target.AutoBuild):
     #source = 'http://ftp.gnome.org/pub/GNOME/sources/glib/2.30/glib-2.30.3.tar.xz'
-    source = 'http://ftp.gnome.org/pub/GNOME/sources/glib/2.28/glib-2.28.8.tar.xz'
-    dependencies = ['tools::glib', 'tools::libtool', 'gettext-devel', 'zlib']
+    source = 'http://ftp.gnome.org/pub/GNOME/sources/glib/2.39/glib-2.39.3.tar.xz'
+    dependencies = ['tools::glib', 'tools::libtool', 'gettext-devel', 'zlib', 'libxml2', 'libffi']
     patches = ['glib-2.27.ZLIB_VERNUM.patch']
     config_cache_overrides = target.AutoBuild.config_cache_overrides + '''
 glib_cv_stack_grows=${glib_cv_stack_grows=no}
+
 '''
+    configure_variables = (target.AutoBuild.configure_variables 
+			+ ' LDFLAGS=-march=i686'
+			+ ' CFLAGS=-march=i686'
+			)
+
     if 'stat' in misc.librestrict (): # stats for /USR/include/glib/...
         install_flags = (target.AutoBuild.install_flags
                          + ' LD_PRELOAD=%(tools_prefix)s/lib/librestrict-open.so')
@@ -44,7 +50,11 @@ class Glib__darwin (Glib):
 class Glib__darwin__x86 (Glib__darwin):
     # LIBS bugfix from:
     #   https://bugzilla.gnome.org/show_bug.cgi?id=586150
-    configure_variables = Glib.configure_variables + ' LIBS=-lresolv'
+    configure_variables = (Glib.configure_variables 
+			+ ' LIBS=-lresolv'
+			+ ' LDFLAGS=-march=i486'
+			+ ' CFLAGS=-march=i486'
+			)
     def compile (self):
         self.file_sub ([('(SUBDIRS = .*) tests', r'\1'),
                         (r'GTESTER = \$.*', ''),
@@ -72,14 +82,16 @@ class Glib__freebsd__x86 (Glib__freebsd):
 
 class Glib__tools (tools.AutoBuild, Glib):
     dependencies = [
-            'gettext',
+            #'gettext',
             'libtool',
             'pkg-config',
+	    'libffi'
             ]            
     configure_flags = (tools.AutoBuild.configure_flags
                        + ' --build=%(build_architecture)s'
                        + ' --host=%(build_architecture)s'
                        + ' --target=%(build_architecture)s'
+  		       + ' --disable-shared'
                        )
     def install (self):
         tools.AutoBuild.install (self)
