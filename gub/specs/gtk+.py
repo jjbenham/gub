@@ -3,8 +3,10 @@ from gub import gnome
 from gub import target
 
 class Gtk_x_ (target.AutoBuild):
-    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/3.1/gtk+-3.1.2.tar.bz2'
-    patches = ['gtk+-3-no-perf.patch']
+    #source = 'http://ftp.acc.umu.se/pub/gnome/sources/gtk+/3.4/gtk+-3.4.1.tar.xz'
+    source = 'http://ftp.acc.umu.se/pub/gnome/sources/gtk+/3.4/gtk+-3.4.4.tar.xz'
+
+   #patches = ['gtk+-3-no-perf.patch']
     dependencies = ['libtool',
                 'atk-devel',
 		'gdk-pixbuf-2',
@@ -21,8 +23,14 @@ class Gtk_x_ (target.AutoBuild):
 		+ ' --disable-gtk3-dependency'
 		+ ' --disable-glibtest'
 		+ ' --disable-gtk-doc'
+		+ ' --disable-xinput'
 		+ ' --enable-explicit-deps'
 		+ ' --with-included-immodules')
+
+    configure_variables = (target.AutoBuild.configure_variables
+                           + ' LDFLAGS="-L%(system_prefix)s/lib" ')
+    make_flags = target.AutoBuild.make_flags + ' LDFLAGS+="-L%(system_prefix)s/lib"'
+
     def patch (self):
         target.AutoBuild.patch (self)
         self.file_sub ([
@@ -46,9 +54,10 @@ set GTK_SO_EXTENSION=%(so_extension)s
         self.system ('cd %(install_prefix)s/lib/ && ln -s libgtk-3.a libgtk-3.dll.a')
 
 class Gtk_x___linux__x86 (Gtk_x_):
+    #source = 'http://ftp.acc.umu.se/pub/gnome/sources/gtk+/3.2/gtk+-3.2.4.tar.xz'
     #configure_variables = (Gtk_x_.configure_variables
     #            + ' CFLAGS=-pthread')
-    dependencies = (Gtk_x_.dependencies + ['libsm', 'libxfixes-devel', 'libxext-devel'])
+    dependencies = (Gtk_x_.dependencies + ['libsm', 'libxfixes-devel', 'libxext-devel', 'libxi'])
 
 class Gtk_x___freebsd (Gtk_x_):
     configure_variables = (Gtk_x_.configure_variables
