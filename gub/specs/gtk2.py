@@ -4,7 +4,7 @@ from gub import target
 
 class Gtk2_x_ (target.AutoBuild):
     #source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.24.tar.xz'
-    source = 'http://ftp.gnome.org/pub/GNOME/platform/2.32/2.32.1/sources/gtk+-2.22.1.tar.gz'
+    source = 'http://ftp.gnome.org/pub/gnome/sources/gtk+/2.24/gtk+-2.24.10.tar.xz'
     patches = [
         #'gtk+-2.15.3-substitute-env.patch',
         #'gtk+-2.21.0-substitute-env.patch',
