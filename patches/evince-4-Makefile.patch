@@ -1,5 +1,29 @@
---- evince-2.32.0/Makefile.in	2010-09-27 14:02:31.000000000 -0500
-+++ evince-2.32.0.edited/Makefile.in	2013-02-20 23:41:03.370018544 -0600
+diff -rupN evince-2.32.0/cut-n-paste/Makefile.in evince-2.32.0.new/cut-n-paste/Makefile.in
+--- evince-2.32.0/cut-n-paste/Makefile.in	2010-09-27 15:02:24.000000000 -0400
++++ evince-2.32.0.new/cut-n-paste/Makefile.in	2015-01-26 00:30:13.000000000 -0500
+@@ -324,7 +324,7 @@ target_alias = @target_alias@
+ top_build_prefix = @top_build_prefix@
+ top_builddir = @top_builddir@
+ top_srcdir = @top_srcdir@
+-SUBDIRS = zoom-control toolbar-editor totem-screensaver smclient gimpcellrenderertoggle synctex
++SUBDIRS = zoom-control toolbar-editor totem-screensaver gimpcellrenderertoggle synctex
+ all: all-recursive
+ 
+ .SUFFIXES:
+diff -rupN evince-2.32.0/Makefile.am evince-2.32.0.new/Makefile.am
+--- evince-2.32.0/Makefile.am	2010-07-27 11:47:54.000000000 -0400
++++ evince-2.32.0.new/Makefile.am	2015-01-26 22:16:16.000000000 -0500
+@@ -13,7 +13,6 @@ SUBDIRS = \
+ 	libview \
+ 	libmisc \
+ 	properties \
+-	shell \
+ 	po \
+ 	help
+ 
+diff -rupN evince-2.32.0/Makefile.in evince-2.32.0.new/Makefile.in
+--- evince-2.32.0/Makefile.in	2010-09-27 15:02:31.000000000 -0400
++++ evince-2.32.0.new/Makefile.in	2015-01-26 22:23:37.000000000 -0500
 @@ -104,7 +104,7 @@ AM_RECURSIVE_TARGETS = $(RECURSIVE_TARGE
  ETAGS = etags
  CTAGS = ctags
