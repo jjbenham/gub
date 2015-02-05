@@ -347,7 +347,7 @@ touch %(darwin_bundle_dir)s/Contents/Resources/Credits.html # FIXME - this may n
 #cp -pR --link %(installer_prefix)s/* %(darwin_bundle_dir)s/Contents/Resources/
 cp %(sourcefiledir)s/denemo.icns %(darwin_bundle_dir)s/Contents/Resources/denemo.icns
 #wget http://www.denemo.org/downloads/gub/denemo.icns -O %(darwin_bundle_dir)s/Contents/Resources/denemo.icns
-cp %(sourcefiledir)s/pdfdocument.evince-backend %(darwin_bundle_dir)s/Contents/Resources/lib/evince/2/backends/pdfdocument.evince-backend
+cp %(sourcefiledir)s/pdfdocument.evince-backend %(darwin_bundle_dir)s/Contents/Resources/lib/evince/3/backends/pdfdocument.evince-backend
 ''', locals ())
         self.file_sub ([('''PACKAGE_NAME=Denemo
 MAJOR_VERSION=1
