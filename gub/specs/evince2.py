@@ -2,8 +2,9 @@ from gub import target
 from gub import tools
 
 class Evince2 (target.AutoBuild):
-  source = 'http://www.denemo.org/downloads/gub/evince-2.30.3.tar.bz2'
-  
+  source = 'http://ftp.gnome.org/pub/GNOME/sources/evince/2.32/evince-2.32.0.tar.bz2'
+#  patches = ['evince-2.32.0-configure.patch'] 
+  patches = ['evince-4-Makefile.patch', 'evince-2.32.0-configure.patch', 'evince-3.2.1-backenddir.patch']
   dependencies = ['intltool',
 #		  'libxml2-devel',
 		  'gtk2',
@@ -15,8 +16,9 @@ class Evince2 (target.AutoBuild):
 			   + ' --without-libgnome'
 			   + ' --without-gconf'
                            + ' --without-keyring'
-                           + ' --with-platform=gnome'
-			   + ' --with-smclient-backend=no'
+			   + ' --disable-tests'
+                          # + ' --with-platform=gnome'
+			   + ' --with-smclient-backend=quartz'
 			   + ' --disable-help'
 			   + ' --disable-thumbnailer'
 			   + ' --disable-nautilus'
@@ -28,6 +30,21 @@ class Evince2 (target.AutoBuild):
 			   + ' --disable-tiff'
 			   + ' --disable-comics'
 			   + ' --without-gtk-unix-print')
+#  def compile (self):
+#  	self.system ('cd %(builddir)s/libdocument && make')
+#        self.system ('cd %(builddir)s/libview && make')
+#  	self.system ('cd %(builddir)s/backend && make')
+
+#  def install (self):
+	#self.system ('mkdir -p %(install_prefix)s/lib/pkgconfig')
+        #self.system ('cd %(builddir)s/libdocument && make DESTDIR=%(install_root)s install')
+        #self.system ('cd %(builddir)s/libview && make DESTDIR=%(install_root)s install')
+	#self.system ('cd %(builddir)s/backend && make DESTDIR=%(install_root)s install')
+ #       self.system ('cd %(builddir)s/ && make DESTDIR=%(install_root)s/ install')
+
+        #self.system ('cd %(builddir)s/ && cp -pv evince-document-2.32.pc %(install_root)s/usr/lib/pkgconfig')
+        #self.system ('cd %(builddir)s/ && cp -pv evince-view-2.32.pc %(install_prefix)s/lib/pkgconfig')
+#	self.system ('install -m755 %(builddir)s/evince-view-2.32.pc  %(install_prefix)s/lib/pkgconfig')
 
 class Evince2__darwin__x86 (Evince2):
   configure_variables = (tools.AutoBuild.configure_variables
