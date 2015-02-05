@@ -21,7 +21,7 @@ class Denemo (target.AutoBuild):
         'lilypondcairo',
 	'gtk+-devel',
 	'librsvg', 
-	#'evince',
+	'evince',
         'aubio-devel',
         'libgtksourceview',
  	'guile-devel',
@@ -122,7 +122,7 @@ class Denemo__darwin (Denemo):
 				)
 
     gtk2_configure_variables = (Denemo.configure_variables
-			   + ' CFLAGS="-D_HAVE_PORTMIDI_ -D_MACH_O_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/2.30 "' 
+			   + ' CFLAGS="-D_HAVE_PORTMIDI_ -D_MACH_O_ -D_GUB_BUILD_ -I%(system_prefix)s/include/evince/2.32"' 
 			   + ' LDFLAGS="-L%(system_prefix)s/lib -Wl,-framework,CoreMIDI -levview -levdocument" ')
 
 
